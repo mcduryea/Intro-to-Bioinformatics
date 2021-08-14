@@ -1,0 +1,100 @@
+---
+title: "Setting Up in UNIX"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Project Directories
+
+In this part of the class, we will cover how to set up and manage a project using a UNIX terminal. UNIX is perhaps one of the least user-friendly languages we will cover - I like to think about it as "entering the matrix." However, proficiency with UNIX is an essential skill that allows bioinformaticist to access large computing clusters and complete projects that would not be possible on a desktop or laptop computer.
+
+To get started, open up a UNIX terminal and use the `mkdir` command to create a directory to store your project. We will call it *zmays-snps* because we will be working with a dataset of Single Nucleotide Polymorphisms or SNPS in maize (*Zea mays*). SNPs are single sites of a DNA sequence that vary and can be useful for looking for genetic differences within a single species. For example, SNPs can help us identify DNA sites associated with disease or different traits of interest. To create your directory for the maize sequences, type:
+
+```{bash}
+mkdir zmays-snps
+```
+
+This is equivalent to creating a new folder on your laptop. However, the new folder is not displayed for us. To check if the folder was created properly, we can use the `ls` command.
+
+```{bash}
+ls -l
+```
+
+This will show you all the files and folders in the directory that you're currently in. The `-l` tag gives us more information about each file, including who created it and when.
+
+Now, let's navigate into our new folder and create a subdirectory to store our data. To get to the new folder, we use the `cd` command. This would be like clicking on the folder to open it in a Windows or Mac OS.
+
+```{bash}
+cd zmays-snps
+mkdir data
+```
+
+To make sure this worked, we can use the `ls` command again (`ls` is probably one of the most frequently used commands in UNIX!)
+
+```{bash}
+ls -l
+```
+
+We should see our new folder *data* listed. 
+
+Now, let's navigate to the data folder and create a subdirectory for our sequence files. This might seem like a lot of subdirectories, but having a good directory structure is one of the main ways to keep your Bioinformatics project well-organized!
+
+```{bash}
+cd data
+mkdir seqs
+```
+
+Now we have a good directory structure in place for our project and we are ready to start working with data!
+
+##Organizing and Processing Data Files
+
+Normally, we would be working with sequence data that we got back from a sequencing facility or downloaded from an online repository. However, to familiarize oursevles with UNIX commands for processing files, let's create some fake empty data files to start. We will do this with the `touch` command and using *Regular Expression*.
+
+```{bash}
+cd seqs
+touch zmays{A,B,C}_R{1,2}.fasta
+```
+
+Now, use that handy `ls` command to see what this command did:
+```{bash}
+ls -l
+```
+
+Notice that we now have six data files. The A, B, and C simulate data collected from three samples (three different maize plants) and the R1 and R2 indicate that we have two *reads* for each sample. This means that we have sequence data from both halves of the double helix, a technique that is known as *paired-end sequencing*. This allows us to look for SNPS or differences in either side of the double helix.
+
+Take a minute to review the touch command and how we used it to create multiple files. What is the significance of the curly brackets '{}'?
+
+Notice that we also now have files that are uniformly named. This will be really helpful as we start to work with more data. As a Bioinformaticist, you may have hundreds of files that you are analyzing! 
+
+For example, let's say you were looking for all files from sample 'B'. You could use the `ls` command and the UNIX wildcard (*) to do this:
+```{bash}
+ls zmaysB*
+```
+
+This is similar to using the "find" function on a browser. The wildcard (*) means that any number of other characters can follow. UNIX will look for all files, as long 'zmaysB' is included in the name.
+
+Let's say we wanted to look for the first reads (R1 files) from samples 'A' and 'B'. We can do that using another UNIX wildcard, the square brackets:
+```{bash}
+ls zmays[AB]_R1.fastq
+```
+
+Notice that this command found the R1.fastq file for samples 'A' and 'B'.
+
+Now, let's say we wanted to look for the R1 file for all three samples. We could do this by specifying a *range" with the square brackets and a hyphen:
+```{bash}
+ls zmays[A-C]_R1.fastq
+```
+
+##Summary
+In this first section, we set up a data structure for our Bioinformatics project and learned how to do some basic file processing. Starting early with an organized project will pay off, as we start to work with more and more data!
+
+So far, we have been introduced to some basic, but handy UNIX commands. 
+```{bash}
+mkdir #creates a directory or folder
+ls #lists files and folders in the current directory
+cd #navigates to a new directory
+touch #creates a data file 
+```
