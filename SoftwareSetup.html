@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.584">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Gilbert and Dr.&nbsp;Duryea">
+
+<title>Bioinformatics Software Setup</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="SoftwareSetup_files/libs/clipboard/clipboard.min.js"></script>
+<script src="SoftwareSetup_files/libs/quarto-html/quarto.js"></script>
+<script src="SoftwareSetup_files/libs/quarto-html/popper.min.js"></script>
+<script src="SoftwareSetup_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="SoftwareSetup_files/libs/quarto-html/anchor.min.js"></script>
+<link href="SoftwareSetup_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="SoftwareSetup_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="SoftwareSetup_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="SoftwareSetup_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="SoftwareSetup_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Bioinformatics Software Setup</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Gilbert and Dr.&nbsp;Duryea </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="welcome" class="level2">
+<h2 class="anchored" data-anchor-id="welcome">Welcome</h2>
+<p>Welcome to BIO4XX/SNHU4XX, Bioinformatics. This is a course that will pull together your prior learnings in Biology, Mathematics, Computing, and Communication. If you don’t feel as though you are <em>skilled</em> in all of these areas, don’t worry! This course typically enrolls students from across the sciences, math, and computing (Computer Science, IT, CIS, etc.). Dr.&nbsp;Duryea and I will make sure to build teams in such a way that every team has at least one scientist and at least one person who has computing experience. You’ll not only get to leverage eachother’s expertise, but also to learn from one another as well.</p>
+<p>There’s quite a bit of software to set up for our course. We hope that most of this setup can be done outside of class time, but Dr.&nbsp;Duryea and Dr.&nbsp;Gilbert will be available to help troubleshoot any issues that arise. Much of this document is summarized from the <a href="https://happygitwithr.com/">Happy Git with R</a> book. As that book mentions, all of this work is well worth it in the end – just stick with it and reach out for help when you need it.</p>
+</section>
+<section id="software" class="level2">
+<h2 class="anchored" data-anchor-id="software">Software</h2>
+<p>Biological datasets are large – too large to process by hand. For this reason, we’ll be using software to interact with data in our course. We’ll be using a full suite of professional tools which will give you the ability to process biological and genetic data, create professional looking and [more importantly] reproducible reports, and to collaborate using version control systems.</p>
+<section id="technical-computing-with-r" class="level3">
+<h3 class="anchored" data-anchor-id="technical-computing-with-r">Technical Computing with R</h3>
+<p>The primary language we’ll use to interact with data in our course is called R. It is a computing language which was developed <em>for</em> data analysis.</p>
+<p><strong>Windows:</strong></p>
+<ul>
+<li>Install R
+<ul>
+<li>Navigate to <a href="https://cran.r-project.org/" target="_blank">CRAN, the Comprehensive R Archive Network</a>.</li>
+<li>Click on the <em>Download R for Windows</em> link.</li>
+<li>Click the link to <em>install R for the first time</em>.</li>
+<li>Click the link in the grey rectangle to download the most recent version of R. As of current writing, this is <em>R-4.2.0 for Windows</em>.</li>
+<li>Once the download has completed, open the setup file and complete the installation by accepting all of the default settings.</li>
+</ul></li>
+<li>Install Rtools
+<ul>
+<li>Navigate back to CRAN and click on the <em>Download R for Windows</em> link again.</li>
+<li>The fourth hyperlink in the list at the top of the page is for <code>Rtools</code> – you’ll need this to build some packages which depend on C++ (another laguage, but one which we won’t directly use).</li>
+<li>Click the <em>Rtools</em> hyperlink.</li>
+<li>Click the <em>RTools4.2</em> link.</li>
+<li>Click the <em>Rtools42 installer</em> link in the center of the page.</li>
+<li>Once the download has finished, open the installer and complete the installation by accepting all of the default settings.</li>
+</ul></li>
+</ul>
+<p><strong>macOS:</strong></p>
+<ul>
+<li>Install R
+<ul>
+<li>Navigate to <a href="https://cran.r-project.org/" target="_blank">CRAN, the Comprehensive R Archive Network</a>.</li>
+<li>Click on the <em>Download R for macOS</em> link.</li>
+<li>Look for the <em>Latest release</em> heading and download/install the most recent version of R. At the time of writing this is <em>R-4.2.0.pkg</em>.</li>
+</ul></li>
+</ul>
+<p><strong>Linux:</strong></p>
+<ul>
+<li>Install R
+<ul>
+<li>Navigate to <a href="https://cran.r-project.org/" target="_blank">CRAN, the Comprehensive R Archive Network</a>.</li>
+<li>Click on the link for your Linux Distribution next to <em>Download R for Linux</em>.</li>
+<li>Open a terminal and follow the instructions provided on the page.</li>
+</ul></li>
+</ul>
+</section>
+<section id="reproducible-reporting-with-rstudio-and-quarto" class="level3">
+<h3 class="anchored" data-anchor-id="reproducible-reporting-with-rstudio-and-quarto">Reproducible Reporting with RStudio and Quarto</h3>
+<p>We’ll be using RStudio to help us use R. <em>RStudio is to R as Microsoft Word is to English</em> – that is, we can write R code in RStudio, just as you may have written a paper in Microsoft Word prior to this course. Follow the steps below to install RStudio.</p>
+<ul>
+<li>Install RStudio
+<ul>
+<li>Navigate to <a href="https://www.rstudio.com/products/rstudio/download/">RStudio.com</a></li>
+<li>Choose <em>Rstudio Desktop</em></li>
+<li>The website will automatically detect your Operating System. Click the <em>Download RStudio for [Your OS]</em> button.</li>
+<li>Open the installer and complete the installation while accepting all of the defaults.</li>
+</ul></li>
+</ul>
+<p>In RStudio, we’ll be building markdown documents which allow us to mix R code and text into a reproducible report document. The flavor of markdown we’ll be using is called <em>Quarto</em>. Follow the steps below to install Quarto notebooks.</p>
+<ul>
+<li>Install Quarto
+<ul>
+<li>Navigate to <a href="https://quarto.org/docs/get-started/">Quarto.org</a></li>
+<li>Click on the download link which corresponds to your Operating System.</li>
+<li>Once the download has completed, open the installer and complete the installation by accepting all of the defaults.</li>
+</ul></li>
+<li>Obtain and Test the Hello Quarto notebook
+<ul>
+<li><p>Click the RStudio icon under Step 2.</p></li>
+<li><p>Skip Step 1 on this page – you’ve already installed RStudio.</p></li>
+<li><p>Open RStudio on your computer – the icon is a light blue orb with a white “R” in the center.</p></li>
+<li><p>In the console (the left or lower-left pane of RStudio), type <code>install.packages("tidyverse")</code> and hit <code>Enter/Return</code> to run the command.</p>
+<ul>
+<li>Lots of black, blue, and red text will splash to the console. The installation will be complete once your blue prompt (<span style="color:blue;">&gt;</span>) returns to the bottom of the console pane.</li>
+</ul></li>
+<li><p>In the console, type <code>install.packages("palmerpenguins")</code> and hit <code>Enter/Return</code> to run the command. Again, wait for the blue prompt to return.</p></li>
+<li><p>Back on the Quarto website, click to <code>Download hello.qmd</code> under item 3.</p></li>
+<li><p>Open the <code>hello.qmd</code> file in RStudio.</p></li>
+<li><p>Click the blue arrow button above the text editor in the top-left pane of RStudio to render the document.</p>
+<ul>
+<li>The rendered notebook should now be visible in the viewer pane – the lower-right pane in RStudio.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Let Dr.&nbsp;Duryea or Dr.&nbsp;Gilbert know if you are having trouble rendering the notebook.</p>
+</section>
+<section id="collaborative-version-control-with-gitgithub" class="level3">
+<h3 class="anchored" data-anchor-id="collaborative-version-control-with-gitgithub">Collaborative Version Control with git/GitHub</h3>
+<p>Have you ever found yourself working on a project and keeping files like <code>myBioProject_version1.doc</code>, <code>myBioProject_version2.doc</code>, <code>myBioProject_final_version.doc</code>, <code>myBioProject_RealFinal_version.doc</code>, etc? If so, you’ve been using a rudimentary version control system. This method is okay when you’re working on a project by yourself, but it gets very messy once you start collaborating with other team members on a group project.</p>
+<p>In working with groups, you either end up e-mailing lots of files back and forth (very messy), or switching to a collaborative platform such as Google Docs. It is easier to collaborate on Google Docs, but it is also pretty dangerous to do so – someone can accidentally remove an important section of a report, or you may want to revert back to a version of the report after receiving some feedback. Unless you’ve explicitly saved the relevant earlier version of the file, you may not be able to return to it.</p>
+<p>Collaborative version control with <code>git</code> is a more advanced and more reliable strategy for version control than the Google Docs method. We’ll be hosting our projects on gitHub, and we’ll mostly use RStudio for pushing changes to our group gitHub repositories.</p>
+<p><strong>Register a GitHub Account:</strong> Complete the steps below to register a GitHub account.</p>
+<ul>
+<li>Navigate to <a href="https://github.com/">GitHub.com</a></li>
+<li>Add your preferred e-mail address and hit the green <em>Sign Up for GitHub</em> button.<br>
+</li>
+<li>Follow the prompts to obtain an account.
+<ul>
+<li><a href="https://happygitwithr.com/github-acct.html">Here’s some advice</a> from <em>Happy Git with R</em> on choosing a GitHub username.</li>
+</ul></li>
+</ul>
+<p><strong>(Windows Users Only) Install git:</strong> Complete the following steps to install <code>git</code> on your local machine.</p>
+<ul>
+<li>Navigate to <a href="https://gitforwindows.org/">gitforwindows.org</a></li>
+<li>Click the blue <em>Download</em> button.</li>
+<li>Follow the prompts, accepting all of the default settings. Be sure that “Git from the command line and also from 3rd-party software” is selected when asked about <em>Adjusting your PATH environment</em>.</li>
+</ul>
+<p><strong>Linking git, GitHub, and RStudio:</strong> Complete the following steps to allow <code>git</code>, <code>GitHub</code> and <code>RStudio</code> to work together.</p>
+<ul>
+<li>Open up RStudio</li>
+<li>In the console, type and run <code>install.packages("usethis")</code></li>
+<li>Once the installation has completed, run <code>library(usethis)</code> and then <code>use_git_config(user.name = "INPUT_YOUR_USER_NAME_HERE", user.email = "INPUT_YOUR_EMAIL_ADDRESS_HERE")</code> – be sure to use the username and e-mail associated with your GitHub account.</li>
+<li>Run <code>create_github_token()</code> from the console.
+<ul>
+<li>This opens up a GitHub webpage – fill in the form. Change the token expiration to <em>No Expiration</em>.</li>
+<li>Use the clipboard button to copy the PAT token – you may want to save this in a simple text file somewhere on your computer.</li>
+</ul></li>
+<li>In the console, run <code>install.packages("gitcreds")</code></li>
+<li>Once the install has finished, run <code>gitcreds::gitcreds_set()</code>
+<ul>
+<li>Paste the PAT token from GitHub into the console, next to the prompt, and hit <code>Enter/Return</code>.</li>
+</ul></li>
+</ul>
+<p><strong>Check that Everything Worked!</strong> We’re finally ready to check that everything has worked. Complete the following steps.</p>
+<ul>
+<li>Open RStudio</li>
+<li>Click <code>File -&gt; New Project</code></li>
+<li>Do you see an option to create from <code>Version Control</code>? If so, excellent! Don’t click on it just yet though.</li>
+<li>Click on the <code>New Directory</code> button and then click <code>New Project</code>.
+<ul>
+<li>On this next page do you see a checkbox to <em>Create a git Repository</em>? If so, we’re all set!</li>
+<li>Don’t follow through with creating the new project. Instead, just close out of this process.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>That was a lot of work, and a lot of software to install! Good news though, the only software you’ll <em>notice</em> interfacing with on a regular basis is RStudio. All of the other items we’ve installed will be controlled there.</p>
+<p>Next time, you’ll create your first GitHub repository, clone it to your local machine (create a copy of it on your computer), attach an R project within that repository, create a quarto document, conduct an analysis, build your report, and push updates out to your main repository on GitHub.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
