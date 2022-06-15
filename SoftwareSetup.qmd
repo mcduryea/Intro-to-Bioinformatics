@@ -10,6 +10,12 @@ Welcome to BIO4XX/SNHU4XX, Bioinformatics. This is a course that will pull toget
 
 There's quite a bit of software to set up for our course. We hope that most of this setup can be done outside of class time, but Dr. Duryea and Dr. Gilbert will be available to help troubleshoot any issues that arise. Much of this document is summarized from the [Happy Git with R](https://happygitwithr.com/) book. As that book mentions, all of this work is well worth it in the end -- just stick with it and reach out for help when you need it.
 
+Setup instructions for Windows, macOS, and linux follow. For convenience, if you prefer to follow video setup instructions, those are below.
+
++ Full Windows Setup (link to come, Adam will record)
++ Full mac setup (Katie, do you mind recording this?)
++ Full (Ubuntu) linux setup (link to come, Adam will record)
+
 ## Software
 
 Biological datasets are large -- too large to process by hand. For this reason, we'll be using software to interact with data in our course. We'll be using a full suite of professional tools which will give you the ability to process biological and genetic data, create professional looking and \[more importantly\] reproducible reports, and to collaborate using version control systems.
