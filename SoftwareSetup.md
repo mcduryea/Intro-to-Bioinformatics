@@ -6,6 +6,8 @@ execute:
   keep-md: true
 ---
 
+
+
 ## Welcome
 
 Welcome to BIO4XX/SNHU4XX, Bioinformatics. This is a course that will pull together your prior learnings in Biology, Mathematics, Computing, and Communication. If you don't feel as though you are *skilled* in all of these areas, don't worry! This course typically enrolls students from across the sciences, math, and computing (Computer Science, IT, CIS, etc.). Dr. Duryea and I will make sure to build teams in such a way that every team has at least one scientist and at least one person who has computing experience. You'll not only get to leverage eachother's expertise, but also to learn from one another as well.
