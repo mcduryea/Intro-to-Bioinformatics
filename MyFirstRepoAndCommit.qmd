@@ -72,3 +72,55 @@ Great! You've now built an Rproject inside of your repository. Among other thing
     ```
   
   + Below the code cell, use text to describe what you see. Make sure that you are typing in an area with a white background, not a grey one.
+  + Click the blue arrow labeled *Render* at the top of the markdown editor to render your document. You'll be prompted to save the file first, if you haven't done so already. I named my file `PalmerPenguins_Initial.qmd` -- you should choose something similar.
+  
+    + The rendered document will appear in the viewer tab of the lower-right pane of your RStudio window.
+    + If you have any errors that prevent the document from rendering, be sure to fix them. Ask for help if you need it!
+    
+Excellent -- you now have a Quarto Document which loads R packages, and displays a data set on various characteristics of penguins. This is quite an achievement. Now lets show the world!
+  
+### Commit and Push Changes to GitHub
+
+Now your local repository has some files that your GitHub repository doesn't have! It's time to push those changes to GitHub so that they are reflected in the main repository.
+
++ Click the `Git` tab in the top-right pane of RStudio.
++ Click the blue *Pull* icon to pull in the most up-to-date version of all files in the main GitHub repository.
+
+  + This seems to be a silly step now (we know there are no changes there), but *Pulling* before you *Commit/Push* will save you significant headaches later -- especially once you are collaborating with others in a shared repository.
++ Click the check boxes next to all of the files listed.
++ Click the *Commit* button.
+  
+  + Before doing anything with our Commit, let's 
+  + Add a relevant Commit Message -- something like "Created Quarto Document -- PalmerPenguins_Initial".
+  + Click the *Commit* button below the Commit Message dialogue box.
++ Close the message box that summarizes the Commit tasks.
++ Click the green *Push* arrow (it's pointing upwards) to push your committed changes to the main GitHub repository.
++ Navigate to your GitHub repository on the web and click refresh to see that the new files now appear there.
+
+Fantastic! You've now updated your main repository on GitHub with the new files you've created. Both your local and main GitHub repository are up to date and hold the same versions of all the project files.
+
+## Summary
+
+Nice work through this activity. You've accomplished a lot here. You created a GitHub repository, used RStudio to clone the repository and created an Rproject to manage it, you created a Quarto Document which contained some text as well as your first few lines of R code, you rendered the document, and you reconciled all of the differences between the "origin" repository on GitHub and your local clone of it by first *Pulling* in any changes present on GitHub then *Committing* your local changes and *Pushing* them back out to GitHub.
+
+The major takeaways from this activity are summarized below.
+
++ GitHub is used to host repositories, which track the current state (as well as the history) of all files involved in a project.
++ Typically a project will involve an *origin* repository located on GitHub as well as one or more "remote" clones which are located on the machines of the project contributors.
++ *Pulling* in changes from *origin* ensures that your cloned version of the repository contains the most up-to-date version of all files in the project repository hosted on GitHub.
++ *Committing* and then *Pushing* changes from your local clone ensures that the changes you've made to files in your local clone are reflected in the *origin* on GitHub. 
++ Once you've *committed* and *pushed* your changes, your project collaborators will get your updated files as soon as they *pull* in changes from the *origin* repository on GitHub.
+
+  + No more e-mailing files back and forth or trying to remember which version of a file is the most recent one! Git and GitHub are now managing all of that for you.
+
++ We can manage all of these *pull/commit/push* tasks from the `Git` tab in RStudio.
+
+  + Be sure to make *pull*, then *commit*, then *push* your standard workflow for committing changes to the *orign* repository. Doing so will save lots of headaches associated with "*merge conflicts*" (when two people make changes to the same part of a file) later on.
+
++ We can use Quarto Documents in RStudio to mix R code, text, and more into a reproducible analysis (more on this later on).
+
+  + GitHub can be used to host much more than just Quarto Documents -- in fact, your `PalmerPenguinsAnalysis` repository already contains lots of types of files.
+
++ GitHub nicely displays markdown (`.md`) files directly within your repository. This means that people viewing your repository can see your work without needing to download and run all of your files. Try opening one of your `.rmd` or `.html` files from GitHub and notice how difficult they are to read when compared to the `.md` files.
+
+
