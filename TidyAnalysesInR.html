@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.584">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Gilbert and Dr.&nbsp;Duryea">
+
+<title>Tidy Analyses in R: Palmer Penguins</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="TidyAnalysesInR_files/libs/clipboard/clipboard.min.js"></script>
+<script src="TidyAnalysesInR_files/libs/quarto-html/quarto.js"></script>
+<script src="TidyAnalysesInR_files/libs/quarto-html/popper.min.js"></script>
+<script src="TidyAnalysesInR_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="TidyAnalysesInR_files/libs/quarto-html/anchor.min.js"></script>
+<link href="TidyAnalysesInR_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="TidyAnalysesInR_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="TidyAnalysesInR_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="TidyAnalysesInR_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="TidyAnalysesInR_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+<script src="TidyAnalysesInR_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="TidyAnalysesInR_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tidy Analyses in R: Palmer Penguins</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Gilbert and Dr.&nbsp;Duryea </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="activity-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="activity-objectives">Activity Objectives</h2>
+<p>This activity serves as an introduction to using R to interact with data. The purpose of this activity is to simply gain familiarity with using R to interact with data. After completing this activity, you’ll have done the following:</p>
+<ol type="1">
+<li>Install and load packages/libraries in R.</li>
+<li>Use the pipe operator (<code>%&gt;%</code>) to chain commands together.</li>
+<li>Use the <code>count()</code> function to create a frequency table for categorical variables.</li>
+<li>Compute basic summary statistics with the use of <code>summarise()</code>.</li>
+<li>Filter and subset data frames using the <code>filter()</code> and <code>select()</code> functions.</li>
+<li>Group data with <code>group_by()</code> and compute summary statistics on groups.</li>
+<li>Use <code>ggplot()</code> to display data graphically.</li>
+</ol>
+<section id="installing-and-loading-packages" class="level3">
+<h3 class="anchored" data-anchor-id="installing-and-loading-packages">Installing and Loading Packages</h3>
+<p>When we open R/RStudio, we have access to basic R functionality. Often, we’ll want to extend that functionality to perform specialized tasks. Developers in the R community write and publish packages which can be installed and used by R-users. We install packages with <code>install.packages("package_name")</code> and load packages into our current R session with <code>library(package_name)</code>. While packages only need to be <em>installed</em> once, they must be loaded in each R Session you intend to use them in (<strong>note:</strong> an R Session begins when R/RStudio are opened and ends when they are closed or terminated). For example, you’ve already run <code>install.packages("palmerpenguins")</code> and <code>library(palmerpenguins)</code> to install and load the <code>palmerpenguins</code> package in your <code>PalmerPenguins_Initial</code> Quarto notebook. You won’t need to run <code>install.packages("palmerpenguins:)</code> again, but you will need to re-load the library when we open our notebook again.</p>
+<ul>
+<li>Open an RStudio Session and then use <code>File -&gt; Recent Projects</code> and select the <code>PalmerPenguinsAnalysis</code> project from the list to open it.</li>
+<li>Open your <code>PalmerPenguins_Initial</code> notebook.</li>
+<li>Rerun the lines of code you wrote in that notebook. As a reminder, you can run lines of code with <code>ctrl+Enter</code>, <code>cmd+Return</code>, or by hitting the green <em>play</em> button in the top-right corner of the code chunk.</li>
+</ul>
+</section>
+<section id="reminder-text-and-narrative" class="level3">
+<h3 class="anchored" data-anchor-id="reminder-text-and-narrative">Reminder: Text and Narrative</h3>
+<p>Including a narrative alongside any analysis is extremely important. It is difficult for someone to simply read your code and immediately know what you are doing. Walking a reader through your thought process is helpful. As a reminder, Quarto notebooks allow you to mix R-code and text – in general, code chunks appear with a grey background while text appears over a white background.</p>
+<ul>
+<li>Add a new heading to your notebook, titled <em>Data Manipulation</em>.</li>
+<li>Write a few sentences below the header to remind yourself that we’ll be learning how to use R code to manipulate data in this section. In particular, we’ll learn how to filter rows, subset columns, group data, and compute summary statistics.</li>
+<li>Since you’ve seen the <code>head()</code> of the <code>penguins</code> data frame, create a bulleted list of questions you are interested in answering in your analysis.</li>
+</ul>
+</section>
+<section id="data-manipulation-and-summarization" class="level3">
+<h3 class="anchored" data-anchor-id="data-manipulation-and-summarization">Data Manipulation and Summarization</h3>
+<p>There are some basic functions in R that are useful throughout any analysis. You’ll be exposed to those here.</p>
+<p><strong>Summarizing Data:</strong> In the <code>penguins</code> data frame, we’ll find recorded values of some numerical variables (variables for which a measure like the average is meaningful) and other variables which are categorical (grouping variables). We typically summarize categorical variables by counting the number of observations in each category – often called a <em>frequency table</em>. We can build frequency tables in R with the <code>count()</code> function. For numerical variables, we have more options – the <code>mean()</code> and <code>median()</code> are both measures of <em>average</em>, while we can use <code>sd()</code>, <code>IQR()</code>, and <code>quantile()</code> to measure spread.</p>
+<p><em>Counts for Categorical Data</em>:</p>
+<ul>
+<li>We can create a frequency table for the <code>island</code> variable with the chain below. Create a new code cell in your Quarto notebook (remember, you can do this by typing a forward slash and choosing <em>R Code Chunk</em> from the list of options), and type/run the code to produce the frequency table.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  island        n
+  &lt;fct&gt;     &lt;int&gt;
+1 Biscoe      168
+2 Dream       124
+3 Torgersen    52</code></pre>
+</div>
+</div>
+<ul>
+<li>Interpret the output.</li>
+<li>Open another code cell and compute a frequency table for the <code>species</code> variable. Interpret the output here as well.</li>
+<li>What happens if you run <code>penguins %&gt;% count(island, species)</code>? Run it in a new code cell and interpret the output.</li>
+<li><strong><em>Note:</em></strong> You can obtain a more readable version of the output from the call above using the following:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(island, species) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> species, <span class="at">values_from =</span> n, <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  island    Adelie Gentoo Chinstrap
+  &lt;fct&gt;      &lt;int&gt;  &lt;int&gt;     &lt;int&gt;
+1 Biscoe        44    124         0
+2 Dream         56      0        68
+3 Torgersen     52      0         0</code></pre>
+</div>
+</div>
+<ul>
+<li><strong><em>Note 2:</em></strong> You can do <em>even</em> better if you run the code in the cell below. It requires that you install and load the <code>kableExtra</code> package though – try it!</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(island, species) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> species, <span class="at">values_from =</span> n, <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"hover"</span>, <span class="st">"striped"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-hover table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> island </th>
+   <th style="text-align:right;"> Adelie </th>
+   <th style="text-align:right;"> Gentoo </th>
+   <th style="text-align:right;"> Chinstrap </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Biscoe </td>
+   <td style="text-align:right;"> 44 </td>
+   <td style="text-align:right;"> 124 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Dream </td>
+   <td style="text-align:right;"> 56 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 68 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Torgersen </td>
+   <td style="text-align:right;"> 52 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p><em>Summaries for Numerical Data</em>: As mentioned earlier, summaries for numerical data can include measures of <em>center</em>, <em>spread</em>, and other metric – even those of our own invention!</p>
+<ul>
+<li>We can compute the <em>average</em> (mean) bill length as follows:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length_mm =</span> <span class="fu">mean</span>(bill_length_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_bill_length_mm
+                &lt;dbl&gt;
+1                  NA</code></pre>
+</div>
+</div>
+<p>Oops – there were missing values in there! This is a good opportunity to explain that <em>missing data is contagious</em> – that means that if we try to compute a quantity, and some of the values are missing (<code>NA</code>), then the result will be <code>NA</code>. Let’s try this again, but explicitly tell R that we want to ignore the <code>NA</code> values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length_mm =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_bill_length_mm
+                &lt;dbl&gt;
+1                43.9</code></pre>
+</div>
+</div>
+<p>That’s better! Perhaps the mean alone, is not sufficient. Let’s include the median, standard deviation, minimum, 25th percentile, 75th percentile, and maximum bill lengths as well.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_bill_length =</span> <span class="fu">min</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_quartile_bill_length =</span> <span class="fu">quantile</span>(bill_length_mm, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_bill_length =</span> <span class="fu">median</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bill_length_mm =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">third_quartile_bill_length =</span> <span class="fu">quantile</span>(bill_length_mm, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">standard_deviation_bill_length =</span> <span class="fu">sd</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  name                           value
+  &lt;chr&gt;                          &lt;dbl&gt;
+1 min_bill_length                32.1 
+2 first_quartile_bill_length     39.2 
+3 median_bill_length             44.4 
+4 mean_bill_length_mm            43.9 
+5 third_quartile_bill_length     48.5 
+6 standard_deviation_bill_length  5.46</code></pre>
+</div>
+</div>
+<p>The last line, <code>pivot_longer(cols = everything())</code> converts the table from being very <em>wide</em> to a more manageable <em>long</em> table. To see the benefit of doing this, remove the last line and the pipe (<code>%&gt;%</code>) at the end of the previous line, then re-run the code chunk.</p>
+<p>If you want a nicely formatted table, pipe the result into <code>kable()</code> as we did earlier. Just copy/paste what we did!</p>
+</section>
+<section id="selecting-specific-columns-and-rows" class="level3">
+<h3 class="anchored" data-anchor-id="selecting-specific-columns-and-rows">Selecting Specific Columns and Rows</h3>
+<p>We don’t have to work with the entire dataset. We can select specific columns (using the <code>select()</code> function) or rows satisfying certain conditions (using the <code>filter()</code> function).</p>
+<ul>
+<li>For example, we can select only the <code>species</code>, <code>island</code>, <code>sex</code>, and <code>year</code> columns.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, sex, year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 4
+   species island    sex     year
+   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;
+ 1 Adelie  Torgersen male    2007
+ 2 Adelie  Torgersen female  2007
+ 3 Adelie  Torgersen female  2007
+ 4 Adelie  Torgersen &lt;NA&gt;    2007
+ 5 Adelie  Torgersen female  2007
+ 6 Adelie  Torgersen male    2007
+ 7 Adelie  Torgersen female  2007
+ 8 Adelie  Torgersen male    2007
+ 9 Adelie  Torgersen &lt;NA&gt;    2007
+10 Adelie  Torgersen &lt;NA&gt;    2007
+# … with 334 more rows</code></pre>
+</div>
+</div>
+<ul>
+<li>We can also <code>filter()</code> the dataset to include only <code>Chinstrap</code> penguins.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, sex, year) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Chinstrap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 68 × 4
+   species   island sex     year
+   &lt;fct&gt;     &lt;fct&gt;  &lt;fct&gt;  &lt;int&gt;
+ 1 Chinstrap Dream  female  2007
+ 2 Chinstrap Dream  male    2007
+ 3 Chinstrap Dream  male    2007
+ 4 Chinstrap Dream  female  2007
+ 5 Chinstrap Dream  male    2007
+ 6 Chinstrap Dream  female  2007
+ 7 Chinstrap Dream  female  2007
+ 8 Chinstrap Dream  male    2007
+ 9 Chinstrap Dream  female  2007
+10 Chinstrap Dream  male    2007
+# … with 58 more rows</code></pre>
+</div>
+</div>
+<p>Since we know that these are all <code>Chinstrap</code> penguins, perhaps we no longer need the <code>species</code> column. We can <em>de</em>-select it using the <code>select()</code> function and a minus (<code>-</code>) sign in front of the column name. We can also store this smaller data frame into a new object called <code>chinstraps</code> by using the arror (<code>&lt;-</code>) operator.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>chinstraps <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, sex, year) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Chinstrap"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>species)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>chinstraps <span class="sc">%&gt;%</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  island sex     year
+  &lt;fct&gt;  &lt;fct&gt;  &lt;int&gt;
+1 Dream  female  2007
+2 Dream  male    2007
+3 Dream  male    2007
+4 Dream  female  2007
+5 Dream  male    2007
+6 Dream  female  2007</code></pre>
+</div>
+</div>
+</section>
+<section id="grouping-and-summarizing-groups" class="level3">
+<h3 class="anchored" data-anchor-id="grouping-and-summarizing-groups">Grouping and Summarizing Groups</h3>
+<p>We can use <code>group_by()</code> and <code>summarize()</code> to quickly compare summary statistics across groups. Let’s compare the average and standard deviation in <code>bill_depth_mm</code> across the species groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bill_depth_mm =</span> <span class="fu">mean</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_bill_depth_mm =</span> <span class="fu">sd</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  species   mean_bill_depth_mm sd_bill_depth_mm
+  &lt;fct&gt;                  &lt;dbl&gt;            &lt;dbl&gt;
+1 Adelie                  18.3            1.22 
+2 Chinstrap               18.4            1.14 
+3 Gentoo                  15.0            0.981</code></pre>
+</div>
+</div>
+<p>What do you notice? Add this code to your notebook, run it, and include an interpretation of the results.</p>
+</section>
+<section id="data-visualization-with-ggplot" class="level3">
+<h3 class="anchored" data-anchor-id="data-visualization-with-ggplot">Data Visualization with <code>ggplot()</code></h3>
+<p>There are entire courses on data visualization. We’ll give you just a taste of it here.</p>
+<p><strong>One Categorical Variable:</strong> We can visualize a categorical variable with a barplot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span><span class="st">"Counts of Penguin Species"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Species"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="TidyAnalysesInR_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>Add this plot to your notebook and include a discussion of it.</li>
+<li>Create a new plot visualizing one of the other categorical variables in the dataset and discuss it.</li>
+</ul>
+<p><strong>One Numerical Variable:</strong> We can visualize a single numerical variable with a histogram (<code>geom_histogram()</code>), density (<code>geom_density()</code>), or boxplot (<code>geom_boxplot()</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span><span class="st">"Distribution of Bill Lengths"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite values (stat_bin).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="TidyAnalysesInR_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>Add this plot to your notebook and include a discussion of it.</li>
+<li>Change the plot above to a density or boxplot. What does your new plot do a better job showing than the histogram? What did the histogram do better?</li>
+</ul>
+<p><strong>Two Numerical Variables:</strong> We can explore a potential relationship between two numerical variables with a scatterplot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_depth_mm, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Depth and Length"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Bill Depth (mm)"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="TidyAnalysesInR_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>Add this plot to your notebook.</li>
+<li>Do you notice anything interesting? Write about it!</li>
+<li>Build another scatterplot to explore a potential association you are interested in.</li>
+</ul>
+<p><strong>Two Categorical Variables:</strong> We can explore potential associations between pairs of categorical variables using barplots and fill.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Species by Island"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Island"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="TidyAnalysesInR_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>Add the plot to your notebook and discuss it.</li>
+</ul>
+<p><strong>One Numerical and One Categorical Variable:</strong> Effective visualizations to compare a numerical variable and a categorical variable include side-by-side boxplots, or faceted plots.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_depth_mm, <span class="at">y =</span> species)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Depth by Species"</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Bill Depth (mm)"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="TidyAnalysesInR_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_depth_mm)) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Depth by Species"</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Bill Depth (mm)"</span>,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="TidyAnalysesInR_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>Add these plots to your notebook and interpret what you are seeing.</li>
+</ul>
+</section>
+<section id="advanced-plotting" class="level3">
+<h3 class="anchored" data-anchor-id="advanced-plotting">Advanced Plotting</h3>
+<p>Once you get comfortable with basic <code>ggplot()</code> syntax, it is quite easy to build more complex plots. For example, see the plot below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y =</span> flipper_length_mm,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">color =</span> species,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">shape =</span> sex)) <span class="sc">+</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>                            <span class="at">y =</span> flipper_length_mm,</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>                            <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(island), <span class="at">cols =</span> <span class="fu">vars</span>(sex), <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Flipper and Bill Lengths by Species and Sex"</span>,</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Flipper Length(mm)"</span>) <span class="sc">+</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="TidyAnalysesInR_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>Throughout this activity, you had your first exposure to using R to interact with data. You learned how to manipulate data in a tabular format using selector functions like <code>select()</code> and <code>filter()</code>. You learned how to compute summary statistics for both categorical and numerical data. Finally, you learned how to display data visually with <code>ggplot()</code>.</p>
+</section>
+<section id="finishing-up" class="level2">
+<h2 class="anchored" data-anchor-id="finishing-up">Finishing Up</h2>
+<ul>
+<li>Revisit the questions of interest you had at the beginning of this notebook. If there are any that remain unanswered, try answering them with the use of your new data superpowers!</li>
+<li>Once you are done, use the blue <em>Render</em> button to build your notebook.</li>
+<li>Click on the <code>Git</code> tab in the top-right pane of RStudio.</li>
+<li>Click on the blue <em>Pull</em> arrow to pull in all of the most updates to your <em>origin</em> repository.</li>
+<li>Click the check boxes next to all of your changed files</li>
+<li>Click the <em>Commit</em> button, add a commit message about what we’ve done here, then click to <em>Commit</em>.</li>
+<li>Finally, <em>Push</em> your changes out to GitHub using the green <em>Push</em> arrow.</li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
