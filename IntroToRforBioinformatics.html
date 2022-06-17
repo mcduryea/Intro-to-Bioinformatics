@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.584">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Gilbert and Dr.&nbsp;Duryea">
+
+<title>Intro to R for Bioinformatics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="IntroToRforBioinformatics_files/libs/clipboard/clipboard.min.js"></script>
+<script src="IntroToRforBioinformatics_files/libs/quarto-html/quarto.js"></script>
+<script src="IntroToRforBioinformatics_files/libs/quarto-html/popper.min.js"></script>
+<script src="IntroToRforBioinformatics_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="IntroToRforBioinformatics_files/libs/quarto-html/anchor.min.js"></script>
+<link href="IntroToRforBioinformatics_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="IntroToRforBioinformatics_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="IntroToRforBioinformatics_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="IntroToRforBioinformatics_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="IntroToRforBioinformatics_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Intro to R for Bioinformatics</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Gilbert and Dr.&nbsp;Duryea </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.6     ✔ dplyr   1.0.9
+✔ tidyr   1.2.0     ✔ stringr 1.4.0
+✔ readr   2.1.2     ✔ forcats 0.5.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+</div>
+<section id="activity-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="activity-objectives">Activity Objectives</h2>
+<p>Now that we have some exposure to data analysis in R, let’s get our first exposure to some Bioinformatics work. Our objective is simple – count the number of each nucleotide within a genome. Through this notebook, we’ll gain familiarity with the following:</p>
+<section id="r-for-bioinformatics-objectives" class="level3">
+<h3 class="anchored" data-anchor-id="r-for-bioinformatics-objectives">R for Bioinformatics Objectives</h3>
+<ul>
+<li>Use the arrow (<code>&lt;-</code>) operator to store objects in variables.</li>
+<li>Use R’s <code>sample()</code> function to create a random “genome” for the purpose of testing functions.</li>
+<li>Build functions to process and analyze genetic data.</li>
+<li>Learn about <code>for</code> loops and implement them when necessary.</li>
+<li>Read in a real bacterial genome from a text file.</li>
+<li>Analyse the genome using the ideas and tools developed in the first part of the notebook.</li>
+</ul>
+</section>
+<section id="github-collaboration-objectives" class="level3">
+<h3 class="anchored" data-anchor-id="github-collaboration-objectives">GitHub Collaboration Objectives</h3>
+<ul>
+<li>Clone a remote repository to your local machine.</li>
+<li>Attach an Rproject to manage your local repository.</li>
+<li>Create a Quarto Notebook from scratch.</li>
+<li>Continue to mix code and text in Quarto, resulting in a reproducible report.</li>
+<li>Use the <em>Pull-Commit-Push</em> framework to ensure both your local repository and the origin on GitHub are up to date.</li>
+<li>Identify that changes made by your other collaborators are reflected in the GitHub origin repository as well as your local repository.</li>
+<li>Collaborate on a single Quarto Notebook, and resolve a merge conflict.</li>
+</ul>
+</section>
+<section id="getting-started-with-r-for-bioinformatics" class="level3">
+<h3 class="anchored" data-anchor-id="getting-started-with-r-for-bioinformatics">Getting Started with R for Bioinformatics</h3>
+<p>Let’s start with lists of strings – it will be really useful to be able to generate our own (fake) genomes. This will help us experiment with code on small examples, without the need to utilize an entire genome. Even a small, bacterial genome is typically over a thousand nucleotides long! The ability to generate strings of nucleotides will also help us to explore how efficient (or inefficient) our code is before we choose to run it on an entire genome.</p>
+<p>In R, lists of values are defined using the <code>c()</code> function, which <em>c</em>ombines items into a list. For example, we can create a list of instructors, called <code>instructors</code>, for this course and then print out the list as follows.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>instructors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Duryea"</span>, <span class="st">"Gilbert"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>instructors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Duryea"  "Gilbert"</code></pre>
+</div>
+</div>
+<p>Now it is time for your first challenge. Recall that the four nucleotides are Adenine (A), Cytosine (C), Guanine (G), and Thymine (T). Use the code block below to complete your first challenge.</p>
+<hr>
+<p><strong>Challenge 1:</strong> Create a list nucleotides containing the four nucleotides and print it out to the notebook.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete Challenge 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Did you define the list without any errors? If so, great work!</p>
+<p>Now that you’ve got a list containing the four nucleotides, we’re ready to generate a random genome. First, lets see a method that Dr.&nbsp;Duryea and Dr.&nbsp;Gilbert could use to randomly split up the responsibilities of preparing for each of our 32 class meetings this semester.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>numClasses <span class="ot">&lt;-</span> <span class="dv">32</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>schedule <span class="ot">&lt;-</span> <span class="fu">sample</span>(instructors, <span class="at">size =</span> numClasses, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>schedule</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Gilbert" "Duryea"  "Gilbert" "Duryea"  "Duryea"  "Duryea"  "Gilbert"
+ [8] "Gilbert" "Gilbert" "Gilbert" "Gilbert" "Duryea"  "Duryea"  "Duryea" 
+[15] "Duryea"  "Gilbert" "Gilbert" "Duryea"  "Gilbert" "Gilbert" "Duryea" 
+[22] "Gilbert" "Duryea"  "Duryea"  "Gilbert" "Duryea"  "Duryea"  "Duryea" 
+[29] "Gilbert" "Duryea"  "Gilbert" "Duryea" </code></pre>
+</div>
+</div>
+<p>Now it’s your turn. Try the challenge below.</p>
+<hr>
+<p><strong>Challenge 2:</strong> Adapt the code above so that you create a random string of 15 nucleotides. Call your string <code>randGenome</code> and print it to the notebook.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete Challenge 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Two things – first, this genome is kind of hard to read as a list. Try running this code in the codeblock below to collapse your genome into a single string: <code>paste(randGenome, collapse = "")</code> and, secondly, compare your results with a classmate. What happened? Are you surprised?</p>
+<p>Okay, now that you’ve generated a tiny random genome, let’s generate something larger.</p>
+<hr>
+<p><strong>Challenge 3:</strong> Generate a random genome which is 1500 nucleotides long and use the <code>paste()</code> method to collapse it from a list down to a single string. Print your new <code>randGenome</code> to the notebook. Be sure that your new version of <code>randGenome</code> contains just the single long string, and not 1500 individual elements.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete Challenge 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Were you able to generate a new, longer random genome? Nicely done!</p>
+<p>You’ll notice that you and your classmates are all continuing to get different results. This is fine, but sometimes we’ll all want to replicate the same results, especially since we are just starting to learn how computing and bioinformatics all works! Try running the code below, and compare the results of the first few nucleotides in the random genome with your neighbors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">215</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>genomeLength <span class="ot">&lt;-</span> <span class="dv">1500</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>randGenome <span class="ot">&lt;-</span> <span class="fu">sample</span>(nucleotides, <span class="at">size =</span> genomeLength, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>randGenome <span class="ot">&lt;-</span> <span class="fu">paste</span>(randGenome, <span class="at">collapse =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The additional line, <code>random.seed(215)</code>, in the code block above initializes our random number generator with the seed 215 (by the way, there’s nothing special about the number 215 here – it is Dr.&nbsp;Gilbert’s office number). Everyone’s computer is running the same random number generator, and so, if we start with the same initial value, we’ll all generate the same random values!</p>
+<p>Let’s try an experiment. Much of our initial work in bioinformatics will be to read and analyse a genome. One reasonable first task would be to count the frequency of each nucleotide along a genome or a substring of a genome. Let’s start by just counting the frequency of Adenine (<code>A</code>) in the random genome substring below.</p>
+<hr>
+<p><strong>Challenge 4:</strong> Set a seed using <code>set.seed(215)</code> and use it to generate a random genome (<code>randGenome</code>), collapsed down to a single string. Once you’ve done this, count the frequency of Adenine (A) in the resulting “genome” by hand.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete challenge 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Did everyone’s answer agree? We all had the same substring, but its unlikely that we all counted accurately. We’ve run into the issue of human error – now imagine if this was a full genome, on the order of millions of nucleotides in length!</p>
+<p>Computers are much more accurate and dependable than humans (as long as we provide them with meaningful and consistent instructions). Wouldn’t it be great if we could just get the computer to count the appearances of Adenine for us?</p>
+<p>Its time for us to introduce a programming technique called the for loop. In programming, a for loop allows us to run a set of instructions over and over for some predetermined number of iterations. There are many ways to run a for loop – we’ll encounter several throughout our course. The basic idea is this.</p>
+<ol type="1">
+<li>Set an iterator (this may just be a counter or it may be floating over elements in a list).</li>
+<li>Provide the instructions to be run each time through the loop.</li>
+</ol>
+<p>When the code is run, the instructions will be run once for each value of the iterator. Let’s build a simple for loop that will just add up the values of the iterator. We’ll set the iterator to run through the range of integer values from 0 through 9.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mySum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  mySum <span class="ot">&lt;-</span> mySum <span class="sc">+</span> i</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(mySum)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 3
+[1] 6
+[1] 10
+[1] 15
+[1] 21
+[1] 28
+[1] 36
+[1] 45
+[1] 55</code></pre>
+</div>
+</div>
+<p>There are a few things to note here. First, we initialize the for loop with the keyword <code>for</code> and then provide the condition on the iterator within a set of parentheses, ending this line with an opening bracket <code>{</code>. Once we do this, the next line becomes indented – these indented lines are the instructions to be run each time through the loop. An additional thing to notice is that we didn’t actually define <code>i</code> before using it to initialize our for loop. We just said that <code>i</code> should be <code>in</code> <code>1:10</code> – short hand for all of the integers between 1 and 10 (including both endpoints).</p>
+<hr>
+<p><strong>Challenge 5:</strong> Initialize a variable called <code>myProduct</code> with the value 1 in the code chunk below. Write your own for loop, using an iterator <code>j</code>, which takes the integer values from 1 to (and including) 15. Each run through the loop should update <code>myProduct</code> by multiplying <code>myProduct</code> by <code>j</code> and printing out the result.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete Challenge 5!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notice that there is nothing special about the name we give to the iterator. You could just as easily have called your iterator <code>steve</code> instead of <code>j</code> in the previous challenge – as long as you change all of the occurrences of <code>j</code> to <code>steve</code> in the loop you wrote, you will get the same results! This is helpful because, whenever possible, we would like to use informative variable and iterator names in our code.</p>
+<p>Alright, now that you know how to write and execute a <code>for</code> loop, let’s see if we can work towards our goal of analysing a genome. If we have any hope of analysing the genome we’ll need to be able to access individual nucleotides. This will allow us to access particular points in the genome to determine nucleotide frequency. Let’s see if we can write a for loop to print out the individual nucleotides in a random genome.</p>
+<hr>
+<p><strong>Challenge 6:</strong> In the code block below, generate a random genome substring consisting of 10 nucleotides and use the <code>paste()</code> method to collapse your genome to a single string rather than a list. Then write a <code>for</code> loop to print out each individual nucleotide.</p>
+<p><em>Hint.</em> You’ll find the <code>str_sub()</code> (string subset) function to be useful here – it takes three arguments, the <code>string</code> to be subset, the position to <code>start</code> subsetting, and the position to <code>end</code> subsetting the string. If <code>start</code> and <code>end</code> are the same, then you’ll extract a single character.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete Challenge 6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we are able to access and print out all of the nucleotides in our sample genome, let’s pretend that we are only interested in the appearances of Adenine (for now). It’s time to be introduced to another super useful programming concept – flow control. Its common that we want to execute code (like printing out a value) only when certain conditions are satisfied. We can achieve this with <code>if</code>, <code>else if</code>, and <code>else</code> statements.</p>
+<p>Consider the following loop which will only print out the occurrences of Adenine.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>nucleotides <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"G"</span>, <span class="st">"T"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>genomeLength <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>randGenome <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(nucleotides, <span class="at">size =</span> genomeLength, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">collapse =</span> <span class="st">""</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(randGenome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "GGGCGTCGAT"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nchar</span>(randGenome)){</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">str_sub</span>(randGenome, <span class="at">start =</span> i, <span class="at">end =</span> i) <span class="sc">==</span> <span class="st">"A"</span>){</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">str_sub</span>(randGenome, <span class="at">start =</span> i, <span class="at">end =</span> i))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "A"</code></pre>
+</div>
+</div>
+<p>Its time for another challenge. Can you adapt the for loop above to count the number of occurrences of Adenine rather than printing out all of the occurrences?</p>
+<hr>
+<p><strong>Challenge 7:</strong> Adapt the for loop provided above so that it counts the number of occurrences of Adenine (A) in randGenome.</p>
+<p><em>Hint:</em> You’ll want to initialize a counter variable to 0 before the start of your loop and increment it by one every time the nucleotide is Adenine, rather than simply printing out the nucleotide.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete Challenge 7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you got that, you are ready to compute the frequencies of all of the nucleotides in the genome string.</p>
+<hr>
+<p><strong>Challenge 8:</strong> Adapt the loop you just created so that it will count the frequencies of each of the four individual nucleotides.</p>
+<p><em>Hint:</em> You’ll need a separate counter for each of the nucleotides and some additional flow control (<code>if/else if/else</code>) statements.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete Challenge 8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now let’s try this out on a real genome!</p>
+<ul>
+<li>Use <a href="http://bioinformaticsalgorithms.com/data/realdatasets/Replication/Vibrio_cholerae.txt">this link</a> to access a full copy of the <em>Vibrio Cholerae</em> chromosome, consisting of 1,108,250 nucleotides.</li>
+<li>Use <code>ctrl+a</code> or <code>cmd+a</code> to select all of the text in the file. Then use <code>ctrl+c</code> or <code>cmd+c</code> to copy the text.</li>
+<li>Open up a simple text editor, like <code>Notepad</code> or <code>TextEdit</code> and use <code>ctrl+v</code> or <code>cmd+v</code> to paste the genome into a text file.</li>
+<li>In the text editor, use <code>File -&gt; Save As</code> to save the file with a <code>.txt</code> extension.</li>
+<li>You may want to create a Bioinformatics Data folder on your Desktop to keep this file and others in.</li>
+<li>Once the file is saved, you can read it into R with the <code>scan()</code> function below. Be sure to update the file path to reflect the location of the file on your computer.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>vib_c <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">"C:/Users/agilb/Desktop/Bioinformatics Data/VibrioCholerae.txt"</span>, <span class="at">what =</span> <span class="st">"character"</span>, <span class="at">sep =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><strong>Challenge 9:</strong> Use your code from Challenge 8 to count the frequency of each nucleotide in the <em>Vibrio Cholerae</em> chromosome.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete Challenge 9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><strong>Challenge 10:</strong> As a final challenge, complete the following:</p>
+<ul>
+<li>Navigate to <a href="https://rosalind.info/">rosalind.info</a> and create a free user account.</li>
+<li>Navigate to the <a href="https://rosalind.info/problems/dna/">Counting DNA Nucleotides preblem</a></li>
+<li>Make sure that your code from Challenge 9 produces the expected Sample Output when you use the “Sample Dataset” as your genome string.</li>
+<li>Download the sample dataset, read it into R, use your code to count the number of each nucleotide, submit your solution.</li>
+</ul>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete the final challenge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nice work. Although the culmination of this notebook is quite simple – count the frequency of each nucleotide within a genome – we’ve accomplished quite a bit and you should be proud!</p>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>In this notebook you’ve learned how to</p>
+<ul>
+<li>Create a list of <code>nucleotides</code></li>
+<li>Use the <code>sample()</code> function to create a random “genome” using the characters found in the <code>nucleotides</code> list.</li>
+<li>Use <code>paste()</code> with the parameter setting <code>collapse = ""</code> to collapse your random genome into a single long string of nucleotides.</li>
+<li>Use <code>set.seed()</code> to set a seed for a random number generator to make your results reproducible over time and across different machines (and different researchers too).</li>
+<li>Use a for loop to repeat a set of simple instructions for a pre-determined number of iterations.</li>
+<li>Use programmatic flow control in the form of <code>if/else if/else</code> statements to run code only when a particular condition is satisfied.</li>
+<li>Construct a <code>for</code> loop and use <code>if</code> statements to count the frequency of each of the four nucleotides in a genome string.</li>
+<li>Solve a bioinformatics problem on the <em>rosalind</em> platform.</li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
