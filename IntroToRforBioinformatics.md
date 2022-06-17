@@ -51,16 +51,6 @@ Now that we have some exposure to data analysis in R, let's get our first exposu
 + Read in a real bacterial genome from a text file.
 + Analyse the genome using the ideas and tools developed in the first part of the notebook.
 
-### GitHub Collaboration Objectives
-
-+ Clone a remote repository to your local machine.
-+ Attach an Rproject to manage your local repository.
-+ Create a Quarto Notebook from scratch.
-+ Continue to mix code and text in Quarto, resulting in a reproducible report.
-+ Use the *Pull-Commit-Push* framework to ensure both your local repository and the origin on GitHub are up to date.
-+ Identify that changes made by your other collaborators are reflected in the GitHub origin repository as well as your local repository.
-+ Collaborate on a single Quarto Notebook, and resolve a merge conflict.
-
 ### Getting Started with R for Bioinformatics
 
 Let's start with lists of strings -- it will be really useful to be able to generate our own (fake) genomes. This will help us experiment with code on small examples, without the need to utilize an entire genome. Even a small, bacterial genome is typically over a thousand nucleotides long! The ability to generate strings of nucleotides will also help us to explore how efficient (or inefficient) our code is before we choose to run it on an entire genome.
@@ -118,11 +108,11 @@ schedule
 
 ::: {.cell-output .cell-output-stdout}
 ```
- [1] "Gilbert" "Duryea"  "Gilbert" "Duryea"  "Duryea"  "Duryea"  "Gilbert"
- [8] "Gilbert" "Gilbert" "Gilbert" "Gilbert" "Duryea"  "Duryea"  "Duryea" 
-[15] "Duryea"  "Gilbert" "Gilbert" "Duryea"  "Gilbert" "Gilbert" "Duryea" 
-[22] "Gilbert" "Duryea"  "Duryea"  "Gilbert" "Duryea"  "Duryea"  "Duryea" 
-[29] "Gilbert" "Duryea"  "Gilbert" "Duryea" 
+ [1] "Gilbert" "Gilbert" "Gilbert" "Gilbert" "Gilbert" "Gilbert" "Duryea" 
+ [8] "Duryea"  "Gilbert" "Duryea"  "Gilbert" "Duryea"  "Gilbert" "Gilbert"
+[15] "Gilbert" "Duryea"  "Gilbert" "Gilbert" "Duryea"  "Gilbert" "Gilbert"
+[22] "Gilbert" "Gilbert" "Duryea"  "Gilbert" "Duryea"  "Gilbert" "Gilbert"
+[29] "Gilbert" "Gilbert" "Gilbert" "Duryea" 
 ```
 :::
 :::
@@ -298,7 +288,7 @@ print(randGenome)
 
 ::: {.cell-output .cell-output-stdout}
 ```
-[1] "GGGCGTCGAT"
+[1] "TCGTCACGCA"
 ```
 :::
 
@@ -312,6 +302,7 @@ for(i in 1:nchar(randGenome)){
 
 ::: {.cell-output .cell-output-stdout}
 ```
+[1] "A"
 [1] "A"
 ```
 :::

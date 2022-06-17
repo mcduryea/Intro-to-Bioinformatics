@@ -155,18 +155,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Analyse the genome using the ideas and tools developed in the first part of the notebook.</li>
 </ul>
 </section>
-<section id="github-collaboration-objectives" class="level3">
-<h3 class="anchored" data-anchor-id="github-collaboration-objectives">GitHub Collaboration Objectives</h3>
-<ul>
-<li>Clone a remote repository to your local machine.</li>
-<li>Attach an Rproject to manage your local repository.</li>
-<li>Create a Quarto Notebook from scratch.</li>
-<li>Continue to mix code and text in Quarto, resulting in a reproducible report.</li>
-<li>Use the <em>Pull-Commit-Push</em> framework to ensure both your local repository and the origin on GitHub are up to date.</li>
-<li>Identify that changes made by your other collaborators are reflected in the GitHub origin repository as well as your local repository.</li>
-<li>Collaborate on a single Quarto Notebook, and resolve a merge conflict.</li>
-</ul>
-</section>
 <section id="getting-started-with-r-for-bioinformatics" class="level3">
 <h3 class="anchored" data-anchor-id="getting-started-with-r-for-bioinformatics">Getting Started with R for Bioinformatics</h3>
 <p>Let’s start with lists of strings – it will be really useful to be able to generate our own (fake) genomes. This will help us experiment with code on small examples, without the need to utilize an entire genome. Even a small, bacterial genome is typically over a thousand nucleotides long! The ability to generate strings of nucleotides will also help us to explore how efficient (or inefficient) our code is before we choose to run it on an entire genome.</p>
@@ -195,11 +183,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>schedule</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Gilbert" "Duryea"  "Gilbert" "Duryea"  "Duryea"  "Duryea"  "Gilbert"
- [8] "Gilbert" "Gilbert" "Gilbert" "Gilbert" "Duryea"  "Duryea"  "Duryea" 
-[15] "Duryea"  "Gilbert" "Gilbert" "Duryea"  "Gilbert" "Gilbert" "Duryea" 
-[22] "Gilbert" "Duryea"  "Duryea"  "Gilbert" "Duryea"  "Duryea"  "Duryea" 
-[29] "Gilbert" "Duryea"  "Gilbert" "Duryea" </code></pre>
+<pre><code> [1] "Gilbert" "Gilbert" "Gilbert" "Gilbert" "Gilbert" "Gilbert" "Duryea" 
+ [8] "Duryea"  "Gilbert" "Duryea"  "Gilbert" "Duryea"  "Gilbert" "Gilbert"
+[15] "Gilbert" "Duryea"  "Gilbert" "Gilbert" "Duryea"  "Gilbert" "Gilbert"
+[22] "Gilbert" "Gilbert" "Duryea"  "Gilbert" "Duryea"  "Gilbert" "Gilbert"
+[29] "Gilbert" "Gilbert" "Gilbert" "Duryea" </code></pre>
 </div>
 </div>
 <p>Now it’s your turn. Try the challenge below.</p>
@@ -290,7 +278,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">collapse =</span> <span class="st">""</span>)</span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(randGenome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "GGGCGTCGAT"</code></pre>
+<pre><code>[1] "TCGTCACGCA"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nchar</span>(randGenome)){</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">str_sub</span>(randGenome, <span class="at">start =</span> i, <span class="at">end =</span> i) <span class="sc">==</span> <span class="st">"A"</span>){</span>
@@ -298,7 +286,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "A"</code></pre>
+<pre><code>[1] "A"
+[1] "A"</code></pre>
 </div>
 </div>
 <p>Its time for another challenge. Can you adapt the for loop above to count the number of occurrences of Adenine rather than printing out all of the occurrences?</p>
