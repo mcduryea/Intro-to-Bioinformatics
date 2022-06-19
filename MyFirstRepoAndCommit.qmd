@@ -51,7 +51,8 @@ Great! You've now built an Rproject inside of your repository. Among other thing
 + Give your document the title *Palmer Penguins Initial Analysis*.
 + Add yourself as the Author of the document.
 + If you want a convenient interface with familiar formatting buttons (bold, italics, lists, etc.) to work in, select the box that says *use the visual editor*. If you prefer to work directly in markdown, then leave that box unchecked.
-+ In the YAML (Yet Another Markdown Language) header -- that's the chunk in between the triple hypens (\-\-\-) -- add the code below. This says that we'd like to keep the intermediate markdown file during the rendering process. The reason for this is that markdown files display nicely in GitHub.
++ Click the *Create* button.
++ In the YAML (Yet Another Markdown Language) header -- that's the chunk in between the triple hyphens (\-\-\-) -- add the code below to the bottom of the header (before the second set of hyphens). This says that we'd like to keep the intermediate markdown file during the rendering process. The reason for this is that markdown files display nicely in GitHub.
 
     ```{r echo = TRUE, eval = FALSE}
     execute:
@@ -101,7 +102,7 @@ Fantastic! You've now updated your main repository on GitHub with the new files 
 
 ## Summary
 
-Nice work through this activity. You've accomplished a lot here. You created a GitHub repository, used RStudio to clone the repository and created an Rproject to manage it, you created a Quarto Document which contained some text as well as your first few lines of R code, you rendered the document, and you reconciled all of the differences between the "origin" repository on GitHub and your local clone of it by first *Pulling* in any changes present on GitHub then *Committing* your local changes and *Pushing* them back out to GitHub.
+Nice work! You've accomplished a lot in this activity. You created a GitHub repository, used RStudio to clone the repository and created an Rproject to manage it, you created a Quarto Document which contained some text as well as your first few lines of R code, you rendered the document, and you reconciled all of the differences between the "origin" repository on GitHub and your local clone of it by first *Pulling* in any changes present on GitHub then *Committing* your local changes and *Pushing* them back out to GitHub.
 
 The major takeaways from this activity are summarized below.
 
