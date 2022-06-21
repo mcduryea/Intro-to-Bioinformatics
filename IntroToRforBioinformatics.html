@@ -131,7 +131,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>✔ ggplot2 3.3.5     ✔ purrr   0.3.4
-✔ tibble  3.1.6     ✔ dplyr   1.0.9
+✔ tibble  3.1.7     ✔ dplyr   1.0.9
 ✔ tidyr   1.2.0     ✔ stringr 1.4.0
 ✔ readr   2.1.2     ✔ forcats 0.5.1</code></pre>
 </div>
@@ -183,11 +183,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>schedule</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Gilbert" "Gilbert" "Gilbert" "Gilbert" "Gilbert" "Gilbert" "Duryea" 
- [8] "Duryea"  "Gilbert" "Duryea"  "Gilbert" "Duryea"  "Gilbert" "Gilbert"
-[15] "Gilbert" "Duryea"  "Gilbert" "Gilbert" "Duryea"  "Gilbert" "Gilbert"
-[22] "Gilbert" "Gilbert" "Duryea"  "Gilbert" "Duryea"  "Gilbert" "Gilbert"
-[29] "Gilbert" "Gilbert" "Gilbert" "Duryea" </code></pre>
+<pre><code> [1] "Gilbert" "Duryea"  "Duryea"  "Gilbert" "Duryea"  "Duryea"  "Duryea" 
+ [8] "Gilbert" "Duryea"  "Gilbert" "Duryea"  "Duryea"  "Gilbert" "Duryea" 
+[15] "Duryea"  "Duryea"  "Duryea"  "Duryea"  "Gilbert" "Duryea"  "Duryea" 
+[22] "Duryea"  "Duryea"  "Gilbert" "Gilbert" "Duryea"  "Gilbert" "Duryea" 
+[29] "Gilbert" "Duryea"  "Duryea"  "Duryea" </code></pre>
 </div>
 </div>
 <p>Now it’s your turn. Try the challenge below.</p>
@@ -215,22 +215,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>randGenome <span class="ot">&lt;-</span> <span class="fu">paste</span>(randGenome, <span class="at">collapse =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The additional line, <code>random.seed(215)</code>, in the code block above initializes our random number generator with the seed 215 (by the way, there’s nothing special about the number 215 here – it is Dr.&nbsp;Gilbert’s office number). Everyone’s computer is running the same random number generator, and so, if we start with the same initial value, we’ll all generate the same random values!</p>
+<p>The additional line, <code>set.seed(215)</code>, in the code block above initializes our random number generator with the seed 215 (by the way, there’s nothing special about the number 215 here – it is Dr.&nbsp;Gilbert’s office number). Everyone’s computer is running the same random number generator, and so, if we start with the same initial value, we’ll all generate the same random values!</p>
 <p>Let’s try an experiment. Much of our initial work in bioinformatics will be to read and analyse a genome. One reasonable first task would be to count the frequency of each nucleotide along a genome or a substring of a genome. Let’s start by just counting the frequency of Adenine (<code>A</code>) in the random genome substring below.</p>
 <hr>
-<p><strong>Challenge 4:</strong> Set a seed using <code>set.seed(215)</code> and use it to generate a random genome (<code>randGenome</code>), collapsed down to a single string. Once you’ve done this, count the frequency of Adenine (A) in the resulting “genome” by hand.</p>
+<p><strong>Challenge 4:</strong> Set a seed using <code>set.seed(215)</code> and use it to generate a random genome (<code>randGenome</code>) consisting of 100 nucleotides, collapsed down to a single string. Once you’ve done this, count the frequency of Adenine (A) in the resulting “genome” by hand.</p>
 <hr>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete challenge 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Did everyone’s answer agree? We all had the same substring, but its unlikely that we all counted accurately. We’ve run into the issue of human error – now imagine if this was a full genome, on the order of millions of nucleotides in length!</p>
+<p>Did everyone’s answer agree? We all generating the same “genome”, but its unlikely that we all counted accurately. We’ve run into the issue of human error – now imagine if this was a full genome, on the order of millions of nucleotides in length!</p>
 <p>Computers are much more accurate and dependable than humans (as long as we provide them with meaningful and consistent instructions). Wouldn’t it be great if we could just get the computer to count the appearances of Adenine for us?</p>
-<p>Its time for us to introduce a programming technique called the for loop. In programming, a for loop allows us to run a set of instructions over and over for some predetermined number of iterations. There are many ways to run a for loop – we’ll encounter several throughout our course. The basic idea is this.</p>
+</section>
+<section id="looping-with-for-loops" class="level3">
+<h3 class="anchored" data-anchor-id="looping-with-for-loops">Looping with <code>for</code> Loops</h3>
+<p>Its time for us to introduce a programming technique called the <code>for</code> loop. In programming, a for loop allows us to run a set of instructions over and over for some predetermined number of iterations. There are many ways to run a <code>for</code> loop – we’ll encounter several throughout our course. The basic idea is this.</p>
 <ol type="1">
-<li>Set an iterator (this may just be a counter or it may be floating over elements in a list).</li>
+<li>Set an iterator (this may just be a counter or it may be floating over elements in an existing list).</li>
 <li>Provide the instructions to be run each time through the loop.</li>
 </ol>
-<p>When the code is run, the instructions will be run once for each value of the iterator. Let’s build a simple for loop that will just add up the values of the iterator. We’ll set the iterator to run through the range of integer values from 0 through 9.</p>
+<p>When the code is run, the instructions will be run once for each value of the iterator. Let’s build a simple for loop that will just add up the values of the iterator. We’ll set the iterator to run through the range of integer values from 1 through 10.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mySum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -251,7 +254,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [1] 55</code></pre>
 </div>
 </div>
-<p>There are a few things to note here. First, we initialize the for loop with the keyword <code>for</code> and then provide the condition on the iterator within a set of parentheses, ending this line with an opening bracket <code>{</code>. Once we do this, the next line becomes indented – these indented lines are the instructions to be run each time through the loop. An additional thing to notice is that we didn’t actually define <code>i</code> before using it to initialize our for loop. We just said that <code>i</code> should be <code>in</code> <code>1:10</code> – short hand for all of the integers between 1 and 10 (including both endpoints).</p>
+<p>There are a few things to note here. First, we initialize the container <code>mySum</code> with a starting value of 0. Then we initialized the <code>for</code> loop with the keyword <code>for</code> and provided the condition on the iterator within a set of parentheses, ending this line with an opening bracket <code>{</code>. Once we do this, the next line becomes indented – these indented lines are the instructions to be run each time through the loop. An additional thing to notice is that we didn’t actually define <code>i</code> before using it to initialize our for loop. We just said that <code>i</code> should be <code>in</code> <code>1:10</code> – short hand for all of the integers between 1 and 10 (including both endpoints).</p>
 <hr>
 <p><strong>Challenge 5:</strong> Initialize a variable called <code>myProduct</code> with the value 1 in the code chunk below. Write your own for loop, using an iterator <code>j</code>, which takes the integer values from 1 to (and including) 15. Each run through the loop should update <code>myProduct</code> by multiplying <code>myProduct</code> by <code>j</code> and printing out the result.</p>
 <hr>
@@ -267,8 +270,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete Challenge 6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="programmatic-flow-control-with-if-else-if-and-else" class="level3">
+<h3 class="anchored" data-anchor-id="programmatic-flow-control-with-if-else-if-and-else">Programmatic Flow Control with <code>if</code>, <code>else if</code>, and <code>else</code></h3>
 <p>Now that we are able to access and print out all of the nucleotides in our sample genome, let’s pretend that we are only interested in the appearances of Adenine (for now). It’s time to be introduced to another super useful programming concept – flow control. Its common that we want to execute code (like printing out a value) only when certain conditions are satisfied. We can achieve this with <code>if</code>, <code>else if</code>, and <code>else</code> statements.</p>
-<p>Consider the following loop which will only print out the occurrences of Adenine.</p>
+<p>Let’s generate a new random genome to work with.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>nucleotides <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"G"</span>, <span class="st">"T"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>genomeLength <span class="ot">&lt;-</span> <span class="dv">10</span></span>
@@ -278,8 +284,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">collapse =</span> <span class="st">""</span>)</span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(randGenome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "TCGTCACGCA"</code></pre>
+<pre><code>[1] "GTATCCATTT"</code></pre>
 </div>
+</div>
+<p>Now, consider the following loop which will only print out the occurrences of Adenine.</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nchar</span>(randGenome)){</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">str_sub</span>(randGenome, <span class="at">start =</span> i, <span class="at">end =</span> i) <span class="sc">==</span> <span class="st">"A"</span>){</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">str_sub</span>(randGenome, <span class="at">start =</span> i, <span class="at">end =</span> i))</span>
@@ -290,6 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [1] "A"</code></pre>
 </div>
 </div>
+<p>Notice that <code>print(str_sub(randGenome, start = i, end = i))</code> is only run <em>if</em> the current nucleotide in <code>randGenome</code> is <code>A</code>.</p>
 <p>Its time for another challenge. Can you adapt the for loop above to count the number of occurrences of Adenine rather than printing out all of the occurrences?</p>
 <hr>
 <p><strong>Challenge 7:</strong> Adapt the for loop provided above so that it counts the number of occurrences of Adenine (A) in randGenome.</p>
@@ -298,7 +308,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete Challenge 7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If you got that, you are ready to compute the frequencies of all of the nucleotides in the genome string.</p>
+<p>If you got that, then you are ready to compute the frequencies of all of the nucleotides in the genome string.</p>
 <hr>
 <p><strong>Challenge 8:</strong> Adapt the loop you just created so that it will count the frequencies of each of the four individual nucleotides.</p>
 <p><em>Hint:</em> You’ll need a separate counter for each of the nucleotides and some additional flow control (<code>if/else if/else</code>) statements.</p>
@@ -308,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Now let’s try this out on a real genome!</p>
 <ul>
-<li>Use <a href="http://bioinformaticsalgorithms.com/data/realdatasets/Replication/Vibrio_cholerae.txt">this link</a> to access a full copy of the <em>Vibrio Cholerae</em> chromosome, consisting of 1,108,250 nucleotides.</li>
+<li>Use <a href="http://bioinformaticsalgorithms.com/data/realdatasets/Replication/Vibrio_cholerae.txt">this link</a> to access a full copy of the <em>Vibrio Cholerae</em> chromosome DNA, consisting of 1,108,250 nucleotides.</li>
 <li>Use <code>ctrl+a</code> or <code>cmd+a</code> to select all of the text in the file. Then use <code>ctrl+c</code> or <code>cmd+c</code> to copy the text.</li>
 <li>Open up a simple text editor, like <code>Notepad</code> or <code>TextEdit</code> and use <code>ctrl+v</code> or <code>cmd+v</code> to paste the genome into a text file.</li>
 <li>In the text editor, use <code>File -&gt; Save As</code> to save the file with a <code>.txt</code> extension.</li>
@@ -328,15 +338,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Challenge 10:</strong> As a final challenge, complete the following:</p>
 <ul>
 <li>Navigate to <a href="https://rosalind.info/">rosalind.info</a> and create a free user account.</li>
-<li>Navigate to the <a href="https://rosalind.info/problems/dna/">Counting DNA Nucleotides preblem</a></li>
-<li>Make sure that your code from Challenge 9 produces the expected Sample Output when you use the “Sample Dataset” as your genome string.</li>
-<li>Download the sample dataset, read it into R, use your code to count the number of each nucleotide, submit your solution.</li>
+<li>Navigate to the <a href="https://rosalind.info/problems/dna/">Counting DNA Nucleotides problem</a></li>
+<li>Make sure that your code from Challenge 9 produces the expected <em>Sample Output</em> when you use the <em>Sample Dataset</em> as your genome string.</li>
+<li>Use the blue <em>Download dataset</em> button to download your challenge dataset, read it into R like you did with the <em>Vibrio Cholerae</em> genome, use your code to count the number of each nucleotide, and submit your solution.</li>
 </ul>
 <hr>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to complete the final challenge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Nice work. Although the culmination of this notebook is quite simple – count the frequency of each nucleotide within a genome – we’ve accomplished quite a bit and you should be proud!</p>
+<p>Did you get the Rosalind Challenge correct? Congratulations if you did! If you didn’t, try troubleshooting your code or asking for help.</p>
+<p>Nice work. Although the culmination of this notebook is quite simple – count the frequency of each nucleotide within a genome – you’ve accomplished a lot (especially if this is your first exposure to computing) and you should be proud!</p>
 </section>
 </section>
 <section id="summary" class="level2">
