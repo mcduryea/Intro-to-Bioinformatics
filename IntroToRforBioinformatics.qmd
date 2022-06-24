@@ -16,12 +16,12 @@ Now that we have some exposure to data analysis in R, let's get our first exposu
 
 ### R for Bioinformatics Objectives
 
-+ Use the arrow (`<-`) operator to store objects in variables.
-+ Use R's `sample()` function to create a random "genome" for the purpose of testing functions.
-+ Build functions to process and analyze genetic data.
-+ Learn about `for` loops and implement them when necessary.
-+ Read in a real bacterial genome from a text file.
-+ Analyse the genome using the ideas and tools developed in the first part of the notebook.
+-   Use the arrow (`<-`) operator to store objects in variables.
+-   Use R's `sample()` function to create a random "genome" for the purpose of testing functions.
+-   Build functions to process and analyze genetic data.
+-   Learn about `for` loops and implement them when necessary.
+-   Read in a real bacterial genome from a text file.
+-   Analyse the genome using the ideas and tools developed in the first part of the notebook.
 
 ### Getting Started with R for Bioinformatics
 
@@ -37,11 +37,11 @@ instructors
 
 Now it is time for your first challenge. Recall that the four nucleotides are Adenine (A), Cytosine (C), Guanine (G), and Thymine (T). Use the code block below to complete your first challenge.
 
-***
+------------------------------------------------------------------------
 
 **Challenge 1:** Create a list nucleotides containing the four nucleotides and print it out to the notebook.
 
-***
+------------------------------------------------------------------------
 
 ```{r}
 #Use this code chunk to complete Challenge 1
@@ -61,11 +61,11 @@ schedule
 
 Now it's your turn. Try the challenge below.
 
-***
+------------------------------------------------------------------------
 
 **Challenge 2:** Adapt the code above so that you create a random string of 15 nucleotides. Call your string `randGenome` and print it to the notebook.
 
-***
+------------------------------------------------------------------------
 
 ```{r}
 #Use this code chunk to complete Challenge 2
@@ -73,13 +73,17 @@ Now it's your turn. Try the challenge below.
 
 Two things -- first, this genome is kind of hard to read as a list. Try running this code in the codeblock below to collapse your genome into a single string: `paste(randGenome, collapse = "")` and, secondly, compare your results with a classmate. What happened? Are you surprised?
 
+```{r}
+#Use this code chuck to collapse your genome into a single string using paste(randGenome, collapse="")
+```
+
 Okay, now that you've generated a tiny random genome, let's generate something larger.
 
-***
+------------------------------------------------------------------------
 
 **Challenge 3:** Generate a random genome which is 1500 nucleotides long and use the `paste()` method to collapse it from a list down to a single string. Print your new `randGenome` to the notebook. Be sure that your new version of `randGenome` contains just the single long string, and not 1500 individual elements.
 
-***
+------------------------------------------------------------------------
 
 ```{r}
 #Use this code chunk to complete Challenge 3
@@ -102,11 +106,11 @@ The additional line, `set.seed(215)`, in the code block above initializes our ra
 
 Let's try an experiment. Much of our initial work in bioinformatics will be to read and analyse a genome. One reasonable first task would be to count the frequency of each nucleotide along a genome or a substring of a genome. Let's start by just counting the frequency of Adenine (`A`) in the random genome substring below.
 
-***
+------------------------------------------------------------------------
 
 **Challenge 4:** Set a seed using `set.seed(215)` and use it to generate a random genome (`randGenome`) consisting of 100 nucleotides, collapsed down to a single string. Once you've done this, count the frequency of Adenine (A) in the resulting "genome" by hand.
 
-***
+------------------------------------------------------------------------
 
 ```{r}
 #Use this code chunk to complete challenge 4
@@ -120,8 +124,8 @@ Computers are much more accurate and dependable than humans (as long as we provi
 
 Its time for us to introduce a programming technique called the `for` loop. In programming, a for loop allows us to run a set of instructions over and over for some predetermined number of iterations. There are many ways to run a `for` loop -- we'll encounter several throughout our course. The basic idea is this.
 
-1. Set an iterator (this may just be a counter or it may be floating over elements in an existing list).
-2. Provide the instructions to be run each time through the loop.
+1.  Set an iterator (this may just be a counter or it may be floating over elements in an existing list).
+2.  Provide the instructions to be run each time through the loop.
 
 When the code is run, the instructions will be run once for each value of the iterator. Let's build a simple for loop that will just add up the values of the iterator. We'll set the iterator to run through the range of integer values from 1 through 10.
 
@@ -136,11 +140,11 @@ for(i in 1:10){
 
 There are a few things to note here. First, we initialize the container `mySum` with a starting value of 0. Then we initialized the `for` loop with the keyword `for` and provided the condition on the iterator within a set of parentheses, ending this line with an opening bracket `{`. Once we do this, the next line becomes indented -- these indented lines are the instructions to be run each time through the loop. An additional thing to notice is that we didn't actually define `i` before using it to initialize our for loop. We just said that `i` should be `in` `1:10` -- short hand for all of the integers between 1 and 10 (including both endpoints).
 
-***
+------------------------------------------------------------------------
 
 **Challenge 5:** Initialize a variable called `myProduct` with the value 1 in the code chunk below. Write your own for loop, using an iterator `j`, which takes the integer values from 1 to (and including) 15. Each run through the loop should update `myProduct` by multiplying `myProduct` by `j` and printing out the result.
 
-***
+------------------------------------------------------------------------
 
 ```{r}
 #Use this code chunk to complete Challenge 5!
@@ -150,13 +154,36 @@ Notice that there is nothing special about the name we give to the iterator. You
 
 Alright, now that you know how to write and execute a `for` loop, let's see if we can work towards our goal of analysing a genome. If we have any hope of analysing the genome we'll need to be able to access individual nucleotides. This will allow us to access particular points in the genome to determine nucleotide frequency. Let's see if we can write a for loop to print out the individual nucleotides in a random genome.
 
-***
+------------------------------------------------------------------------
 
-**Challenge 6:** In the code block below, generate a random genome substring consisting of 10 nucleotides and use the `paste()` method to collapse your genome to a single string rather than a list. Then write a `for` loop to print out each individual nucleotide. 
+**Challenge 6:** Generate a random genome substring consisting of 10 nucleotides and use the `paste()` method to collapse your genome to a single string rather than a list. Then write a `for` loop to print out each individual nucleotide.
 
-*Hint.* You'll find the `str_sub()` (string subset) function to be useful here -- it takes three arguments, the `string` to be subset, the position to `start` subsetting, and the position to `end` subsetting the string. If `start` and `end` are the same, then you'll extract a single character. 
+*Hint.* You'll find the `str_sub()` (string subset) function to be useful here -- it takes three arguments, the `string` to be subset, the position to `start` subsetting, and the position to `end` subsetting the string. If `start` and `end` are the same, then you'll extract a single character.
 
-***
+Let's see an example of how `str_sub()` works by generating our small genome of 10 nucleotides and extracting the nucleotide in the 7th position. Run the code below and analyze the output.
+
+```{r}
+genomeLength <- 10
+
+randGenome <- sample(nucleotides, size = genomeLength, replace = TRUE)
+
+randGenome <- paste(randGenome, collapse = "")
+randGenome
+
+print(str_sub(randGenome,start=7, end=7 ))
+```
+
+Now, let's create a for loop that will go through our random genome of 10 nucleotides and print each individual nucleotide.
+
+Remember, to do this you will have to:
+
+-    Set an iterator (let's say `i`).
+
+-   Assign a range for the iterator (What would this be for our genome of 10 nucleotides?).
+
+-    Tell the for loop to use the functions `print(str_sub(string="",start="", end=""))`. What will you set the `start` and `end` arguments to? Remember, we want the for loop to go through each nucleotide in our genome.
+
+When you think you've got it, test your code in the code chuck below.
 
 ```{r}
 #Use this code chunk to complete Challenge 6
@@ -192,13 +219,13 @@ Notice that `print(str_sub(randGenome, start = i, end = i))` is only run *if* th
 
 Its time for another challenge. Can you adapt the for loop above to count the number of occurrences of Adenine rather than printing out all of the occurrences?
 
-***
+------------------------------------------------------------------------
 
 **Challenge 7:** Adapt the for loop provided above so that it counts the number of occurrences of Adenine (A) in randGenome.
 
-*Hint:* You'll want to initialize a counter variable to 0 before the start of your loop and increment it by one every time the nucleotide is Adenine, rather than simply printing out the nucleotide.
+*Hint:* You'll want to initialize a counter variable to 0 before the start of your loop and increment it by one every time the nucleotide is Adenine, rather than simply printing out the nucleotide. This is similar to what we did with our `mySum` loop, but we want to add "1" to our counter for each Adenine.
 
-***
+------------------------------------------------------------------------
 
 ```{r}
 #Use this code chunk to complete Challenge 7
@@ -206,57 +233,57 @@ Its time for another challenge. Can you adapt the for loop above to count the nu
 
 If you got that, then you are ready to compute the frequencies of all of the nucleotides in the genome string.
 
-***
+------------------------------------------------------------------------
 
 **Challenge 8:** Adapt the loop you just created so that it will count the frequencies of each of the four individual nucleotides.
 
-*Hint:* You'll need a separate counter for each of the nucleotides and some additional flow control (`if/else if/else`) statements.
+*Hint:* You'll need a separate counter and `if` statement for each of the nucleotides.
 
-***
+------------------------------------------------------------------------
 
 ```{r}
 #Use this code chunk to complete Challenge 8
 ```
 
-Now let's try this out on a real genome! 
+Now let's try this out on a real genome!
 
-+ Use [this link](http://bioinformaticsalgorithms.com/data/realdatasets/Replication/Vibrio_cholerae.txt) to access a full copy of the *Vibrio Cholerae*  chromosome DNA, consisting of 1,108,250 nucleotides. 
-+ Use `ctrl+a` or `cmd+a` to select all of the text in the file. Then use `ctrl+c` or `cmd+c` to copy the text.
-+ Open up a simple text editor, like `Notepad` or `TextEdit` and use `ctrl+v` or `cmd+v` to paste the genome into a text file.
-+ In the text editor, use `File -> Save As` to save the file with a `.txt` extension.
-+ You may want to create a Bioinformatics Data folder on your Desktop to keep this file and others in.
-+ Once the file is saved, you can read it into R with the `scan()` function below. Be sure to update the file path to reflect the location of the file on your computer.
+-   Use [this link](http://bioinformaticsalgorithms.com/data/realdatasets/Replication/Vibrio_cholerae.txt) to access a full copy of the *Vibrio Cholerae* chromosome DNA, consisting of 1,108,250 nucleotides.
+-   Use `ctrl+a` or `cmd+a` to select all of the text in the file. Then use `ctrl+c` or `cmd+c` to copy the text.
+-   Open up a simple text editor, like `Notepad` or `TextEdit` and use `ctrl+v` or `cmd+v` to paste the genome into a text file.
+-   In the text editor, use `File -> Save As` to save the file with a `.txt` extension.
+-   You may want to create a Bioinformatics Data folder on your Desktop to keep this file and others in.
+-   Once the file is saved, you can read it into R with the `scan()` function below. Be sure to update the file path to reflect the location of the file on your computer.
 
 ```{r}
 vib_c <- scan("C:/Users/agilb/Desktop/Bioinformatics Data/VibrioCholerae.txt", what = "character", sep = NULL)
 ```
 
-***
+------------------------------------------------------------------------
 
 **Challenge 9:** Use your code from Challenge 8 to count the frequency of each nucleotide in the *Vibrio Cholerae* chromosome.
 
-***
+------------------------------------------------------------------------
 
 ```{r}
 #Use this code chunk to complete Challenge 9
 ```
 
-***
+------------------------------------------------------------------------
 
 **Challenge 10:** As a final challenge, complete the following:
 
-+ Navigate to [rosalind.info](https://rosalind.info/) and create a free user account.
-+ Navigate to the [Counting DNA Nucleotides problem](https://rosalind.info/problems/dna/)
-+ Make sure that your code from Challenge 9 produces the expected *Sample Output* when you use the *Sample Dataset* as your genome string.
-+ Use the blue *Download dataset* button to download your challenge dataset, read it into R like you did with the *Vibrio Cholerae* genome, use your code to count the number of each nucleotide, and submit your solution.
+-   Navigate to [rosalind.info](https://rosalind.info/) and create a free user account.
+-   Navigate to the [Counting DNA Nucleotides problem](https://rosalind.info/problems/dna/)
+-   Make sure that your code from Challenge 9 produces the expected *Sample Output* when you use the *Sample Dataset* as your genome string.
+-   Use the blue *Download dataset* button to download your challenge dataset, read it into R like you did with the *Vibrio Cholerae* genome, use your code to count the number of each nucleotide, and submit your solution.
 
-***
+------------------------------------------------------------------------
 
 ```{r}
 #Use this code chunk to complete the final challenge
 ```
 
-Did you get the Rosalind Challenge correct? Congratulations if you did! If you didn't, try troubleshooting your code or asking for help. 
+Did you get the Rosalind Challenge correct? Congratulations if you did! If you didn't, try troubleshooting your code or asking for help.
 
 Nice work. Although the culmination of this notebook is quite simple -- count the frequency of each nucleotide within a genome -- you've accomplished a lot (especially if this is your first exposure to computing) and you should be proud!
 
@@ -264,11 +291,11 @@ Nice work. Although the culmination of this notebook is quite simple -- count th
 
 In this notebook you've learned how to
 
-+ Create a list of `nucleotides`
-+ Use the `sample()` function to create a random "genome" using the characters found in the `nucleotides` list.
-+ Use `paste()` with the parameter setting `collapse = ""` to collapse your random genome into a single long string of nucleotides.
-+ Use `set.seed()` to set a seed for a random number generator to make your results reproducible over time and across different machines (and different researchers too).
-+ Use a for loop to repeat a set of simple instructions for a pre-determined number of iterations.
-+ Use programmatic flow control in the form of `if/else if/else` statements to run code only when a particular condition is satisfied.
-+ Construct a `for` loop and use `if` statements to count the frequency of each of the four nucleotides in a genome string.
-+ Solve a bioinformatics problem on the *rosalind* platform.
+-   Create a list of `nucleotides`
+-   Use the `sample()` function to create a random "genome" using the characters found in the `nucleotides` list.
+-   Use `paste()` with the parameter setting `collapse = ""` to collapse your random genome into a single long string of nucleotides.
+-   Use `set.seed()` to set a seed for a random number generator to make your results reproducible over time and across different machines (and different researchers too).
+-   Use a for loop to repeat a set of simple instructions for a pre-determined number of iterations.
+-   Use programmatic flow control in the form of `if/else if/else` statements to run code only when a particular condition is satisfied.
+-   Construct a `for` loop and use `if` statements to count the frequency of each of the four nucleotides in a genome string.
+-   Solve a bioinformatics problem on the *rosalind* platform.
