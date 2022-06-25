@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.584">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Gilbert and Dr.&nbsp;Duryea">
+
+<title>Finding the Replication Origin, Part I</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="ReplicationOrigin_PartI_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ReplicationOrigin_PartI_files/libs/quarto-html/quarto.js"></script>
+<script src="ReplicationOrigin_PartI_files/libs/quarto-html/popper.min.js"></script>
+<script src="ReplicationOrigin_PartI_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ReplicationOrigin_PartI_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ReplicationOrigin_PartI_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ReplicationOrigin_PartI_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ReplicationOrigin_PartI_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ReplicationOrigin_PartI_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ReplicationOrigin_PartI_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Finding the Replication Origin, Part I</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Gilbert and Dr.&nbsp;Duryea </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="preliminary-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="preliminary-thoughts">Preliminary Thoughts</h2>
+<p>Welcome back! Today we begin to tackle our first <em>real</em> bioinformatics application. We’ll be seeking out the section of the genome which signals for replication of the genetic code. We’ll continue using short, randomly generated strings of nucleotides to help us built and test code but then we’ll apply it to the <em>Vibrio Cholerae</em> genome (and other bacterial genomes) to obtain real results.</p>
+<p>Now, open up RStudio, open the project that you built last time to manage your group repository, and open up your <code>Replication_&lt;YOURNAME&gt;.qmd</code> file. You’ll be completing the tasks outlined here in that notebook. Be sure to add your own discussion throughout, rather than simply using your notebook as a “code-container”. Your groupmates and your future self will thank you.</p>
+<p>Throughout the activity you’ll be making progress on the Challenge tasks outlined in this <code>ReplicationOrigin_PartI</code> notebook. You are encouraged to <em>Push</em> your changes out to the “origin” repo, and to <em>Pull</em> in the changes made by your group-mates often. Your code will help them make progress, and their code will help you. When looking at your group-mates notebooks, please open their <code>*.html</code> files – <strong>do not</strong> open and edit their <code>*.qmd</code> file. This will lead to badness that we don’t want to encounter yet.</p>
+</section>
+<section id="notebook-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="notebook-objectives">Notebook Objectives</h2>
+<p>We’ll be building on our previous work in the following ways:</p>
+<ul>
+<li>Learn to eliminate “single-use code” by encapsulating code in <em>functions</em> which can be easily applied to different genomes.</li>
+<li>Think about, and implement, techniques which will lead to efficient code.</li>
+<li>Expand your ability to count the frequency of each individual nucleotide within a genome to an ability to count the appearance of patterns in the genome.</li>
+<li>Build and execute functions to find “hidden messages” within the genome by identifying patterns appearing much more often than they would be expected to if a genome included nucleotides at random.</li>
+<li>Exploit transcription errors to narrow a search region for the <em>replication origin</em>.</li>
+</ul>
+</section>
+<section id="the-search-for-the-replication-origin" class="level2">
+<h2 class="anchored" data-anchor-id="the-search-for-the-replication-origin">The Search for the Replication Origin</h2>
+<p>Being able to count frequencies of individual nucleotides is great, but it gives us a really limited view of the genome at a truly global scale. We’re likely to obtain more valuable information if we can count frequencies of sequences of nucleotides within a genome rather than the individual nucleotides. That will be our objective through this section.</p>
+<p>Remember, during the process of DNA <em>replication</em> the proteins that help with the process must locate the <em>origin</em> of replication, or the specific part of the genome where replication begins. Thus, if we develop a program that can locate specific patterns in the genome, this could help us find the origin in the same way the proteins would locate it to begin replication.</p>
+<p>Before we get to writing a program that can do this, it is worth discussing reusable code. Up to this point, all the code we’ve written has been used once and then discarded. It’s time for some recycling – no more single-use code! Let’s talk about building functions in R that can be used over and over again.</p>
+<p>I’ll build a simple function below that takes in two arguments, a string (<code>genomeString</code>) and a nucleotide (<code>nucleotide</code>). The result of the function will be the frequency of the <code>nucleotide</code> within the <code>genomeString</code>. Then we’ll use the function to count the frequency of Guanine in a particular string of nucleotides.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nucleotide_frequency <span class="ot">&lt;-</span> <span class="cf">function</span>(genomeString, <span class="at">nucleotide =</span> <span class="st">"A"</span>){</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  count <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nchar</span>(genomeString)){</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">str_sub</span>(genomeString, <span class="at">start =</span> i, <span class="at">end =</span> i) <span class="sc">==</span> nucleotide){</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      count <span class="ot">&lt;-</span> count <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(count)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">nucleotide_frequency</span>(<span class="st">"ACTTGCGGGTATCGAG"</span>, <span class="st">"G"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+</div>
+<p>Notice that we define a function with the <code>function</code> keyword and provide the arguments/parameters it expects inside of parentheses. Functions can have any number of arguments and we can even supply default values if we wish (for example, I set the default for the <code>nucleotide</code> parameter to be <code>A</code>). Similar to the <code>for</code> loop and <code>if</code> statement, the body of the function appears between curly braces <code>{}</code> – the indentation is not necessary in R, but it does improve readability. The body of the function contains the instructions to be run when the function is called, and the body ends with a <code>return()</code> statement, containing the object that is to be returned after the function has been applied to its inputs. The function is stored using the arrow operator (<code>&lt;-</code>) and the object containing the function defines the function’s name. The best part about functions is that we can use them over and over again!</p>
+<hr>
+<p><strong>Challenge 1:</strong> Use the <code>sample()</code> function in conjunction with the <code>paste(..., collapse = "")</code> method to generate a random genome of length at least 2000. Use the <code>nucleotide_frequency()</code> function to count the frequency of Cytosine in the random genome you constructed. Are you surprised by the result? As a follow-up, what happens if you don’t provide a second argument to the <code>nucleotide_frequency()</code> function? What is being counted in this case?</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Okay, good work! We’ve seen how useful it can be to generate random genomes of various lengths. Let’s make a function that we can reuse over and over again to generate a random genome of whatever size we would like.</p>
+<hr>
+<p><strong>Challenge 2:</strong> Build a function <code>rand_genome()</code> which takes a single parameter <code>k</code>, denoting the number of nucleotides in the genome we wish to generate. Your function should return a single genome string of length k.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we’ve seen how to construct and use functions, let’s get back to the task at hand – identifying the replication origin within the genome. In our earlier notebooks (and again, here) you learned how to generate your own random genome substring and you’ve built up techniques for accessing and analysing the substring one nucleotide at a time. What if we wanted to consider three-nucleotide sequences rather than just a single nucleotide?</p>
+<p>Before we can move forward, it is useful to point out that <code>str_sub()</code> can be used to extract consecutive characters within a string, between its <code>start</code> and <code>end</code> parameters. Up to this point we had just been setting <code>start</code> and <code>end</code> to the same value.</p>
+<p>As an example, we can extract the first two and last two letters in the name <code>"Gilbert"</code> using the code below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>myString <span class="ot">&lt;-</span> <span class="st">"Gilbert"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(myString, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Gi"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(myString, <span class="at">start =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">end =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "rt"</code></pre>
+</div>
+</div>
+<p>Using negative integers to indicate <code>start</code> and/or <code>end</code> positions tells <code>str_sub()</code> that it should start counting from the <em>end</em> of the string rather than the beginning. We could have also used <code>str_sub(myString, start = 6, end = 7)</code> to get the last two letters, but that requires knowing how long <code>myString</code> is ahead of time!</p>
+<p>If, for some reason, we wanted to store these sets of consecutive characters into an object for use later on, we can do so with a list. Here’s how we might do that.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Initialize an empty vector</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>myList <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Append (add to the end) the first set of two characters to myList</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>myList <span class="ot">&lt;-</span> myList <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">append</span>(<span class="fu">str_sub</span>(myString, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">2</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Append the second set of two characters to myList</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>myList <span class="ot">&lt;-</span> myList <span class="sc">%&gt;%</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">append</span>(<span class="fu">str_sub</span>(myString, <span class="at">start =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">end =</span> <span class="sc">-</span><span class="dv">1</span>))</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Print out the contents of myList</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>myList</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Gi" "rt"</code></pre>
+</div>
+</div>
+<p>Now you are ready to take on a challenge.</p>
+<hr>
+<p><strong>Challenge 3:</strong> Build a function called <code>generate_3_mers()</code> to generate all of the substrings of 3 nucleotides (we’ll call these 3-mers) in a genome string. Your function should accept a single argument <code>gemomeString</code> and return a list containing all of the 3-mers in <code>genomeString</code> (including repeats). Once you’ve built your function, use the <code>rand_genome()</code> function you built earlier, to construct a random genome of length at least 2000 nucleotides – then use <code>generate_3_mers()</code> to compute a list of all the 3-mers in your random genome.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Did your function collect a list of 3-mers? How many 3-mers did your function produce? Did you produce only 3-mers or did you end up with a 2-mer and single nucleotide as your final elements? To answer this question, use the built-in <code>tail()</code> function on your list of generated 3-mers. Go back and adjust your code so that the loop inside your function terminates before it runs out of characters in your string.</p>
+<p><strong><em>Question:</em></strong> If you have a genome string of length <code>n</code> nucleotides. How many <code>k</code>-mers will it contain? At what position will the final <code>k</code>-mer start? Remember that R starts counting from position 1.</p>
+<p>Armed with the answer to that question, update your <code>generate_3_mers()</code> function to a more flexible version called <code>generate_k_mers()</code> as described in the challenge below.</p>
+<hr>
+<p><strong>Challenge 4:</strong> Create an updated version of the <code>generate_3_mers()</code> function so that it can generate k-mers of any length we desire (provided that length is greater than 0 and less than the size of the <code>genomeString</code> we begin with). This <code>generate_k_mers()</code> function should take two parameters – <code>genomeString</code> and <code>k</code>, where <code>k</code> controls the number of nucleotides in each <code>k</code>-mer. Similar to <code>generate_3_mers()</code>, this function should return a list of all <code>k</code>-mers in <code>genomeString</code> (including repeats).</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that you know about functions, you are nearly ready to tackle your second Rosalind problem. Take on the challenge below and then we’ll apply your solution to a much larger-scale problem.</p>
+<hr>
+<p><strong>Challenge 5:</strong> Write a new function, called <code>count_pattern()</code> that will count occurrences of a particular <code>pattern</code> within a larger <code>genomeString</code>. Your function should take two arguments, <code>genomeString</code> and the <code>pattern</code> we want to count occurrences of. Your function should return the count of occurrences of the <code>pattern</code> within the <code>genomeString</code>.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>That was a tough challenge – did you build a function that accomplishes what you intended it to? How do you know?</p>
+<p>Once you’ve confirmed that your <code>count_pattern()</code> function works as intended, proceed to the final challenge of this notebook, below.</p>
+<hr>
+<p><strong>Challenge 5:</strong> Navigate to <a href="http://rosalind.info/problems/ba1a/">this challenge problem</a> on the Rosalind site. Make sure that your code solves the sample problem as suggested. Once you’ve solved the sample problem, try solving the challenge by clicking the blue <em>Download dataset</em> button – you’ll have 5 minutes to upload a solution.</p>
+<ul>
+<li>The dataset will be pulled into your downloads folder.</li>
+<li>Use the <code>scan()</code> function with the file-path as the first argument, and pass a second argument <code>what = character()</code> to read the dataset into R. Store the result in an object called <code>data</code>.</li>
+<li>The result will be a list of two elements. The item in <code>data[1]</code> will be the <code>genomeString</code>, while the item in <code>data[2]</code> is the <code>pattern</code>.</li>
+<li>Use your function to count the number of occurrences of the pattern in the genome string and submit the result to Rosalind!</li>
+</ul>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="summary-and-debrief" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-debrief">Summary and Debrief</h2>
+<p>Yet again, you’ve accomplished quite a bit. You’ve learned to use <em>functions</em> to write reusable code. You’ve expanded your ability to work with the genome and are now able to list patterns of a specific length, and to count the number of occurrences of a particular pattern within a genome. These two tasks form the foundational building blocks for identifying the Replication Origin! See you next time.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
