@@ -1,0 +1,19 @@
+---
+title: "Starter Notebook"
+author: "You, Scientist"
+format: html
+execute:
+  keep-md: true
+---
+
+
+
+
+
+## Getting Started
+
+You've used Quarto Notebooks a few times already, so you're starting to get the hang of this. Start by editing the Notebook `title:` and make sure you credit yourself as the `author:`. As a reminder, R-code appears in grey chunks throughout your notebook. Anything within these grey blocks must be executable R code. When you are outside of an R chunk, in a section of the notebook with a white background, you can type freely as if you were in a typical Word document.
+
+You'll quickly see the value of including text to explain your code chunks, and motivate your analysis. Trying to get help from a notebook that doesn't effectively use these discussions will be quite difficult. Additionally, future *you* will be very thankful to present-day *you* if you document your analyses well, and will be quick to curse present-day *you* when you do not. 
+
+Now, remove this *Getting Started* text and you'll be ready to start sciencing.
