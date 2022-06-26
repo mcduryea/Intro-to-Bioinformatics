@@ -1,0 +1,99 @@
+---
+title: "Finding the Replication Origin, Part II"
+author: "Dr. Gilbert and Dr. Duryea"
+format: html
+execute:
+  keep-md: true
+---
+
+```{r setup, include = FALSE}
+#Load in any packages you need
+library(tidyverse)
+
+#Read in any data
+
+```
+
+## Preliminary Thoughts
+
+We've done lots of great work so far. We know that we are looking for frequent k-mers within the genome as a signal for replication. We've identified that errors in transcription by DNA polymerase can and do occur, which means that we'll need to allow for some "mistakes" within the frequent k-mers -- we've called these *near-k-mers*. Finally, we've identified that, because of double-stranding, frequent k-mers may also appear in reverse-complement order. Last time, we built functionality to account for this.
+
+This is lots of counting, which ends up requiring quite a few operations to check for matches and near-matches. Do we really need to do this over the entire genome?
+
+## Knowing Where to Look
+
+Okay, in all of our previous work we assumed that we knew where in the genome we could find our DnaA boxes. What happens if we have a newly sequenced genome that nothing is known about yet? Scientists have already identified that DnaA boxes within different species of bacteria consist of different sequences of nucleotides. For example, the DnaA boxes in *Vibrio cholerae* are different from those of *E. coli*. Thus, if we wanted to fined DnaA boxes in a species of bacteria, we could just search for frequent sequences and we may identify high-frequency 9-mers just by chance occurring throughout an entire genome. What we are actually looking for in our DnaA boxes is high-frequency 9-mers occurring within a *section* of the genome. Let's think about how we might achieve this.
+
++ We want to limit ourselves to fixed-length sections of the genome, so let's slide a window of length `L` along the genome.
++ Within each window, lets count the frequency of each `k`-mer.
++ Rather than keeping track of all counts within all windows, let's set a threshold `t` for which we will consider a `k`-mer as frequently occurring.
++ For every `k`-mer appearing at least `t` times within a window of length `L`, let's add that `k`-mer to a list of `frequent_k_mers`.
++ Let's remove duplicates from our list and report back the set of distinct `k`-mers forming these  (`L`, `t`) -clumps within our genome.
+
+One thing that might be helpful is to create a dictionary of all possible `k`-mers and initialize it with counts of 0 at the beginning of your function. You can do this with the following function:
+
+```{r}
+initialize_k_mer_dict <- function(k){
+  nucleotides <- c("A", "C", "G", "T")
+
+  k_mers_dict <- expand.grid(rep(list(nucleotides), 6)) %>%
+    unite("k_mers", everything(), remove = TRUE, sep = "") %>%
+    unique() %>%
+    mutate(count = 0)
+  
+  return(k_mers_dict)
+}
+
+k_mers_dict <- initialize_k_mer_dict(9)
+```
+
+You've got all of the pieces you need in order to implement this *clump-finding* algorithm. Can you put the pieces together?
+
+***
+
+**Challenge 1:** Implement `clump_finding()` on a small example.  
+> **Input:** A `genomeString`, a window size `L`, a threshold `t`, and an integer `k`  
+> **Output:** A set of `k`-mers forming (`L`, `t`)-clumps within `genomeString`
+
+***
+
+```{r}
+#Complete the challenge here
+```
+
+Apply your function using `genomeString = "AAAACCCCCCAAAA"`, a window of length `L = 5`, a threshold `t = 3`, and considering 3-mers (`k = 3`). Your function should only return the 3-mer CCC.
+
+```{r}
+#Verify your challenge solution here
+```
+
+Okay -- if you got your clump-finding algorithm to work, nicely done! There's likely a bit of a problem with it though. Try running it on the set up below.
+
+```{r eval = FALSE}
+randGenome <- rand_genome(700)
+
+clump_finding(randGenome, 500, 2, 9)
+```
+
+We may notice a few things here. Firstly, you may have identified no frequent 9-mers in the sequence of nucleotides. This isn't very surprising though, since the probability of observing any prescribed 9-mer within a genome string of 700 nucleotides is just about  0.267%. Working out the probability of observing two or more of the same 9-mers is more difficult but is extremely low. What should be actually concerning though is the run-time. What would happen if we tried running this on a genome consisting of 1000 nucleotides? Not to mention a full genome on the order of millions of nucleotides in length! Fortunately we can speed up this algorithm quite a bit -- let's discuss that together and build a better version now.
+
+```{r}
+#We'll build a better function together
+```
+
+Okay, now that we have a more efficient version of the clump-finding algorithm, let's see if we can run it on the *E. Coli* genome (download it [here](https://bioinformaticsalgorithms.com/data/realdatasets/Rearrangements/E_coli.txt){target="_blank"}). Let's search it for 9-mers which form  (500, 3) -clumps within the genome.
+
+***
+
+**Challenge 2:** Find all 9-mers corresponding to (500, 3)-clumps in the *E. Coli* genome.  
+
+***
+
+What did you discover?
+
+## Summary and Debrief
+
+I'll need to implement the algorithms here before writing the summary. In Python we were using dictionaries for storing counts because they can be used to quickly access keys and update values. In R, the suggestion seems to be to just use tibbles (similar to data frames), but I'm wondering if the performance will still be fast or if we'll experience slower execution. 
+
+The coding in this notebook is more challenging than in previous notebooks. It requires combining some of the previously developed functions in order to build the `clump_finding()` algorithm. I'm certain that we'll need to introduce additional scaffolding here.
+

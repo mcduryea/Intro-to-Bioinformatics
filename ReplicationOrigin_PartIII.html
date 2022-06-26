@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.584">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Gilbert and Dr.&nbsp;Duryea">
+
+<title>Finding the Replication Origin, Part II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="ReplicationOrigin_PartIII_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ReplicationOrigin_PartIII_files/libs/quarto-html/quarto.js"></script>
+<script src="ReplicationOrigin_PartIII_files/libs/quarto-html/popper.min.js"></script>
+<script src="ReplicationOrigin_PartIII_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ReplicationOrigin_PartIII_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ReplicationOrigin_PartIII_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ReplicationOrigin_PartIII_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ReplicationOrigin_PartIII_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ReplicationOrigin_PartIII_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ReplicationOrigin_PartIII_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Finding the Replication Origin, Part II</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Gilbert and Dr.&nbsp;Duryea </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="preliminary-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="preliminary-thoughts">Preliminary Thoughts</h2>
+<p>We’ve done lots of great work so far. We know that we are looking for frequent k-mers within the genome as a signal for replication. We’ve identified that errors in transcription by DNA polymerase can and do occur, which means that we’ll need to allow for some “mistakes” within the frequent k-mers – we’ve called these <em>near-k-mers</em>. Finally, we’ve identified that, because of double-stranding, frequent k-mers may also appear in reverse-complement order. Last time, we built functionality to account for this.</p>
+<p>This is lots of counting, which ends up requiring quite a few operations to check for matches and near-matches. Do we really need to do this over the entire genome?</p>
+</section>
+<section id="knowing-where-to-look" class="level2">
+<h2 class="anchored" data-anchor-id="knowing-where-to-look">Knowing Where to Look</h2>
+<p>Okay, in all of our previous work we assumed that we knew where in the genome we could find our DnaA boxes. What happens if we have a newly sequenced genome that nothing is known about yet? Scientists have already identified that DnaA boxes within different species of bacteria consist of different sequences of nucleotides. For example, the DnaA boxes in <em>Vibrio cholerae</em> are different from those of <em>E. coli</em>. Thus, if we wanted to fined DnaA boxes in a species of bacteria, we could just search for frequent sequences and we may identify high-frequency 9-mers just by chance occurring throughout an entire genome. What we are actually looking for in our DnaA boxes is high-frequency 9-mers occurring within a <em>section</em> of the genome. Let’s think about how we might achieve this.</p>
+<ul>
+<li>We want to limit ourselves to fixed-length sections of the genome, so let’s slide a window of length <code>L</code> along the genome.</li>
+<li>Within each window, lets count the frequency of each <code>k</code>-mer.</li>
+<li>Rather than keeping track of all counts within all windows, let’s set a threshold <code>t</code> for which we will consider a <code>k</code>-mer as frequently occurring.</li>
+<li>For every <code>k</code>-mer appearing at least <code>t</code> times within a window of length <code>L</code>, let’s add that <code>k</code>-mer to a list of <code>frequent_k_mers</code>.</li>
+<li>Let’s remove duplicates from our list and report back the set of distinct <code>k</code>-mers forming these (<code>L</code>, <code>t</code>) -clumps within our genome.</li>
+</ul>
+<p>One thing that might be helpful is to create a dictionary of all possible <code>k</code>-mers and initialize it with counts of 0 at the beginning of your function. You can do this with the following function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>initialize_k_mer_dict <span class="ot">&lt;-</span> <span class="cf">function</span>(k){</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  nucleotides <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"G"</span>, <span class="st">"T"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  k_mers_dict <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="fu">rep</span>(<span class="fu">list</span>(nucleotides), <span class="dv">6</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unite</span>(<span class="st">"k_mers"</span>, <span class="fu">everything</span>(), <span class="at">remove =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">""</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">count =</span> <span class="dv">0</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(k_mers_dict)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>k_mers_dict <span class="ot">&lt;-</span> <span class="fu">initialize_k_mer_dict</span>(<span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You’ve got all of the pieces you need in order to implement this <em>clump-finding</em> algorithm. Can you put the pieces together?</p>
+<hr>
+<p><strong>Challenge 1:</strong> Implement <code>clump_finding()</code> on a small example.<br>
+&gt; <strong>Input:</strong> A <code>genomeString</code>, a window size <code>L</code>, a threshold <code>t</code>, and an integer <code>k</code><br>
+&gt; <strong>Output:</strong> A set of <code>k</code>-mers forming (<code>L</code>, <code>t</code>)-clumps within <code>genomeString</code></p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Apply your function using <code>genomeString = "AAAACCCCCCAAAA"</code>, a window of length <code>L = 5</code>, a threshold <code>t = 3</code>, and considering 3-mers (<code>k = 3</code>). Your function should only return the 3-mer CCC.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Verify your challenge solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Okay – if you got your clump-finding algorithm to work, nicely done! There’s likely a bit of a problem with it though. Try running it on the set up below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>randGenome <span class="ot">&lt;-</span> <span class="fu">rand_genome</span>(<span class="dv">700</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">clump_finding</span>(randGenome, <span class="dv">500</span>, <span class="dv">2</span>, <span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We may notice a few things here. Firstly, you may have identified no frequent 9-mers in the sequence of nucleotides. This isn’t very surprising though, since the probability of observing any prescribed 9-mer within a genome string of 700 nucleotides is just about 0.267%. Working out the probability of observing two or more of the same 9-mers is more difficult but is extremely low. What should be actually concerning though is the run-time. What would happen if we tried running this on a genome consisting of 1000 nucleotides? Not to mention a full genome on the order of millions of nucleotides in length! Fortunately we can speed up this algorithm quite a bit – let’s discuss that together and build a better version now.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#We'll build a better function together</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Okay, now that we have a more efficient version of the clump-finding algorithm, let’s see if we can run it on the <em>E. Coli</em> genome (download it <a href="https://bioinformaticsalgorithms.com/data/realdatasets/Rearrangements/E_coli.txt" target="_blank">here</a>). Let’s search it for 9-mers which form (500, 3) -clumps within the genome.</p>
+<hr>
+<p><strong>Challenge 2:</strong> Find all 9-mers corresponding to (500, 3)-clumps in the <em>E. Coli</em> genome.</p>
+<hr>
+<p>What did you discover?</p>
+</section>
+<section id="summary-and-debrief" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-debrief">Summary and Debrief</h2>
+<p>I’ll need to implement the algorithms here before writing the summary. In Python we were using dictionaries for storing counts because they can be used to quickly access keys and update values. In R, the suggestion seems to be to just use tibbles (similar to data frames), but I’m wondering if the performance will still be fast or if we’ll experience slower execution.</p>
+<p>The coding in this notebook is more challenging than in previous notebooks. It requires combining some of the previously developed functions in order to build the <code>clump_finding()</code> algorithm. I’m certain that we’ll need to introduce additional scaffolding here.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
