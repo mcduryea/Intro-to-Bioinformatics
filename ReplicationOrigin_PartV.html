@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.584">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Gilbert and Dr.&nbsp;Duryea">
+
+<title>Finding the Replication Origin, Part V</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="ReplicationOrigin_PartV_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ReplicationOrigin_PartV_files/libs/quarto-html/quarto.js"></script>
+<script src="ReplicationOrigin_PartV_files/libs/quarto-html/popper.min.js"></script>
+<script src="ReplicationOrigin_PartV_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ReplicationOrigin_PartV_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ReplicationOrigin_PartV_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ReplicationOrigin_PartV_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ReplicationOrigin_PartV_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ReplicationOrigin_PartV_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ReplicationOrigin_PartV_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Finding the Replication Origin, Part V</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Gilbert and Dr.&nbsp;Duryea </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="dealing-with-imperfections" class="level3">
+<h3 class="anchored" data-anchor-id="dealing-with-imperfections">Dealing with Imperfections</h3>
+<p>Unfortunately we’ve already seen that errors in genome replication can occur. Additionally, we know that technological imperfections are likely to result in misreads when we try to sequence a genome in the lab. These are issues we will have to deal with as we seek to identify the replication origin (and also as we continue our journey into different areas of bioinformatics). They are indeed issues, as can be seen if we attempt to find frequent 9-mers near the location of the minimum skew in the E. Coli genome – we come up with none! We’ll have better luck if we look for frequent near 9-mers instead – that is, 9-mers with the potential for some discrepancies (mismatches).</p>
+<p>We need a better definition of <em>near</em> k-mers. Let’s start with a way to measure the distance between two strings. The simplest such measure is called the <em>Hamming Distance</em>. For two strings of equal length, <code>stringA</code> and <code>stringB</code>, the Hamming Distance counts the number of positions in which they disagree. For example, the Hamming Distance between the strings <code>"ACCAGGTA"</code> and <code>"ACGGGATA"</code> is 3, since they disagree in positions 3, 4, and 6. Now you are ready to write a function to compute the Hamming Distance between two strings.</p>
+<hr>
+<p><strong>Challenge 1:</strong> The Hamming Distance<br>
+&gt; <strong>Input:</strong> Two strings, <code>stringA</code> and <code>stringB</code><br>
+&gt; <strong>Output:</strong> The Hamming Distance between <code>stringA</code> and <code>stringB</code>.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><strong>Challenge 2:</strong> Use your Hamming Distance function to solve the <a href="http://rosalind.info/problems/ba1g/">Hamming Distance Problem</a> on Rosalind.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we know how to compute the Hamming Distance, we can make well-defined claims like “<em><code>stringA</code> is <strong>near</strong> <code>stringB</code> if <code>hamming_dist(stringA, stringB)</code> <span class="math inline">\(\leq\)</span> <code>d</code></em>” for some predetermined value <code>d</code> . This will allow us to complete the approximate pattern matching we need to do in order to identify the likely DnaA boxes within our suspected replication region.</p>
+<p>In a recent homework assignment, you built a function <code>find_pattern()</code> to identify the starting positions of a particular pattern within a genome string. Use your new <code>hamming_dist()</code> function to update that <code>find_pattern()</code> function to a new function called <code>find_near_pattern()</code> which is sensitive to <em>near</em> matches of the pattern with at most <code>d</code> mismatches.</p>
+<hr>
+<p><strong>Challenge 3:</strong> Create <code>find_near_pattern()</code>, an updated version of <code>find_pattern()</code>, which accommodates mismatches.<br>
+&gt; <strong>Input:</strong> A <code>genomeString</code>, a <code>pattern</code>, and a non-negative integer <code>d</code> denoting the number of mismatches allowed while still resulting in a <em>near</em>-match.<br>
+&gt; <strong>Output:</strong> All starting positions where <code>pattern</code> appears as a substring of <code>genomeString</code> with at most <code>d</code> mismatches.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><strong>Challenge 4:</strong> Use your <code>find_near_pattern()</code> function to solve the <a href="http://rosalind.info/problems/ba1h/">Approximate Pattern Matching Problem</a> on Rosalind.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Okay, now we’ve <em>really</em> come a long way. We know how to search through a genome and identify its most-often occurring k-mers. We’ve identified that just because a k-mer is most frequent across the entire genome, this doesn’t mean that it is a good candidate for a DnaA box – we are more interested in frequently occurring k-mers within short segments of the genome (~500 nucleotides or so). We used biological theory to develop the notion of <em>skew</em> within a genome and identified the point of minimum skew as a good place to start looking for DNA-A boxes. Finally, we noted that DNA replication and transcription are imperfect on both the biological and human sides. We discovered the Hamming Distance as a way to measure the distance between two strings, allowing us to then build functionality which identifies near matches of a string – helping us overcome this imperfection challenge.</p>
+<p>Now we just need to put it all together to identify our final candidates for the DnaA boxes, which send the replication signal for our DNA polymerase to begin replication. We’ll do this in two steps. First, we’ll build a function that identifies <em>frequent k-mers with mismatches</em>, and then we will extend it to a function that also includes <em>reverse complements with mismatches</em> in the counts of frequent k-mers.</p>
+<p><strong>Note:</strong> This will be a heavy lift for the students. I am wondering if it is worth recapping efficient versions of the necessary functions for them here and then asking them to organize the existing functions as building-blocks into these larger functions to find the DnaA boxes.</p>
+<hr>
+<p>This gets us through page 31, but the recent notebooks likely need more structure.</p>
+<hr>
+</section>
+<section id="summary-and-debrief" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-debrief">Summary and Debrief</h2>
+<p>Similar to the last notebook, I’ll need to come back and write this section. We may need some more scaffolding here as well.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
