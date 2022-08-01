@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.584">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Gilbert">
+<meta name="author" content="Dr.&nbsp;Duryea">
+
+<title>Introduction and Motivation for Genome Assembly</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="GenomeAssembly_Intro_files/libs/clipboard/clipboard.min.js"></script>
+<script src="GenomeAssembly_Intro_files/libs/quarto-html/quarto.js"></script>
+<script src="GenomeAssembly_Intro_files/libs/quarto-html/popper.min.js"></script>
+<script src="GenomeAssembly_Intro_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="GenomeAssembly_Intro_files/libs/quarto-html/anchor.min.js"></script>
+<link href="GenomeAssembly_Intro_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="GenomeAssembly_Intro_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="GenomeAssembly_Intro_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="GenomeAssembly_Intro_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="GenomeAssembly_Intro_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction and Motivation for Genome Assembly</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Gilbert </p>
+             <p>Dr.&nbsp;Duryea </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p><strong>Note:</strong> Start with the Newspaper Problem activity.</p>
+<p>The activity you’ve just completed, in reconstructing the sentence from several short, overlapping fragments is quite relevant to our next Bioinformatics task.</p>
+<p><strong>Note:</strong> Katie, can you add some of the technical details in here? As I understand it, genome sequencing is done in short <em>reads</em>, having overlapping segments. Part of the reason for this is because we know that errors in transcription exist both because of limitations in machinery, but also because DNA polymerase may replicate the DNA with errors as we saw in the chapter on the Replication Origin. Conducting short reads gives us more control over the number of errors and their locations than if we attempted one very long read.</p>
+<p>(My understanding continued)…In order to sequence a genome, we first fracture it into segments by using a mass spectrometer. The mass spectrometer uses energy to fracture the molecular bonds in the genome, resulting in lots of fragments. We gain a few pieces of information from this. First, we know how much energy it took to fracture the bonds, next we know how many fragments we obtained, and third, we know the total molecular weight of each fragment. If we repeat this process several different times, providing different amounts of bond-breaking energy, we’ll obtain copies of the genome, with differently sized segments. These segments will be our overlapping sub-reads. Knowing the total molecular weight of each sub-read, along with the energy required to fracture the bonds, resulting in a given sub-read should allow us to reconstruct plausible versions of the nucleotide string making up that sub-read. Once we have these nucleotide strings, we can construct the <em>overlap graph</em> and search for cycles in this graph. The cycles we are interested in move through all of the vertices in the graph. If we can find one, then that cycle corresponds to a candidate for the reassembled genome.</p>
+</section>
+<section id="what-to-expect" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-expect">What to Expect</h2>
+<p>Much like we did during our search for the Replication Origin, we’ll be slowly building up the tools necessary to reconstruct a genome from its fragments. We’ll start by trying to solve the genome assembly problem in idealized and simplified scenarios. When we are successful, we’ll select an assumption to relax and try solving the assembly problem under the relaxed set of assumptions. We’ll continue doing this until we are solving a realistic version of the genome assembly problem. Each challenge you complete will bring you closer to that goal.</p>
+<p>In addition to learning about techniques used for genome assembly, we’ll also continue developing our skills in technical writing, reproducible science, and version control. Throughout the Replication Origin content, we asked you each to work on your own individual Quarto Notebook, but to work collaboratively within a GitHub Repository with your teammates. This allowed you to benefit from the successes of your teammates (by looking at their completed work and copying their code into your notebook if you needed help), and vice-versa. This wasn’t an authentic exposure to the value of collaborative research in a version control system though. We’ll begin working towards that now.</p>
+<p>Rather than working on several individual copies of your analysis, each group will work on a single Quarto Notebook through the Genome Assembly project. We’ll do this in a structured manner, which will feel quite silly. Like our approach to solving Bioinformatics problems, we’ll be taking very small steps in collaborative version control as well. Working on the same document invites some possibility for conflicting changes to be made. For all the convenience a version control system like Git/GitHub provide us, <em>merge conflicts</em> are the price we pay. The idea is outlined in the scenario below.</p>
+<p><em>Dr.&nbsp;Duryea and Dr.&nbsp;Gilbert are collaborating on a report. They both noticed a typo and some awkward language in the first paragraph of the report, so they fix it – independently of one another. The fixes they provide are not identical. Dr.&nbsp;Duryea completes the usual <code>Pull -&gt; Commit -&gt; Push</code> workflow and her changes are reflected in the shared report repository. Dr.&nbsp;Gilbert attempts his <code>Pull -&gt; Commit -&gt; Push</code> workflow and is notified of conflicts.</em></p>
+<p><em>GitHub doesn’t know which version of the changes should be kept, so it notifies Dr.&nbsp;Gilbert of the overlapping changes that he and Dr.&nbsp;Duryea have made. Dr.&nbsp;Gilbert must then decide whether to remove his changes, remove Dr.&nbsp;Duryea’s changes, or to rewrite using a combination of both. Once Dr.&nbsp;Gilbert has resolved the conflict, he can <code>Commit -&gt; Push</code> his changes to the repository. Since Dr.&nbsp;Duryea pushed her changes to the repository first, her original version of the first paragraph rewrite is tracked by <code>git</code> and can therefore be recovered when she notifies Dr.&nbsp;Gilbert that he misunderstood some of the biological processes they were writing about.</em></p>
+<p>Version control is extremely helpful in scenarios like this hypothetical one. It allows the overwritten work to be easily recovered without searching through dozens of versions of a file, potentially spread across multiple machines.</p>
+<p>Using the <code>Pull -&gt; Commit -&gt; Push</code> workflow is really important here. In our hypothetical, it allowed Dr.&nbsp;Gilbert to know about the potential merge conflicts before committing and pushing them. It is still possible to fix merge conflicts resulting from conflicting code being pushed to GitHub – we’ll just need to fix it from GitHub, using the conflict editor there.</p>
+<p><strong>Note:</strong> Create short videos showing both scenarios.</p>
+</section>
+<section id="getting-ready-for-genome-assembly" class="level2">
+<h2 class="anchored" data-anchor-id="getting-ready-for-genome-assembly">Getting Ready for Genome Assembly</h2>
+<p>In this unit, rather than working on separate notebooks, each team will work on a single notebook to track their work. In an effort to keep merge conflicts to a minimum though, we’ll still be separating our work. That being said, it is worth encountering these merge conflicts so that we know what they look like and how to resolve them. We’ll work ourselves into a few conflicts purposefully here, and we’ll troubleshoot them together as we build out our first collaborative notebook.</p>
+<ol type="1">
+<li>Open RStudio and open the project corresponding to your team’s Bioinformatics repository.</li>
+<li>Elect one teammate to open the <code>StarterNotebook.qmd</code> file and save it as <code>GenomeAssembly.qmd</code>. That teammate should save the file, then <code>Pull -&gt; Commit -&gt; Push</code> to GitHub.</li>
+<li>Once your teammate has done this, everyone in the group should <code>Pull</code> changes from GitHub.</li>
+<li>Now that you’ve <code>Pull</code>ed in the changes, look for the <code>GenomeAssembly.qmd</code> file and open it.</li>
+<li>Add your name to the <code>author:</code> field in the YAML header.</li>
+<li>Remove all of the text appearing below the <code>setup</code> code chunk, and include a section heading with your name. As a reminder, headings are added with the hashtag character.</li>
+<li><code>Pull -&gt; Commit -&gt; Push</code> your changes. One of you will get lucky and your changes will get pushed just fine. The rest of you will not be so lucky. There are two possibilities. First, you are notified of a merge conflict when you attempt to <code>Commit</code> your changes. This is preferable, and is why you’ve been asked to <code>Pull</code> before every <code>Commit</code>. Otherwise, you’ll be notified of a <em>merge conflict</em> once you’ve attempted to <code>Push</code> changes to GitHub. This means that there is a conflict at the origin repository and we’ll need to fix it there.</li>
+<li>Fix your merge conflicts by providing an indented list of author names corresponding to the members on your team. Because several of you are trying to <code>Push</code> conflicting merges all at once you may need to resolve several iterations of conflict.</li>
+<li>Once you’ve finally resolved all of the merge conflicts, <code>Pull</code> in all of the changes made to the origin repository by you and your teammates to your project in RStudio. Now that those conflicts have been resolved, you should be able to work without issue as long as you only edit the section of the report within your named heading. If you do run into conflicts, however, you now have the tools and experience necessary to resolve them.</li>
+</ol>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>In this intro notebook, we’ve accomplished the following.</p>
+<ul>
+<li>We’ve developed some expectation as to the work ahead in solving the Genome Assembly problem.</li>
+<li>You’ve started a single Quarto Notebook in which you and your teammates will work on documenting your Genome Assembly work. You’ll continue to do this separately, but within the same document, for now.</li>
+<li>You’ve experienced and resolved a series of merge conflicts. This won’t be the last time you need to resolve conflicts, but the experience has given you the tools and practice you need to resolve conflicts when they arise.</li>
+</ul>
+<p>See you in the next notebook.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

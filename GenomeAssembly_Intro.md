@@ -1,0 +1,65 @@
+---
+title: "Introduction and Motivation for Genome Assembly"
+author: 
+  - "Dr. Gilbert" 
+  - "Dr. Duryea"
+format: html
+execute:
+  keep-md: true
+---
+
+
+
+
+
+## Motivation
+
+**Note:** Start with the Newspaper Problem activity. 
+
+The activity you've just completed, in reconstructing the sentence from several short, overlapping fragments is quite relevant to our next Bioinformatics task. 
+
+**Note:** Katie, can you add some of the technical details in here? As I understand it, genome sequencing is done in short *reads*, having overlapping segments. Part of the reason for this is because we know that errors in transcription exist both because of limitations in machinery, but also because DNA polymerase may replicate the DNA with errors as we saw in the chapter on the Replication Origin. Conducting short reads gives us more control over the number of errors and their locations than if we attempted one very long read.
+
+(My understanding continued)...In order to sequence a genome, we first fracture it into segments by using a mass spectrometer. The mass spectrometer uses energy to fracture the molecular bonds in the genome, resulting in lots of fragments. We gain a few pieces of information from this. First, we know how much energy it took to fracture the bonds, next we know how many fragments we obtained, and third, we know the total molecular weight of each fragment. If we repeat this process several different times, providing different amounts of bond-breaking energy, we'll obtain copies of the genome, with differently sized segments. These segments will be our overlapping sub-reads. Knowing the total molecular weight of each sub-read, along with the energy required to fracture the bonds, resulting in a given sub-read should allow us to reconstruct plausible versions of the nucleotide string making up that sub-read. Once we have these nucleotide strings, we can construct the *overlap graph* and search for cycles in this graph. The cycles we are interested in move through all of the vertices in the graph. If we can find one, then that cycle corresponds to a candidate for the reassembled genome.
+
+## What to Expect
+
+Much like we did during our search for the Replication Origin, we'll be slowly building up the tools necessary to reconstruct a genome from its fragments. We'll start by trying to solve the genome assembly problem in idealized and simplified scenarios. When we are successful, we'll select an assumption to relax and try solving the assembly problem under the relaxed set of assumptions. We'll continue doing this until we are solving a realistic version of the genome assembly problem. Each challenge you complete will bring you closer to that goal.
+
+In addition to learning about techniques used for genome assembly, we'll also continue developing our skills in technical writing, reproducible science, and version control. Throughout the Replication Origin content, we asked you each to work on your own individual Quarto Notebook, but to work collaboratively within a GitHub Repository with your teammates. This allowed you to benefit from the successes of your teammates (by looking at their completed work and copying their code into your notebook if you needed help), and vice-versa. This wasn't an authentic exposure to the value of collaborative research in a version control system though. We'll begin working towards that now.
+
+Rather than working on several individual copies of your analysis, each group will work on a single Quarto Notebook through the Genome Assembly project. We'll do this in a structured manner, which will feel quite silly. Like our approach to solving Bioinformatics problems, we'll be taking very small steps in collaborative version control as well. Working on the same document invites some possibility for conflicting changes to be made. For all the convenience a version control system like Git/GitHub provide us, *merge conflicts* are the price we pay. The idea is outlined in the scenario below.
+
+*Dr. Duryea and Dr. Gilbert are collaborating on a report. They both noticed a typo and some awkward language in the first paragraph of the report, so they fix it -- independently of one another. The fixes they provide are not identical. Dr. Duryea completes the usual `Pull -> Commit -> Push` workflow and her changes are reflected in the shared report repository. Dr. Gilbert attempts his `Pull -> Commit -> Push` workflow and is notified of conflicts.*
+
+*GitHub doesn't know which version of the changes should be kept, so it notifies Dr. Gilbert of the overlapping changes that he and Dr. Duryea have made. Dr. Gilbert must then decide whether to remove his changes, remove Dr. Duryea's changes, or to rewrite using a combination of both. Once Dr. Gilbert has resolved the conflict, he can `Commit -> Push` his changes to the repository. Since Dr. Duryea pushed her changes to the repository first, her original version of the first paragraph rewrite is tracked by `git` and can therefore be recovered when she notifies Dr. Gilbert that he misunderstood some of the biological processes they were writing about.* 
+
+Version control is extremely helpful in scenarios like this hypothetical one. It allows the overwritten work to be easily recovered without searching through dozens of versions of a file, potentially spread across multiple machines.
+
+Using the `Pull -> Commit -> Push` workflow is really important here. In our hypothetical, it allowed Dr. Gilbert to know about the potential merge conflicts before committing and pushing them. It is still possible to fix merge conflicts resulting from conflicting code being pushed to GitHub -- we'll just need to fix it from GitHub, using the conflict editor there. 
+
+**Note:** Create short videos showing both scenarios.
+
+## Getting Ready for Genome Assembly
+
+In this unit, rather than working on separate notebooks, each team will work on a single notebook to track their work. In an effort to keep merge conflicts to a minimum though, we'll still be separating our work. That being said, it is worth encountering these merge conflicts so that we know what they look like and how to resolve them. We'll work ourselves into a few conflicts purposefully here, and we'll troubleshoot them together as we build out our first collaborative notebook.
+
+1. Open RStudio and open the project corresponding to your team's Bioinformatics repository.
+2. Elect one teammate to open the `StarterNotebook.qmd` file and save it as `GenomeAssembly.qmd`. That teammate should save the file, then `Pull -> Commit -> Push` to GitHub. 
+3. Once your teammate has done this, everyone in the group should `Pull` changes from GitHub.
+4. Now that you've `Pull`ed in the changes, look for the `GenomeAssembly.qmd` file and open it. 
+5. Add your name to the `author:` field in the YAML header. 
+6. Remove all of the text appearing below the `setup` code chunk, and include a section heading with your name. As a reminder, headings are added with the hashtag character.
+7. `Pull -> Commit -> Push` your changes. One of you will get lucky and your changes will get pushed just fine. The rest of you will not be so lucky. There are two possibilities. First, you are notified of a merge conflict when you attempt to `Commit` your changes. This is preferable, and is why you've been asked to `Pull` before every `Commit`. Otherwise, you'll be notified of a *merge conflict* once you've attempted to `Push` changes to GitHub. This means that there is a conflict at the origin repository and we'll need to fix it there. 
+8. Fix your merge conflicts by providing an indented list of author names corresponding to the members on your team. Because several of you are trying to `Push` conflicting merges all at once you may need to resolve several iterations of conflict. 
+9. Once you've finally resolved all of the merge conflicts, `Pull` in all of the changes made to the origin repository by you and your teammates to your project in RStudio. Now that those conflicts have been resolved, you should be able to work without issue as long as you only edit the section of the report within your named heading. If you do run into conflicts, however, you now have the tools and experience necessary to resolve them.
+
+## Summary
+
+In this intro notebook, we've accomplished the following.  
+
++ We've developed some expectation as to the work ahead in solving the Genome Assembly problem.
++ You've started a single Quarto Notebook in which you and your teammates will work on documenting your Genome Assembly work. You'll continue to do this separately, but within the same document, for now.
++ You've experienced and resolved a series of merge conflicts. This won't be the last time you need to resolve conflicts, but the experience has given you the tools and practice you need to resolve conflicts when they arise.
+
+See you in the next notebook.
