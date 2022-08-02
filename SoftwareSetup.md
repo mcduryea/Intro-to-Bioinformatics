@@ -1,6 +1,8 @@
 ---
 title: "Bioinformatics Software Setup"
-author: "Dr. Gilbert and Dr. Duryea"
+author: 
+  - "Dr. Gilbert"
+  - "Dr. Duryea"
 format: html
 execute:
   keep-md: true
@@ -10,19 +12,19 @@ execute:
 
 ## Welcome
 
-Welcome to BIO4XX/SNHU4XX, Bioinformatics. This is a course that will pull together your prior learnings in Biology, Mathematics, Computing, and Communication. If you don't feel as though you are *skilled* in all of these areas, don't worry! This course typically enrolls students from across the sciences, math, and computing (Computer Science, IT, CIS, etc.). Dr. Duryea and I will make sure to build teams in such a way that every team has at least one scientist and at least one person who has computing experience. You'll not only get to leverage eachother's expertise, but also to learn from one another as well.
+Welcome to BIO422, Bioinformatics. This is a course that will pull together your prior learnings in Biology, Mathematics, Computing, and Communication. If you don't feel as though you are *skilled* in all of these areas, don't worry! This course typically enrolls students from across the sciences, math, and computing (Computer Science, IT, CIS, etc.). Dr. Duryea and I will make sure to build teams in such a way that every team has at least one scientist and at least one person who has computing experience. You'll not only get to leverage each other's expertise, but also to learn from one another as well.
 
 There's quite a bit of software to set up for our course. We hope that most of this setup can be done outside of class time, but Dr. Duryea and Dr. Gilbert will be available to help troubleshoot any issues that arise. Much of this document is summarized from the [Happy Git with R](https://happygitwithr.com/) book. As that book mentions, all of this work is well worth it in the end -- just stick with it and reach out for help when you need it.
 
 Setup instructions for Windows, macOS, and linux follow. For convenience, if you prefer to follow video setup instructions, those are below.
 
 + Full Windows Setup (link to come, Adam will record)
-+ Full mac setup (Katie, do you mind recording this?)
++ Full mac setup (link to come, Katie will record)
 + Full (Ubuntu) linux setup (link to come, Adam will record)
 
 ## Software
 
-Biological datasets are large -- too large to process by hand. For this reason, we'll be using software to interact with data in our course. We'll be using a full suite of professional tools which will give you the ability to process biological and genetic data, create professional looking and \[more importantly\] reproducible reports, and to collaborate using version control systems.
+Modern Biological datasets are large -- too large to process by hand. For this reason, we'll be using software to interact with data in our course. We'll be using a full suite of professional tools which will give you the ability to process biological and genetic data, create professional looking and \[more importantly\] reproducible reports, and to collaborate using version control systems.
 
 ### Technical Computing with R
 
@@ -113,11 +115,19 @@ Collaborative version control with `git` is a more advanced and more reliable st
   + [Here's some advice](https://happygitwithr.com/github-acct.html) from *Happy Git with R* on choosing a GitHub username.
 
 
-**(Windows Users Only) Install git:** Complete the following steps to install `git` on your local machine.  
+**Install git (Windows):** Complete the following steps to install `git` on your local machine.  
 
 + Navigate to [gitforwindows.org](https://gitforwindows.org/)
 + Click the blue *Download* button.
 + Follow the prompts, accepting all of the default settings. Be sure that “Git from the command line and also from 3rd-party software” is selected when asked about *Adjusting your PATH environment*.
+
+**Install git (MacOS):** Complete the following steps to install `git` on your local machine.
+
++ Open RStudio on your computer.
++ Click on the Terminal tab in the bottom left window to switch from the Console to the Terminal.
++ Into the Terminal, enter the command `xcode-select --install` and hit enter.
++ Agree to installing Command Line Developer Tools and the Xcode license agreement.
++ After the install is complete, type `git --version` into the Terminal and hit enter. If the install was successful, it will display your version of git.
 
 **Linking git, GitHub, and RStudio:** Complete the following steps to allow `git`, `GitHub` and `RStudio` to work together.  
 
@@ -126,6 +136,7 @@ Collaborative version control with `git` is a more advanced and more reliable st
 + Once the installation has completed, run `library(usethis)` and then `use_git_config(user.name = "INPUT_YOUR_USER_NAME_HERE", user.email = "INPUT_YOUR_EMAIL_ADDRESS_HERE")` -- be sure to use the username and e-mail associated with your GitHub account.
 + Run `create_github_token()` from the console.  
   + This opens up a GitHub webpage -- fill in the form. Change the token expiration to *No Expiration*.
+  + Click *Generate Token*.
   + Use the clipboard button to copy the PAT token -- you may want to save this in a simple text file somewhere on your computer.
 + In the console, run `install.packages("gitcreds")`
 + Once the install has finished, run `gitcreds::gitcreds_set()`  
