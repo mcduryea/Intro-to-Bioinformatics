@@ -121,7 +121,7 @@ For example, let's imagine we wanted our loop to go through Dr. Gilbert's name a
 generate_2_mers <- function(myString) {
   list_2_mers <- c()
 
-  for(i in 1:nchar(myString)){
+  for(i in 1:(nchar(myString) - 1)){
   list_2_mers <- list_2_mers %>%
   append(str_sub(myString, start = i, end = i + 1))
     }
@@ -169,9 +169,9 @@ count_pattern <- function(myString, pattern){
   for(i in 1:nchar(myString)){
     if(str_sub(myString, start = i, end = i+1) == pattern){
       count = count + 1
-  return(count)
     }
   }
+  return(count)
 }
   
 count_pattern(myString, "be")
