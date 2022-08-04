@@ -1,0 +1,193 @@
+---
+title: "Genome Assembly, Part II"
+author: 
+  - "Dr. Gilbert" 
+  - "Dr. Duryea"
+format: html
+execute:
+  keep-md: true
+---
+
+
+
+
+
+## Preliminary Thoughts
+
+In the previous notebook, `GenomeAssembly_PartI`, we solved the Genome Assembly problem in a very idealized case. We made the following strong assumptions:
+
++ We had the $k$-mer composition of the genome, in which all $k$-mers were of the same length and there were no transcription errors in our $k$-mer composition.
++ All of our $k$-mers came from the same strand of the genome.
++ The $k$-mers "covered" the entire genome.
++ We knew the correct order in which the overlapping $k$-mers appeared within the genome.
+
+These assumptions are very strong and unrealistic. However, being able to solve the problem under these constraints really helps as us we move forward in an attempt to solve the general Genome Assembly problem. We'll spend this notebook being introduced to a new area of mathematics (Graph Theory) which will help us describe the Genome Assembly problem in its more general setting.
+
+## Assembling the Genome: Tools and Ideas from Graph Theory
+
+In this notebook, we'll be bouncing back and forth between developing new terminology, learning and implementing tools from Graph Theory, and connecting it all back to the Genome Assembly problem.
+
+### Foundations in Graph Theory
+
+I'LL ADD MORE DETAIL THIS FALL...
+
+In mathematics, a graph is an object consisting of two sets. The first set is a collection of vertices (sometimes called nodes), which appear as dots in a drawing of the graph. The second is a collection of edges connecting pairs of vertices in the graph. In a drawing, edges appear as lines connecting pairs of dots. The graphs we'll be dealing with are *directed* -- this means that edges can only be traveled in one direction. In a drawing, directed edges are denoted by arrows indicating the direction they are allowed to be traveled in.
+
+USE `ggraph` OR `igraph` TO DRAW AN EXAMPLE.
+
+A *path* in a directed graph is a sequence of vertices $v_1v_2v_3\cdots v_{k-1}v_k$ such that there is a directed edge from $v_i$ to $v_{i+1}$ in the graph for $1\leq i < k$. 
+
+USE `ggraph` OR `igraph` TO DRAW AN EXAMPLE.
+
+There are many ways to represent directed graphs. Humans can easily consume graphs from their drawings, but computers cannot extract meaningful information from an image of a graph. For this reason, graphs can be represented by *adjacency matrices*, *edge-lists*, or using a *rule* or set of rules to define when edges exist between two vertices. 
+
+USE `ggraph` OR `igraph` TO CONSTRUCT A SET OF SIMPLE EXAMPLES.
+
+The adjacency matrix is very inefficient for representing large graphs, especially when there aren't many edges relative to the total capacity of the graph (such graphs are called *sparse*). 
+
+### Connecting Back to the Genome Assembly Problem
+
+We'll be constructing directed graphs from our $k$-mer compositions of the genome. We'll assign each $k$-mer to represent a vertex, and define an edge between two vertices if the final $\left(k-1\right)$ nucleotides in the first vertex match the first $\left(k-1\right)$ nucleotides in the second vertex. Such a graph representation scheme is rule-based, and is often referred to as a *conflict-tolerance* representation. Given our conflict rule, we'll simply refer to our graph as the *overlap graph*. The resulting overlap graph will be sparse, and so we'll use edge-lists when we need quick access to the edges. 
+
+Once we have constructed the overlap graph graph corresponding to our $k$-mer composition of the genome, we'll "simply" need to find a path through the graph which uses all of the $k$-mers. We can then use our `string_to_path()` function to reconstruct a *candidate* genome from the path.
+
+### Using Graph Theory in the Genome Assembly Problem
+
+Now that we've solved a simplified version of the genome reconstruction problem and we've developed some of the Graph Theory we'll need in order to find candidate solutions to the Genome Assembly problem, let's work towards a more general solution. We know that the $k$-mers in the $k$-mer composition will correspond to the vertices in our graph, and that an edge in the graph will exist from one vertex to the next if the last $\left(k-1\right)$ nucleotides in the first vertex match the first $\left(k-1\right)$ nucleotides in the second. Let's formally define these sections of the $k$-mers.  
+
++ **Prefix:** Given a read of length $k$ , we call the *prefix* of that read the first  $k − 1$  nucleotides in the read (excluding the last nucleotide).
++ **Suffix:** Similarly, the *suffix* of a k-mer will refer to the final $k − 1$ nucleotides in that read (excluding only the first).
+
+***
+
+**Challenge 1:** Create `prefix()` and `suffix()` functions.  
+
+> **Input:** A $k$-mer  
+> **Output:** The first $k-1$ nucleotides in the $k$-mer for the `prefix()` function, and the last $k-1$ nucleotides for the `suffix()` function.  
+> *Hint:* The `str_sub()` function allows you to count characters from the end of a string using negative integers.
+
+***
+
+***
+
+**Note:** Now that we know how to construct a genome string from a vertex-covering path of overlapping $k$-mers, we are ready to bring in some Graph Theory. We'll create graphs by assigning each $k$-mer to a vertex and adding a directed edge between $k$-mers if the `suffix()` of the first matches the `prefix()` of the second.
+
+**Note:** It will be important to show the graphs in these notebooks, so we should draw them using `ggraph` or `igraph`. This is a project for the Fall.
+
+***
+
+***
+
+Now that we have the `prefix()` / `suffix()` functions and we've seen a few examples, let's build some functionality to construct the overlap graph from a set of overlapping $k$-mers. To achieve this, we'll need to build a function which accomplishes the following tasks.  
+
++ Builds an adjacency matrix of the appropriate size, and pre-populates it with zeroes.
++ Loops over combinations of of $k$-mers and replaces the corresponding entry of the adjacency matrix with a $1$ if the `suffix()` of the first vertex matches the `prefix()` of the second.
+
+**Note:** I'd like to have them think about matrix structures with one another and discuss how to access an individual matrix entry -- I think this is something they *could* hash out together -- what do you think?
+
+***
+
+**Challenge 2:** Solve the *Overlap Graph* problem by constructing an `overlap()` function.  
+
+> **Input:** A collection of patterns of $k$-mers (`patterns`).
+> **Output:** The overlap graph corresponding to `patterns` in the form of an adjacency matrix. 
+
+***
+
+
+::: {.cell}
+
+```{.r .cell-code}
+#Solve the challenge problem here.
+```
+:::
+
+
+Once you've solved the challenge problem, verify that your result works by solving the [*Overlap Graph* problem](https://rosalind.info/problems/ba3c/) on Rosalind.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+#Solve the Rosalind problem here.
+```
+:::
+
+
+Now that we are able to construct the overlap graph, we know that we are searching for a path through the graph which hits every vertex ($k$-mer) exactly once. Such a path in a graph is called a *Hamiltonian Path*. That is, we would like to solve the following problem.
+
+***
+
+**Hamiltonian Path Problem:** Construct a Hamiltonian Path in a graph.  
+
+> **Input:** A directed graph.
+> **Output:** A path visiting every node in the graph exactly once (if such a path exists).
+
+***
+
+We don't have the machinery to solve such a problem right now. In fact, nobody does! An efficient algorithm for finding a Hamiltonian Path in a directed graph is not currently known. There is, however, an efficient algorithm for finding a path through a graph which covers every *edge* in the graph, if such a path exists. Such a path is called an *Eulerian Path*. Another nice fact about *Eulerian Paths* is that there is a simple check to determine whether such a path exists before we attempt to find one. We'll spend some time now trying to convert our current Hamiltonian Path-finding problem into an Eulerian Path-finding problem.
+
+### More Graph Theory: deBruijn Graphs and Eulerian Circuits
+
+We'll take a bit of a detour here, but remember that our goal has been to find a Hamiltonian Path through the overlap graph corresponding to the $k$-mer composition of our genome. No efficient algorithm is known for finding a Hamiltonian Path in a graph (a path touching all vertices exactly once), but there are efficient algorithms for finding an Eulerian Path (a path using all *edges* in the graph exactly once). Our detour will show how we can construct a new graph which will cast out Hamiltonian Path-finding problem to an Eulerian Path-finding problem, landing us much closer to a solution in general for Genome Assembly.
+
+In 1946, a mathematician named Nicolaas deBruijn was working on a theoretical problem in mathematics. A *binary string* is a string of 0's and 1's. We say that such a binary string is *k-universal* if it contains every binary $k$-mer exactly once. As an example, $0001110100$ is a $3$-universal binary string, since it contains each binary $3$-mer (`000`, `001`, `011`, `111`, `110`, `101`, `010`, and `100`) exactly once. Nicolaas deBruijn was interested in solving the $k$-universal binary string problem for arbitrary values of $k$ (that is, he sought a construction that would produce a $k$-universal binary string for any value of $k$).
+
+deBruijn noticed that he could cast his problem exactly as we've casted ours so far. He imagined a graph in which each binary $k$-mer corresponded to a vertex, and directed edges existed between two nodes if the binary suffix of the first matched the binary prefix of the latter. He was searching for Hamiltonian Paths just like we are! Luckily, we can leverage what he noticed next.
+
+Instead of assigning the $k$-mers to vertices in the graph, deBruijn assigned them to edges in the graph. The vertices in the graph that deBruijn constructed corresponded to the `prefix()`es and `suffix()`es of the $k$-mers. 
+
+INSERT AN EXAMPLE HERE USING `ggraph` OR `igraph`.
+
+The resulting graph has multiple nodes corresponding to the same $\left(k-1\right)$-mer. We combine those nodes into a single vertex, but leave all of the edges (including cases where multiple edges between the same pair of resulting vertices exits). 
+
+INSERT AN EXAMPLE HERE USING `ggraph` OR `igraph`.
+
+Let's close out this notebook with another challenge. We'll try to construct the deBruin graph from a given `genome`. Our aim is to complete the following steps.
+
++ We'll start with the `genome`, and compute the $k$-mer composition of `genome` using our `compositionK()` function. 
++ We'll then construct the `pathGraph()` from the $k$-mers such that the $i^{\text{th}}$ edge of the path graph is labeled by the $i{\text{th}}$ $k$-mer in the `genome`, and the $i^{\text{th}}$ vertex of the path graph is labeled by the $i^{\text{th}}$ $\left(k-1\right)$-mer in the `genome.
++ Finally, we'll form the deBruijn graph by gluing identically labeled nodes in `pathGraph(genome, k)` together.
+
+***
+
+**Challenge 3:** deBruijn Graph from a String.  
+
+> **Input:** A `genome` and an integer `k`.
+> **Output:** The edge-list for the deBruijn Graph corresponding to the `k`-mer composition of `genome`.
+
+***
+
+
+::: {.cell}
+
+```{.r .cell-code}
+#Solve the challenge problem here.
+```
+:::
+
+
+Once you think you've solved that problem, try solving the [*Construct the deBruijn Graph of a String* problem](https://rosalind.info/problems/ba3d/) at Rosalind.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+#Solve the Rosalind problem here.
+```
+:::
+
+
+
+## Summary
+
+In this intro notebook, we've accomplished the following.  
+
++ We learned some graph theoretic tools which can help us in solving the Genome Assembly problem.
++ We translated a bioinformatics problem into a problem in the language of Graph Theory, an area of study in mathematics.
++ We defined Hamiltonian Paths and Eulerian Paths and connected these mathematical structures to the Genome Assembly problem.
++ We wrote a function which will output a deBruijn graph when given a `genome` and a value of `k`.
+
+We know now that the solution to the Genome Assembly problem corresponds to an Eulerian Path in the deBruijn Graph of our genome. In the next notebook we'll explore some more mathematics and discover how to determine when an Eulerian Path in a graph exists, as well as how to construct one. This will get us much closer to a solution to the Genome Assembly problem in general.
+
+See you in the next notebook.

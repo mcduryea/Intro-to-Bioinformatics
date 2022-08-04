@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.584">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Gilbert">
+<meta name="author" content="Dr.&nbsp;Duryea">
+
+<title>Genome Assembly, Part II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="GenomeAssembly_PartII_files/libs/clipboard/clipboard.min.js"></script>
+<script src="GenomeAssembly_PartII_files/libs/quarto-html/quarto.js"></script>
+<script src="GenomeAssembly_PartII_files/libs/quarto-html/popper.min.js"></script>
+<script src="GenomeAssembly_PartII_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="GenomeAssembly_PartII_files/libs/quarto-html/anchor.min.js"></script>
+<link href="GenomeAssembly_PartII_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="GenomeAssembly_PartII_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="GenomeAssembly_PartII_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="GenomeAssembly_PartII_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="GenomeAssembly_PartII_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Genome Assembly, Part II</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Gilbert </p>
+             <p>Dr.&nbsp;Duryea </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="preliminary-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="preliminary-thoughts">Preliminary Thoughts</h2>
+<p>In the previous notebook, <code>GenomeAssembly_PartI</code>, we solved the Genome Assembly problem in a very idealized case. We made the following strong assumptions:</p>
+<ul>
+<li>We had the <span class="math inline">\(k\)</span>-mer composition of the genome, in which all <span class="math inline">\(k\)</span>-mers were of the same length and there were no transcription errors in our <span class="math inline">\(k\)</span>-mer composition.</li>
+<li>All of our <span class="math inline">\(k\)</span>-mers came from the same strand of the genome.</li>
+<li>The <span class="math inline">\(k\)</span>-mers “covered” the entire genome.</li>
+<li>We knew the correct order in which the overlapping <span class="math inline">\(k\)</span>-mers appeared within the genome.</li>
+</ul>
+<p>These assumptions are very strong and unrealistic. However, being able to solve the problem under these constraints really helps as us we move forward in an attempt to solve the general Genome Assembly problem. We’ll spend this notebook being introduced to a new area of mathematics (Graph Theory) which will help us describe the Genome Assembly problem in its more general setting.</p>
+</section>
+<section id="assembling-the-genome-tools-and-ideas-from-graph-theory" class="level2">
+<h2 class="anchored" data-anchor-id="assembling-the-genome-tools-and-ideas-from-graph-theory">Assembling the Genome: Tools and Ideas from Graph Theory</h2>
+<p>In this notebook, we’ll be bouncing back and forth between developing new terminology, learning and implementing tools from Graph Theory, and connecting it all back to the Genome Assembly problem.</p>
+<section id="foundations-in-graph-theory" class="level3">
+<h3 class="anchored" data-anchor-id="foundations-in-graph-theory">Foundations in Graph Theory</h3>
+<p>I’LL ADD MORE DETAIL THIS FALL…</p>
+<p>In mathematics, a graph is an object consisting of two sets. The first set is a collection of vertices (sometimes called nodes), which appear as dots in a drawing of the graph. The second is a collection of edges connecting pairs of vertices in the graph. In a drawing, edges appear as lines connecting pairs of dots. The graphs we’ll be dealing with are <em>directed</em> – this means that edges can only be traveled in one direction. In a drawing, directed edges are denoted by arrows indicating the direction they are allowed to be traveled in.</p>
+<p>USE <code>ggraph</code> OR <code>igraph</code> TO DRAW AN EXAMPLE.</p>
+<p>A <em>path</em> in a directed graph is a sequence of vertices <span class="math inline">\(v_1v_2v_3\cdots v_{k-1}v_k\)</span> such that there is a directed edge from <span class="math inline">\(v_i\)</span> to <span class="math inline">\(v_{i+1}\)</span> in the graph for <span class="math inline">\(1\leq i &lt; k\)</span>.</p>
+<p>USE <code>ggraph</code> OR <code>igraph</code> TO DRAW AN EXAMPLE.</p>
+<p>There are many ways to represent directed graphs. Humans can easily consume graphs from their drawings, but computers cannot extract meaningful information from an image of a graph. For this reason, graphs can be represented by <em>adjacency matrices</em>, <em>edge-lists</em>, or using a <em>rule</em> or set of rules to define when edges exist between two vertices.</p>
+<p>USE <code>ggraph</code> OR <code>igraph</code> TO CONSTRUCT A SET OF SIMPLE EXAMPLES.</p>
+<p>The adjacency matrix is very inefficient for representing large graphs, especially when there aren’t many edges relative to the total capacity of the graph (such graphs are called <em>sparse</em>).</p>
+</section>
+<section id="connecting-back-to-the-genome-assembly-problem" class="level3">
+<h3 class="anchored" data-anchor-id="connecting-back-to-the-genome-assembly-problem">Connecting Back to the Genome Assembly Problem</h3>
+<p>We’ll be constructing directed graphs from our <span class="math inline">\(k\)</span>-mer compositions of the genome. We’ll assign each <span class="math inline">\(k\)</span>-mer to represent a vertex, and define an edge between two vertices if the final <span class="math inline">\(\left(k-1\right)\)</span> nucleotides in the first vertex match the first <span class="math inline">\(\left(k-1\right)\)</span> nucleotides in the second vertex. Such a graph representation scheme is rule-based, and is often referred to as a <em>conflict-tolerance</em> representation. Given our conflict rule, we’ll simply refer to our graph as the <em>overlap graph</em>. The resulting overlap graph will be sparse, and so we’ll use edge-lists when we need quick access to the edges.</p>
+<p>Once we have constructed the overlap graph graph corresponding to our <span class="math inline">\(k\)</span>-mer composition of the genome, we’ll “simply” need to find a path through the graph which uses all of the <span class="math inline">\(k\)</span>-mers. We can then use our <code>string_to_path()</code> function to reconstruct a <em>candidate</em> genome from the path.</p>
+</section>
+<section id="using-graph-theory-in-the-genome-assembly-problem" class="level3">
+<h3 class="anchored" data-anchor-id="using-graph-theory-in-the-genome-assembly-problem">Using Graph Theory in the Genome Assembly Problem</h3>
+<p>Now that we’ve solved a simplified version of the genome reconstruction problem and we’ve developed some of the Graph Theory we’ll need in order to find candidate solutions to the Genome Assembly problem, let’s work towards a more general solution. We know that the <span class="math inline">\(k\)</span>-mers in the <span class="math inline">\(k\)</span>-mer composition will correspond to the vertices in our graph, and that an edge in the graph will exist from one vertex to the next if the last <span class="math inline">\(\left(k-1\right)\)</span> nucleotides in the first vertex match the first <span class="math inline">\(\left(k-1\right)\)</span> nucleotides in the second. Let’s formally define these sections of the <span class="math inline">\(k\)</span>-mers.</p>
+<ul>
+<li><strong>Prefix:</strong> Given a read of length <span class="math inline">\(k\)</span> , we call the <em>prefix</em> of that read the first <span class="math inline">\(k − 1\)</span> nucleotides in the read (excluding the last nucleotide).</li>
+<li><strong>Suffix:</strong> Similarly, the <em>suffix</em> of a k-mer will refer to the final <span class="math inline">\(k − 1\)</span> nucleotides in that read (excluding only the first).</li>
+</ul>
+<hr>
+<p><strong>Challenge 1:</strong> Create <code>prefix()</code> and <code>suffix()</code> functions.</p>
+<blockquote class="blockquote">
+<p><strong>Input:</strong> A <span class="math inline">\(k\)</span>-mer<br>
+<strong>Output:</strong> The first <span class="math inline">\(k-1\)</span> nucleotides in the <span class="math inline">\(k\)</span>-mer for the <code>prefix()</code> function, and the last <span class="math inline">\(k-1\)</span> nucleotides for the <code>suffix()</code> function.<br>
+<em>Hint:</em> The <code>str_sub()</code> function allows you to count characters from the end of a string using negative integers.</p>
+</blockquote>
+<hr>
+<hr>
+<p><strong>Note:</strong> Now that we know how to construct a genome string from a vertex-covering path of overlapping <span class="math inline">\(k\)</span>-mers, we are ready to bring in some Graph Theory. We’ll create graphs by assigning each <span class="math inline">\(k\)</span>-mer to a vertex and adding a directed edge between <span class="math inline">\(k\)</span>-mers if the <code>suffix()</code> of the first matches the <code>prefix()</code> of the second.</p>
+<p><strong>Note:</strong> It will be important to show the graphs in these notebooks, so we should draw them using <code>ggraph</code> or <code>igraph</code>. This is a project for the Fall.</p>
+<hr>
+<hr>
+<p>Now that we have the <code>prefix()</code> / <code>suffix()</code> functions and we’ve seen a few examples, let’s build some functionality to construct the overlap graph from a set of overlapping <span class="math inline">\(k\)</span>-mers. To achieve this, we’ll need to build a function which accomplishes the following tasks.</p>
+<ul>
+<li>Builds an adjacency matrix of the appropriate size, and pre-populates it with zeroes.</li>
+<li>Loops over combinations of of <span class="math inline">\(k\)</span>-mers and replaces the corresponding entry of the adjacency matrix with a <span class="math inline">\(1\)</span> if the <code>suffix()</code> of the first vertex matches the <code>prefix()</code> of the second.</li>
+</ul>
+<p><strong>Note:</strong> I’d like to have them think about matrix structures with one another and discuss how to access an individual matrix entry – I think this is something they <em>could</em> hash out together – what do you think?</p>
+<hr>
+<p><strong>Challenge 2:</strong> Solve the <em>Overlap Graph</em> problem by constructing an <code>overlap()</code> function.</p>
+<blockquote class="blockquote">
+<p><strong>Input:</strong> A collection of patterns of <span class="math inline">\(k\)</span>-mers (<code>patterns</code>). <strong>Output:</strong> The overlap graph corresponding to <code>patterns</code> in the form of an adjacency matrix.</p>
+</blockquote>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Solve the challenge problem here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once you’ve solved the challenge problem, verify that your result works by solving the <a href="https://rosalind.info/problems/ba3c/"><em>Overlap Graph</em> problem</a> on Rosalind.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Solve the Rosalind problem here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we are able to construct the overlap graph, we know that we are searching for a path through the graph which hits every vertex (<span class="math inline">\(k\)</span>-mer) exactly once. Such a path in a graph is called a <em>Hamiltonian Path</em>. That is, we would like to solve the following problem.</p>
+<hr>
+<p><strong>Hamiltonian Path Problem:</strong> Construct a Hamiltonian Path in a graph.</p>
+<blockquote class="blockquote">
+<p><strong>Input:</strong> A directed graph. <strong>Output:</strong> A path visiting every node in the graph exactly once (if such a path exists).</p>
+</blockquote>
+<hr>
+<p>We don’t have the machinery to solve such a problem right now. In fact, nobody does! An efficient algorithm for finding a Hamiltonian Path in a directed graph is not currently known. There is, however, an efficient algorithm for finding a path through a graph which covers every <em>edge</em> in the graph, if such a path exists. Such a path is called an <em>Eulerian Path</em>. Another nice fact about <em>Eulerian Paths</em> is that there is a simple check to determine whether such a path exists before we attempt to find one. We’ll spend some time now trying to convert our current Hamiltonian Path-finding problem into an Eulerian Path-finding problem.</p>
+</section>
+<section id="more-graph-theory-debruijn-graphs-and-eulerian-circuits" class="level3">
+<h3 class="anchored" data-anchor-id="more-graph-theory-debruijn-graphs-and-eulerian-circuits">More Graph Theory: deBruijn Graphs and Eulerian Circuits</h3>
+<p>We’ll take a bit of a detour here, but remember that our goal has been to find a Hamiltonian Path through the overlap graph corresponding to the <span class="math inline">\(k\)</span>-mer composition of our genome. No efficient algorithm is known for finding a Hamiltonian Path in a graph (a path touching all vertices exactly once), but there are efficient algorithms for finding an Eulerian Path (a path using all <em>edges</em> in the graph exactly once). Our detour will show how we can construct a new graph which will cast out Hamiltonian Path-finding problem to an Eulerian Path-finding problem, landing us much closer to a solution in general for Genome Assembly.</p>
+<p>In 1946, a mathematician named Nicolaas deBruijn was working on a theoretical problem in mathematics. A <em>binary string</em> is a string of 0’s and 1’s. We say that such a binary string is <em>k-universal</em> if it contains every binary <span class="math inline">\(k\)</span>-mer exactly once. As an example, <span class="math inline">\(0001110100\)</span> is a <span class="math inline">\(3\)</span>-universal binary string, since it contains each binary <span class="math inline">\(3\)</span>-mer (<code>000</code>, <code>001</code>, <code>011</code>, <code>111</code>, <code>110</code>, <code>101</code>, <code>010</code>, and <code>100</code>) exactly once. Nicolaas deBruijn was interested in solving the <span class="math inline">\(k\)</span>-universal binary string problem for arbitrary values of <span class="math inline">\(k\)</span> (that is, he sought a construction that would produce a <span class="math inline">\(k\)</span>-universal binary string for any value of <span class="math inline">\(k\)</span>).</p>
+<p>deBruijn noticed that he could cast his problem exactly as we’ve casted ours so far. He imagined a graph in which each binary <span class="math inline">\(k\)</span>-mer corresponded to a vertex, and directed edges existed between two nodes if the binary suffix of the first matched the binary prefix of the latter. He was searching for Hamiltonian Paths just like we are! Luckily, we can leverage what he noticed next.</p>
+<p>Instead of assigning the <span class="math inline">\(k\)</span>-mers to vertices in the graph, deBruijn assigned them to edges in the graph. The vertices in the graph that deBruijn constructed corresponded to the <code>prefix()</code>es and <code>suffix()</code>es of the <span class="math inline">\(k\)</span>-mers.</p>
+<p>INSERT AN EXAMPLE HERE USING <code>ggraph</code> OR <code>igraph</code>.</p>
+<p>The resulting graph has multiple nodes corresponding to the same <span class="math inline">\(\left(k-1\right)\)</span>-mer. We combine those nodes into a single vertex, but leave all of the edges (including cases where multiple edges between the same pair of resulting vertices exits).</p>
+<p>INSERT AN EXAMPLE HERE USING <code>ggraph</code> OR <code>igraph</code>.</p>
+<p>Let’s close out this notebook with another challenge. We’ll try to construct the deBruin graph from a given <code>genome</code>. Our aim is to complete the following steps.</p>
+<ul>
+<li>We’ll start with the <code>genome</code>, and compute the <span class="math inline">\(k\)</span>-mer composition of <code>genome</code> using our <code>compositionK()</code> function.</li>
+<li>We’ll then construct the <code>pathGraph()</code> from the <span class="math inline">\(k\)</span>-mers such that the <span class="math inline">\(i^{\text{th}}\)</span> edge of the path graph is labeled by the <span class="math inline">\(i{\text{th}}\)</span> <span class="math inline">\(k\)</span>-mer in the <code>genome</code>, and the <span class="math inline">\(i^{\text{th}}\)</span> vertex of the path graph is labeled by the <span class="math inline">\(i^{\text{th}}\)</span> <span class="math inline">\(\left(k-1\right)\)</span>-mer in the `genome.</li>
+<li>Finally, we’ll form the deBruijn graph by gluing identically labeled nodes in <code>pathGraph(genome, k)</code> together.</li>
+</ul>
+<hr>
+<p><strong>Challenge 3:</strong> deBruijn Graph from a String.</p>
+<blockquote class="blockquote">
+<p><strong>Input:</strong> A <code>genome</code> and an integer <code>k</code>. <strong>Output:</strong> The edge-list for the deBruijn Graph corresponding to the <code>k</code>-mer composition of <code>genome</code>.</p>
+</blockquote>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Solve the challenge problem here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once you think you’ve solved that problem, try solving the <a href="https://rosalind.info/problems/ba3d/"><em>Construct the deBruijn Graph of a String</em> problem</a> at Rosalind.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Solve the Rosalind problem here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>In this intro notebook, we’ve accomplished the following.</p>
+<ul>
+<li>We learned some graph theoretic tools which can help us in solving the Genome Assembly problem.</li>
+<li>We translated a bioinformatics problem into a problem in the language of Graph Theory, an area of study in mathematics.</li>
+<li>We defined Hamiltonian Paths and Eulerian Paths and connected these mathematical structures to the Genome Assembly problem.</li>
+<li>We wrote a function which will output a deBruijn graph when given a <code>genome</code> and a value of <code>k</code>.</li>
+</ul>
+<p>We know now that the solution to the Genome Assembly problem corresponds to an Eulerian Path in the deBruijn Graph of our genome. In the next notebook we’ll explore some more mathematics and discover how to determine when an Eulerian Path in a graph exists, as well as how to construct one. This will get us much closer to a solution to the Genome Assembly problem in general.</p>
+<p>See you in the next notebook.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

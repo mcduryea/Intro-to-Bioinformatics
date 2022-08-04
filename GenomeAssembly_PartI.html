@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.584">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Gilbert">
+<meta name="author" content="Dr.&nbsp;Duryea">
+
+<title>Genome Assembly, Part I</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="GenomeAssembly_PartI_files/libs/clipboard/clipboard.min.js"></script>
+<script src="GenomeAssembly_PartI_files/libs/quarto-html/quarto.js"></script>
+<script src="GenomeAssembly_PartI_files/libs/quarto-html/popper.min.js"></script>
+<script src="GenomeAssembly_PartI_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="GenomeAssembly_PartI_files/libs/quarto-html/anchor.min.js"></script>
+<link href="GenomeAssembly_PartI_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="GenomeAssembly_PartI_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="GenomeAssembly_PartI_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="GenomeAssembly_PartI_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="GenomeAssembly_PartI_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Genome Assembly, Part I</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Gilbert </p>
+             <p>Dr.&nbsp;Duryea </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="preliminary-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="preliminary-thoughts">Preliminary Thoughts</h2>
+<p>In solving the newspaper problem, you developed some strategies for reconstructing a string from its overlapping fragments. The goal of this notebook is to build a function which will reproduce a genome string in an idealized case. We’ll assume that all of the fragments are of the same length, the overlapping segments are of a constant length, and we already know the order in which the overlapping fragments should be arranged. These are some very strong assumptions, but we’ll relax them once we’ve solved this idealized version of the genome assembly problem.</p>
+</section>
+<section id="assembling-the-genome" class="level2">
+<h2 class="anchored" data-anchor-id="assembling-the-genome">Assembling the Genome</h2>
+<p>Start by rebuilding your <code>randGenome()</code> function, which takes in your set of <code>nucleotides</code> and also a <code>genome_length</code> as input parameters.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Define randGenome() here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We’ll be able to use our <code>randGenome()</code> function to generate a fake genome to test our reconstructions with. It order to be able to do this, we’ll need another function which will be able to fracture an existing genome into segments. We’ll start with a simple function, <code>compositionK()</code> which takes a <code>genome</code> and an integer <code>k</code> as arguments, and outputs the <code>k</code>-mer composition of the <code>genome</code>.</p>
+<hr>
+<p><strong>Challenge 1:</strong> Build a function <code>compositionK()</code>, to generate the <code>k</code>-mer composition of a <code>genome</code> string.</p>
+<blockquote class="blockquote">
+<p><strong>Input:</strong> A string (<code>genome</code>) and an integer (<code>k</code>).<br>
+<strong>Output:</strong> The <code>k</code>-mers composing the <code>genome</code>, where the <code>k</code>-mers are arranged in lexicographic (dictionary) order.</p>
+</blockquote>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Solve the challenge problem here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once you think you’ve built <code>compositionK()</code> correctly, use it to solve the <a href="https://rosalind.info/problems/ba3a/"><em>Generate the k-mer Composition of a String</em></a> problem on Rosalind.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Solve the Rosalind Problem here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we have a deconstructed string, can we put it back together? Doing so would help us stitch the overlapping reads together to reconstruct the genome. Note, there are many simplifying assumptions here, including:</p>
+<ul>
+<li>The reads span the entire genome</li>
+<li>All reads are of the same length</li>
+<li>There are no errors in nucleotide transcription</li>
+</ul>
+<hr>
+<p><strong>String Reconstruction Problem:</strong> Reconstruct a genome string from its k-mer composition.</p>
+<blockquote class="blockquote">
+<p><strong>Input:</strong> A collection of patterns of k-mers (<code>patterns</code>) and an integer (<code>k</code>).<br>
+<strong>Output:</strong> A reconstructed genome (<code>genome</code>) with k-mer composition equal to <code>patterns</code> if such a genome exists.</p>
+</blockquote>
+<hr>
+<p>We’re not ready to solve the <em>String Reconstruction Problem</em> yet. Let’s detour through a few simpler scenarios. We’ll start with one in which we know that the k-mers are all pre-arranged into the correct order.</p>
+<p><strong>Note:</strong> There is lots of great discussion in the textbook between the statement of the string reconstruction problem and the <em>String spelled by a path</em> problem. There are several illustrative examples which should be added to this notebook!</p>
+<hr>
+<p><strong>Challenge 2:</strong> Construct a function <code>string_from_path()</code> to reconstruct a genome string spelled by a genome path:</p>
+<blockquote class="blockquote">
+<p><strong>Input:</strong> A sequence of <span class="math inline">\(n\)</span> k-mers (<code>seq</code>) such that for two subsequent elements of <code>seq</code>, the last <span class="math inline">\(k-1\)</span> nucleotides of the earlier element match the first <span class="math inline">\(k-1\)</span> nucleotides of the latter.<br>
+<strong>Output:</strong> A string (<code>genome</code>) of length <span class="math inline">\(k + n - 1\)</span> reconstructed by combining the consecutive k-mers using their overlaps.</p>
+</blockquote>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Solve the challenge problem here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once you’ve solved Challenge 2, head over to Rosalind to solve the <a href="https://rosalind.info/problems/ba3b/"><em>Reconstruct a String from its Genome Path</em></a> problem.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the Rosalind Challenge here </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we’ve solved a simplified version of the genome reconstruction problem, let’s recap before working towards a more general solution in the next notebook.</p>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>In this intro notebook, we’ve accomplished the following.</p>
+<ul>
+<li>We’ve learned how to use our <code>randGenome()</code> function and a new <code>compositionK()</code> function to generate test cases for our ability to reconstruct a genome from its <code>k</code>-mer composition.</li>
+<li>We built a function to reconstruct a genome from a genome path. That is, we’ve solved the genome assembly problem in the idealized case where we have the <span class="math inline">\(k\)</span>-mer composition of a genome, we know the order in which the overlapping <span class="math inline">\(k\)</span>-mers appear in the genome, and our <span class="math inline">\(k\)</span>-mers cover the entire genome.</li>
+</ul>
+<p>While we’ve solved a very idealized, special case of the genome assembly problem, we should be proud of the work we’ve accomplished. The functions we’ve built in this notebook will come in handy for solving the genome assembly problem in general.</p>
+<p>See you in the next notebook.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
