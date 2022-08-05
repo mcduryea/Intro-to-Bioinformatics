@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.584">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Gilbert">
+<meta name="author" content="Dr.&nbsp;Duryea">
+
+<title>Genome Assembly, Part III</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="GenomeAssembly_PartIII_files/libs/clipboard/clipboard.min.js"></script>
+<script src="GenomeAssembly_PartIII_files/libs/quarto-html/quarto.js"></script>
+<script src="GenomeAssembly_PartIII_files/libs/quarto-html/popper.min.js"></script>
+<script src="GenomeAssembly_PartIII_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="GenomeAssembly_PartIII_files/libs/quarto-html/anchor.min.js"></script>
+<link href="GenomeAssembly_PartIII_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="GenomeAssembly_PartIII_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="GenomeAssembly_PartIII_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="GenomeAssembly_PartIII_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="GenomeAssembly_PartIII_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Genome Assembly, Part III</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Gilbert </p>
+             <p>Dr.&nbsp;Duryea </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="preliminary-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="preliminary-thoughts">Preliminary Thoughts</h2>
+<p>In the previous notebook, <code>GenomeAssembly_PartII</code>, we developed some mathematics that could help us solve the Genome Assembly problem in general. First, we learned about Graph Theory, an area of mathematics concerned with the study of objects consisting of <em>vertices</em> and <em>edges</em> connecting pairs of vertices. In particular, we noted that we were interested in directed graphs, and we saw several ways for encoding graph structures. At the end of our last notebook we had translated the Genome Assembly problem into the problem of finding an Eulerian Path in the deBruijn graph corresponding to the <span class="math inline">\(k\)</span>-mer composition of a genome of interest. This notebook picks up where we left off. We’ll work to develop an algorithm that will construct an Eulerian Path in a deBruijn Graph.</p>
+</section>
+<section id="assembling-the-genome-walking-through-the-debruijn-graph" class="level2">
+<h2 class="anchored" data-anchor-id="assembling-the-genome-walking-through-the-debruijn-graph">Assembling the Genome: Walking Through the deBruijn Graph</h2>
+<p>An Eulerian Path in a graph is a path which uses all edges in the underlying graph exactly once. We’ve come to the conclusion that these Eulerian Paths in the deBruin Graph corresponding to a <span class="math inline">\(k\)</span>-mer composition of a genome can be used to identify candidate reconstructed genomes. We are fortunate to be seeking Eulerian Paths because</p>
+<ul>
+<li>There is a simple test to determine whether an Eulerian Path in a graph exists.</li>
+<li>We can build an iterative algorithm to efficiently find an Eulerian Path in a graph.</li>
+</ul>
+<p>In this notebook we’ll discover and implement both the existence test and the algorithm to construct an Eulerian Path if it exists. While doing this we’ll continue to connect the mathematics to the Genome Assembly problem.</p>
+<section id="another-way-to-construct-debruijn-graphs" class="level4">
+<h4 class="anchored" data-anchor-id="another-way-to-construct-debruijn-graphs">Another Way to Construct deBruijn Graphs</h4>
+<p>In the previous notebook we built a function <code>deBruinK()</code> to construct the deBruin Graph from the Path Graph corresponding to a genome. Unfortunately, we were still working under idealized and unrealistic assumptions. Assuming that we know the Path Graph of the genome is equivalent to assuming that we know the original genome to begin with. If we already know the genome then there is no need to assemble it. Let’s try to construct the deBruin Graph without knowing the Path Graph.</p>
+<p>Consider the following:</p>
+<ol type="1">
+<li>If we have the <span class="math inline">\(k\)</span>-mer composition of a genome, we can compute the <code>prefix()</code> and <code>suffix()</code> of each <span class="math inline">\(k\)</span>-mer.</li>
+<li>We construct a graph in which the unique <code>prefix()</code>es and <code>suffix()</code>es are the vertices in the graph.</li>
+<li>For each <span class="math inline">\(k\)</span>-mer in the <span class="math inline">\(k\)</span>-mer composition of our genome, we’ll draw an edge from the vertex corresponding to its <code>prefix()</code> to the vertex corresponding to its <code>suffix()</code>.</li>
+</ol>
+<p>The three steps above will build the deBruijn Graph of the <span class="math inline">\(k\)</span>-mer composition of a genome without assuming that we know the Path Graph ahead of time!</p>
+<hr>
+<p><strong>Challenge 1:</strong> Construct a new function <code>deBruin()</code> which will construct a deBruin Graph from a collection of <span class="math inline">\(k\)</span>-mers.</p>
+<blockquote class="blockquote">
+<p><strong>Input:</strong> A collection of <span class="math inline">\(k\)</span>-mers (<code>patterns</code>). <strong>Output:</strong> The edge-list of the corresponding deBruijn Graph.</p>
+</blockquote>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Solve the challenge problem here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once you’ve solved the challenge problem, head over to Rosalind and use your function to solve the <a href="https://rosalind.info/problems/ba3e/"><em>deBruijn Graph of a Colection of <span class="math inline">\(k\)</span>-mers</em> problem</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Solve the Rosalind problem here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-bridges-of-könignsberg" class="level4">
+<h4 class="anchored" data-anchor-id="the-bridges-of-könignsberg">The Bridges of Könignsberg</h4>
+<p>Now that we have a method for constructing the deBruijn Graph from the <span class="math inline">\(k\)</span>-mer composition of a genome alone, let’s return to the notion of Eulerian Paths. We’ll begin with a short field trip to the town of Königsberg (now Kaliningrad, Russia) in 1736.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Konigsberg_bridges.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Bridges of Königsberg</figcaption><p></p>
+</figure>
+</div>
+<p>The image above shows a drawing of the city with the River Pregel flowing through it. The green items in the image show the positions of seven bridges laid about the city. The townspeople wondered whether it was possible to tour the city by walking all seven bridges and without repeating a bridge.</p>
+<p><strong>NOTE:</strong> STUDENT GROUPS WILL TRY THIS ACTIVITY ON THE KöNIGSBERG MAP AS WELL AS A VARIETY OF OTHER “MAPS” TO GAIN INTUITION FOR THE PROBLEM.</p>
+<p>Think about your analyses of the bridge touring problems. In which cases was such a tour possible? What properties did those maps have in common that maps where the bridge tour was impossible did not possess?</p>
+<hr>
+<p><strong>Challenge 2:</strong> Devise a simple test to determine when an Eulerian Cycle exists in a graph. Adapt your simple test to determine whether an Eulerian Path exists in a directed graph. (No coding required for this challenge)</p>
+<hr>
+</section>
+<section id="eulers-theorem" class="level4">
+<h4 class="anchored" data-anchor-id="eulers-theorem">Euler’s Theorem</h4>
+<p>Now that you’ve devised a simple test to determine whether an Eulerian Path in the deBruijn graph exists (and therefore whether reassembly of a genome is possible from a set of <span class="math inline">\(k\)</span>-mers), it would be really nice if we could construct such a path. We’ll focus on doing that here.</p>
+<p><strong>NOTE:</strong> NEED TO BETTER DISCUSS CYCLES AND DEFINE EULERIAN CYCLES IN THIS NOTE-SET. PROBABLY AT THE START OF THE EXPLANATION OF THE KöNIGSBERG BRIDGES PROBLEM.</p>
+<p>In 1736, the mathematician, Leonard Euler noticed the same things you just did.Furthermore, he was able to prove exactly when an Eulerian Circuit exists in a graph <em>and</em> how to find it.</p>
+<p><strong>Euler’s Theorem:</strong> Every <em>balanced</em>, <em>strongly-connected</em> directed graph is Eulerian.</p>
+<p><strong>Definition (balanced):</strong> A graph is said to be <em>balanced</em> if the <em>in-degree</em> of every vertex matches its <em>out-degree</em>.</p>
+<p><strong>Definition (strongly-connected):</strong> A graph is said to be <em>strongly-connected</em> if it is possible to get from any vertex to any other vertex in the graph by following a sequence of directed edges.</p>
+<p>The proof of Euler’s Theorem holds the key to constructing an Eulerian Circuit in a graph. Consider that we have a graph which is <em>balanced</em> and <em>strongly-connected</em>. We’ll outline the main steps of Euler’s Construction below.</p>
+<ul>
+<li><p>Consider an ant placed at a vertex <span class="math inline">\(v_0\)</span> in the graph.</p></li>
+<li><p>Allow the ant to walk randomly throughout the graph under the condition that it must follow the directions of the edges and that no edge may be traversed more than once.</p></li>
+<li><p>The ant will eventually get stuck at a vertex with no “out”-edges left to traverse.</p>
+<ul>
+<li>If the ant got lucky, it has traversed every edge exactly once and has constructed an Eulerian Circuit and we are done.</li>
+<li>More likely, the ant has gotten stuck without covering all of the edges and we’ll need a way to restart.</li>
+</ul></li>
+<li><p>In the case that our ant has gotten stuck without restarting, note that the ant must have gotten stuck back at our original starting vertex. Indeed, if the ant comes into a vertex via an “in”-edge, then the ant must always be able to leave via an “out”-edge because our underlying graph was balanced. The only time this isn’t the case is for the starting vertex, since the first edge consumed there was an “out”-edge.</p></li>
+<li><p>The ant has traced out an initial circuit, which we will label as <span class="math inline">\(C_0\)</span>.</p></li>
+<li><p>If <span class="math inline">\(C_0\)</span> does not include all of the edges in the graph, then there must exist a vertex in the underlying graph with edges still unused. Furthermore, such a vertex must exist along <span class="math inline">\(C_0\)</span> since the graph is strongly connected.</p></li>
+<li><p>We drop our ant at any vertex along <span class="math inline">\(C_0\)</span> with unused edges. Call that vertex <span class="math inline">\(v_1\)</span> for convenience.</p>
+<ul>
+<li>Since the original graph was balanced, we know that the graph consisting of the same vertex set but only including the edges unused by <span class="math inline">\(C_0\)</span> is also balanced.</li>
+</ul></li>
+<li><p>Again, we allow the ant to randomly walk a sequence of unused edges until it gets stuck.</p></li>
+<li><p>For the same reasons as those mentioned earlier, the ant must get stuck at this new starting vertex. We’ll call this new circuit <span class="math inline">\(C'\)</span>.</p></li>
+<li><p>We create a new larger circuit by beginning at <span class="math inline">\(v_1\)</span>, tracing out <span class="math inline">\(C'\)</span> and then tracing out <span class="math inline">\(C_0\)</span> (beginning at <span class="math inline">\(v_1\)</span>) to create the larger circuit which we will call our new <span class="math inline">\(C_0\)</span>.</p></li>
+<li><p>If unused edges remain in the graph, then again there will be at least one vertex along our new <span class="math inline">\(C_0\)</span> with unused edges. We’ll repeat the process of tracing out a new cycle from this vertex and replacing <span class="math inline">\(C_0\)</span> with a larger circuit which includes both <span class="math inline">\(C_0\)</span> and the new extension.</p></li>
+<li><p>We continue this procedure until no unused edges remain. The result will be an Eulerian Circuit in the graph.</p></li>
+</ul>
+<p>Let’s close out this notebook by solving the Eulerian Circuit problem.</p>
+<hr>
+<p><strong>Challenge 3:</strong> Build an <code>eulerCircuit()</code> function to construct an Eulerian Circuit in a graph, if one exists.</p>
+<blockquote class="blockquote">
+<p><strong>Input:</strong> The edge-list of an Eulerian directed graph. <strong>Output:</strong> A list of vertices corresponding to the traversal of an Eulerian Circuit in the graph.</p>
+</blockquote>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Solve the challenge problem here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once you’ve solved the challenge problem, use your new function to complete the <a href="https://rosalind.info/problems/ba3f/"><em>Eulerian Circuit problem</em></a> at Rosalind.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Solve the Rosalind challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>In this intro notebook, we’ve accomplished the following.</p>
+<ul>
+<li>We identified how to construct the deBruijn Graph from a <span class="math inline">\(k\)</span>-mer composition of a genome without first knowing the Path Graph of the genome.</li>
+<li>We solved the famous Bridges of Königsberg problem, and defined Eulerian Paths and Circuits as special substructures which exist in some graphs.</li>
+<li>We discovered requirements for an Eulerian Circuit to exist within a directed graph.</li>
+<li>We worked through a constructive proof of Euler’s Theorem on the existence of Eulerian Circuits in graphs.</li>
+<li>We used the proof as a model in building a function which will consume the edge-list of a directed graph and return a sequence of vertices corresponding to an Euler Circuit in the graph, provided that one exists.</li>
+</ul>
+<p>We accomplished quite a bit of mathematics in this notebook. Remember though that we are doing all of this to solve the Genome Assembly problem. As a reminder, in Part II of this series of notebooks, we developed the notion of the deBruijn Graph corresponding to the <span class="math inline">\(k\)</span>-mer composition of a genome. Also in that notebook we identified that Eulerian Paths in the deBruijn Graph will correspond to candidate reconstructed genomes.</p>
+<p>We’ve come a very long way, but there’s still more to do! See you in the next notebook.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

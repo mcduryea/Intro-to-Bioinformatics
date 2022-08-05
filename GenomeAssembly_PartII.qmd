@@ -147,7 +147,7 @@ Let's close out this notebook with another challenge. We'll try to construct the
 
 ***
 
-**Challenge 3:** deBruijn Graph from a String.  
+**Challenge 3:** Build a function `deBruinK()` to construct the deBruijn Graph from a String.  
 
 > **Input:** A `genome` and an integer `k`.
 > **Output:** The edge-list for the deBruijn Graph corresponding to the `k`-mer composition of `genome`.
