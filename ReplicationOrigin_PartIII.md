@@ -1,5 +1,5 @@
 ---
-title: "Finding the Replication Origin, Part II"
+title: "Finding the Replication Origin, Part III"
 author: "Dr. Gilbert and Dr. Duryea"
 format: html
 execute:
@@ -35,7 +35,7 @@ One thing that might be helpful is to create a dictionary of all possible `k`-me
 initialize_k_mer_dict <- function(k){
   nucleotides <- c("A", "C", "G", "T")
 
-  k_mers_dict <- expand.grid(rep(list(nucleotides), 6)) %>%
+  k_mers_dict <- expand.grid(rep(list(nucleotides), k)) %>%
     unite("k_mers", everything(), remove = TRUE, sep = "") %>%
     unique() %>%
     mutate(count = 0)
