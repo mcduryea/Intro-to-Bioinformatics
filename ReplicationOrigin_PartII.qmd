@@ -16,7 +16,7 @@ library(tidyverse)
 
 ## Preliminary Thoughts
 
-Welcome back! We've done a lot of work and made quite a bit of headway so far. As a reminder, our goal through this first chapter is to identify the location of the replication origin within genome. Up to this point we've had a crash course in computing, encountering looping mechanisms (`for` loops), programmatic flow control (`if`/`else if`/`else` statements), and developed an ability to write reusable code blocks in the form of *functions*. We've applied all of these techniques to help us in analysing genomes (mostly fake/random genomes that we've generated, but we'll get to real bacterial genomes soon). Our work thus far has culminated in a pair of functions `generate_k_mers()`, which will generate all strings of `k` consecutive nucleotides within a genome, and `count_patterns()` which will count the number of occurrences of a particular `pattern` within a `genome`. Let's pick back up from here.
+Welcome back! We've done a lot of work and made quite a bit of headway so far. As a reminder, our goal through this first chapter is to identify the location of the replication origin within a genome. Up to this point we've had a crash course in computing, encountering looping mechanisms (`for` loops), programmatic flow control (`if`/`else if`/`else` statements), and developed an ability to write reusable code blocks in the form of *functions*. We've applied all of these techniques to help us in analysing genomes (mostly fake/random genomes that we've generated, but we'll get to real bacterial genomes soon). Our work thus far has culminated in a pair of functions `generate_k_mers()`, which will generate all strings of `k` consecutive nucleotides within a genome, and `count_patterns()` which will count the number of occurrences of a particular `pattern` within a `genome`. Let's pick back up from here.
 
 Open RStudio and open the project that is managing your group repository. Open the Quarto Notebook you were working on last time and re-run the code cells which build the `generate_k_mers()` and `count_pattern()` functions -- you can simply run all of the code chunks if you'd like. You'll be adding on to that notebook today.
 
@@ -26,21 +26,39 @@ Remember from General Biology that DNA replication begins at a certain position 
 
 Armed with the knowledge that these DnaA boxes appear more frequently than one would expect a random sequence of 9 nucleotides to appear, we know that we are searching for frequently occurring 9-mers. Can you combine your `generate_k_mers()` and `count_patterns()` functions into a new function called `generate_frequent_k_mers()` that will build a list of the most frequent `k`-mers? Your function should take two parameters, `genomeString` and `k`.
 
-***
+------------------------------------------------------------------------
 
 **Challenge 1:** Find the most frequent words in a string
 
->***Input:*** A DNA string (`genomeString`) and an integer `k`  
->***Output:*** A list containing the most frequent `k`-mers in `genomeString`. Note that your list should contain each `k`-mer at most once.  
->*Hint*: Use `unique(frequent_k_mers)` on your list of `frequent_k_mers` before returning the object.
+> ***Input:*** A DNA string (`genomeString`) and an integer `k`\
+> ***Output:*** A list containing the most frequent `k`-mers in `genomeString`. Note that your list should contain each `k`-mer at most once.\
+> *Hint*: Use the `unique()` function on your list of `k`-mers before returning the object.
 
-***
+------------------------------------------------------------------------
+
+To begin this challenge, let's practice with a small genome and adapt our `generate_k_mers` function to return unique `k`-mers. To start, copy over your `generate_k_mers` function and run it on the sequence `ACACAGACATCCCACCCC` and consider 3-mers.
+
+```{r}
+#Use this code chunk to run your generate_k_mers function
+```
+
+Your function should return a list of several 3-mers, but you should notice that some 3-mers (`ACA` and `CCC`) are repeated. These are the 3-mers that we want to count!
+
+Now, let's adapt the function to return only unique `k`-mers. Copy over your `generate_k_mers` function and edit it to pipe (`%>%`) the output of the the `str_sub` function to `unique()` function. If you add in this single line before return, your function should now return a unique list of `k`-mers. Use the code chunk below to test it out on the same small genome for 3-mers.
+
+```{r}
+#Use this code chunk to adapt your generate_k_mers function to return unique k-mers and run it on ACACAGACATCCCACCCC for 3-mers.
+```
+
+Now, combine your updated `generate_k_mers` function with your `count_ pattern` function so that the list of unique `k`-mers is counted by the `count_pattern` function.
+
+Think you've got it? Use the code chunk below to complete Challenge 1.
 
 ```{r}
 #Complete the challenge here
 ```
 
-Think you've got it? Try your function on the sequence `ACACAGACATCCCACCCC` and consider 3-mers. Your function should return a list of two 3-mers, `ACA` and `CCC`. Once you've done that, head back over to Rosalind and try solving the [Frequent Words Problem](http://rosalind.info/problems/ba1b/){target="_blank"}. Test your code on the sample data set first -- if it works, click the link to download the challenge data set and see if you can generate the correct output. As a reminder, the code to read the data into R is below.
+Once you're confident that your function works, head back over to Rosalind and try solving the [Frequent Words Problem](http://rosalind.info/problems/ba1b/){target="_blank"}. Test your code on the sample data set first -- if it works, click the link to download the challenge data set and see if you can generate the correct output. As a reminder, the code to read the data into R is below.
 
 ```{r eval = FALSE}
 data <- scan("PATH_TO_FILE", what = character())
@@ -62,7 +80,7 @@ freq_k_mers <- generate_frequent_k_mers(genomeString, k)
 noquote(freq_k_mers)
 ```
 
-The code stores the list of most frequent k-mers into the object freq_k_mers and then says that we should print each of these k-mers out with no quotation marks around them.
+The code stores the list of most frequent k-mers into the object freq_k\_mers and then says that we should print each of these k-mers out with no quotation marks around them.
 
 Great work. Now that we are feeling good about ourselves, things are going to get messy. Unfortunately the nucleotides in these DnaA boxes we are looking for, don't always appear in the same way. For example, just like humans make mistakes while typing, DNA polymerase can make mistakes while it replicates the genome -- what if one of the base pairs wasn't copied correctly during the previous round of replication? Additionally, the replication signal we are looking for may appear as both the k-mer signaling that replication should begin, or as its reverse complement. Because of this, we'll need to build code that is flexible enough to count reverse complements as well as near k-mers (with some pre-defined number of discrepancies allowed). Let's get on it.
 
@@ -70,14 +88,14 @@ We'll start with the reverse complement problem. Recall from gen-bio that A and 
 
 Let's write a function to compute the `reverse_complement()` of a `genomeSubString`. While you're at it, solve your third Rosalind challenge.
 
-***
+------------------------------------------------------------------------
 
-**Challenge 2:** The [Reverse-Complement Problem](http://rosalind.info/problems/ba1c/){target="_blank"}  
+**Challenge 2:** The [Reverse-Complement Problem](http://rosalind.info/problems/ba1c/){target="_blank"}
 
-> **Input:** A pattern of nucleotides called `genomeSubString`  
+> **Input:** A pattern of nucleotides called `genomeSubString`\
 > **Output:** The reverse-complement of `genomeSubString`
 
-***
+------------------------------------------------------------------------
 
 ```{r}
 #Complete the challenge here
@@ -97,4 +115,3 @@ library(Dict)
 ## Summary and Debrief
 
 We're a week in and we've made quite a bit of headway. We're able to search a genome for frequent "near"-k-mers and their reverse-complements. These are the genetric substrings which will signal replication to the DNA polymerase. Next time, we'll look at narrowing down the area we should be looking in for the replication origin. We'll exploit properties of genetic transcription and subtle mutation.
-
