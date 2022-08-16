@@ -32,7 +32,7 @@ Armed with the knowledge that these DnaA boxes appear more frequently than one w
 
 ------------------------------------------------------------------------
 
-To begin this challenge, let's practice with a small genome and adapt our `generate_k_mers` function to return unique `k`-mers. To start, copy over your `generate_k_mers` function and run it on the sequence `ACACAGACATCCCACCCC` and consider 3-mers.
+To begin this challenge, let's practice with a small genome . Copy over your `generate_k_mers` function and run it on the sequence `ACACAGACATCCCACCCC` and consider 3-mers.
 
 
 ::: {.cell}
@@ -45,18 +45,13 @@ To begin this challenge, let's practice with a small genome and adapt our `gener
 
 Your function should return a list of several 3-mers, but you should notice that some 3-mers (`ACA` and `CCC`) are repeated. These are the 3-mers that we want to count!
 
-Now, let's adapt the function to return only unique `k`-mers. Copy over your `generate_k_mers` function and edit it to pipe (`%>%`) the output of the the `str_sub` function to `unique()` function. If you add in this single line before return, your function should now return a unique list of `k`-mers. Use the code chunk below to test it out on the same small genome for 3-mers.
+Now, with your group think about how you will combine your `generate_k_mers` function with your `count_ pattern` function so that it will count and return the most frequent `k`-mers. Before you get coding, talk with a group and generate a list of what you will need in this new function, `generate_frequent_kmers`. Think about:
 
+-   How can you use your existing `generate_k_mers` function to generate a list of `k`-mers of length `k` from a `genomeString`? (Hint: you may need to store this as an `object` for your `generate_frequent_kmers` function.)
 
-::: {.cell}
+-   How can you use your `count_pattern` function to count this list of `k`-mers that you generated? (Hint: it may involve a `for` loop!).
 
-```{.r .cell-code}
-#Use this code chunk to adapt your generate_k_mers function to return unique k-mers and run it on ACACAGACATCCCACCCC for 3-mers.
-```
-:::
-
-
-Now, combine your updated `generate_k_mers` function with your `count_ pattern` function so that the list of unique `k`-mers is counted by the `count_pattern` function.
+-   How will you tell your function to return only the most frequent patterns? (Hint: think about the objects that you will need to define in your function, or what the function will be counting and returning. This is where the functions `unique()` and `max()` may be useful.)
 
 Think you've got it? Use the code chunk below to complete Challenge 1.
 
@@ -118,6 +113,14 @@ Let's write a function to compute the `reverse_complement()` of a `genomeSubStri
 
 ------------------------------------------------------------------------
 
+Like you did with Challenge 1, think about what your function will need to do and what existing tools you have to use. Talk through this with your group before you begin. Here are some hints:
+
+-   You might need the function `rev()`. Pull up your `randgenome` function and test out how `rev`() works on a genome that you generate. How is this useful to the reverse complement problem? How can you build this into your function?
+
+-   To get the complement of your genome, you may need to use `if/else` statements. Review what you know about these and think about how you need to use them in your `reverse_complement` function.
+
+Think you got it? Test out your code below.
+
 
 ::: {.cell}
 
@@ -127,22 +130,17 @@ Let's write a function to compute the `reverse_complement()` of a `genomeSubStri
 :::
 
 
-The efficiency of our code can make a really big difference in our ability to solve problems at the scale of real genomes (millions of nucleotides in length). We'll start paying a bit more attention to ways we might be able to speed up our functions (and clean up our code too). While running slow code on our examples so far hasn't been much of a problem, if we run a series of slow functions on a full genome (say 4 million nucleotides), we may end up with code that takes hours, days, or even weeks to run!
+<!-- The efficiency of our code can make a really big difference in our ability to solve problems at the scale of real genomes (millions of nucleotides in length). We'll start paying a bit more attention to ways we might be able to speed up our functions (and clean up our code too). While running slow code on our examples so far hasn't been much of a problem, if we run a series of slow functions on a full genome (say 4 million nucleotides), we may end up with code that takes hours, days, or even weeks to run! -->
 
-Let's see a way to speed up (and clean up) our `reverse_complement()` function below (we'll do this together).
+<!-- Let's see a way to speed up (and clean up) our `reverse_complement()` function below (we'll do this together). -->
 
-
-::: {.cell}
-
-```{.r .cell-code}
-library(Dict)
-#We'll update the function together
-```
-:::
-
+<!-- ```{r eval = FALSE} -->
+<!-- library(Dict) -->
+<!-- #We'll update the function together -->
+<!-- ``` -->
 
 <!-- *Note that we had left last year:* The fourth Rosalind problem ([Find all occurrences of a pattern in a string](https://rosalind.info/problems/ba1d/){target="_blank"}) may be a really good homework problem. It doesn't really follow the reverse complement problem -- what do you think about assigning it for them to complete outside of class? I wonder if we could made an assignment out of pages 12-13 in the book -- having them write about why pattern matching is important and how just because we have a frequently occurring k-mer/9-mer this doesn't necessarily mean we have found a DnaA box, and then having them try to solve the coding challenge. -->
 
 ## Summary and Debrief
 
-We're a week in and we've made quite a bit of headway. We're able to search a genome for frequent "near"-k-mers and their reverse-complements. These are the genetric substrings which will signal replication to the DNA polymerase. Next time, we'll look at narrowing down the area we should be looking in for the replication origin. We'll exploit properties of genetic transcription and subtle mutation.
+We've made quite a bit of headway! We're able to search a genome for frequent "near"-k-mers and their reverse-complements. These are the genetic substrings which will signal replication to the DNA polymerase. Next time, we'll look at narrowing down the area we should be looking in for the replication origin. We'll exploit properties of genetic transcription and mutation to solve this.

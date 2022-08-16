@@ -109,14 +109,14 @@ Think you got it? Test out your code below.
 #Complete the challenge here
 ```
 
-The efficiency of our code can make a really big difference in our ability to solve problems at the scale of real genomes (millions of nucleotides in length). We'll start paying a bit more attention to ways we might be able to speed up our functions (and clean up our code too). While running slow code on our examples so far hasn't been much of a problem, if we run a series of slow functions on a full genome (say 4 million nucleotides), we may end up with code that takes hours, days, or even weeks to run!
+<!-- The efficiency of our code can make a really big difference in our ability to solve problems at the scale of real genomes (millions of nucleotides in length). We'll start paying a bit more attention to ways we might be able to speed up our functions (and clean up our code too). While running slow code on our examples so far hasn't been much of a problem, if we run a series of slow functions on a full genome (say 4 million nucleotides), we may end up with code that takes hours, days, or even weeks to run! -->
 
-Let's see a way to speed up (and clean up) our `reverse_complement()` function below (we'll do this together).
+<!-- Let's see a way to speed up (and clean up) our `reverse_complement()` function below (we'll do this together). -->
 
-```{r eval = FALSE}
-library(Dict)
-#We'll update the function together
-```
+<!-- ```{r eval = FALSE} -->
+<!-- library(Dict) -->
+<!-- #We'll update the function together -->
+<!-- ``` -->
 
 <!-- *Note that we had left last year:* The fourth Rosalind problem ([Find all occurrences of a pattern in a string](https://rosalind.info/problems/ba1d/){target="_blank"}) may be a really good homework problem. It doesn't really follow the reverse complement problem -- what do you think about assigning it for them to complete outside of class? I wonder if we could made an assignment out of pages 12-13 in the book -- having them write about why pattern matching is important and how just because we have a frequently occurring k-mer/9-mer this doesn't necessarily mean we have found a DnaA box, and then having them try to solve the coding challenge. -->
 
