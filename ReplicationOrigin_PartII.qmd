@@ -110,7 +110,7 @@ library(Dict)
 #We'll update the function together
 ```
 
-*Note that we had left last year:* The fourth Rosalind problem ([Find all occurrences of a pattern in a string](https://rosalind.info/problems/ba1d/){target="_blank"}) may be a really good homework problem. It doesn't really follow the reverse complement problem -- what do you think about assigning it for them to complete outside of class? I wonder if we could made an assignment out of pages 12-13 in the book -- having them write about why pattern matching is important and how just because we have a frequently occurring k-mer/9-mer this doesn't necessarily mean we have found a DnaA box, and then having them try to solve the coding challenge.
+<!-- *Note that we had left last year:* The fourth Rosalind problem ([Find all occurrences of a pattern in a string](https://rosalind.info/problems/ba1d/){target="_blank"}) may be a really good homework problem. It doesn't really follow the reverse complement problem -- what do you think about assigning it for them to complete outside of class? I wonder if we could made an assignment out of pages 12-13 in the book -- having them write about why pattern matching is important and how just because we have a frequently occurring k-mer/9-mer this doesn't necessarily mean we have found a DnaA box, and then having them try to solve the coding challenge. -->
 
 ## Summary and Debrief
 

@@ -126,7 +126,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="preliminary-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="preliminary-thoughts">Preliminary Thoughts</h2>
-<p>Welcome back! We’ve done a lot of work and made quite a bit of headway so far. As a reminder, our goal through this first chapter is to identify the location of the replication origin within genome. Up to this point we’ve had a crash course in computing, encountering looping mechanisms (<code>for</code> loops), programmatic flow control (<code>if</code>/<code>else if</code>/<code>else</code> statements), and developed an ability to write reusable code blocks in the form of <em>functions</em>. We’ve applied all of these techniques to help us in analysing genomes (mostly fake/random genomes that we’ve generated, but we’ll get to real bacterial genomes soon). Our work thus far has culminated in a pair of functions <code>generate_k_mers()</code>, which will generate all strings of <code>k</code> consecutive nucleotides within a genome, and <code>count_patterns()</code> which will count the number of occurrences of a particular <code>pattern</code> within a <code>genome</code>. Let’s pick back up from here.</p>
+<p>Welcome back! We’ve done a lot of work and made quite a bit of headway so far. As a reminder, our goal through this first chapter is to identify the location of the replication origin within a genome. Up to this point we’ve had a crash course in computing, encountering looping mechanisms (<code>for</code> loops), programmatic flow control (<code>if</code>/<code>else if</code>/<code>else</code> statements), and developed an ability to write reusable code blocks in the form of <em>functions</em>. We’ve applied all of these techniques to help us in analysing genomes (mostly fake/random genomes that we’ve generated, but we’ll get to real bacterial genomes soon). Our work thus far has culminated in a pair of functions <code>generate_k_mers()</code>, which will generate all strings of <code>k</code> consecutive nucleotides within a genome, and <code>count_patterns()</code> which will count the number of occurrences of a particular <code>pattern</code> within a <code>genome</code>. Let’s pick back up from here.</p>
 <p>Open RStudio and open the project that is managing your group repository. Open the Quarto Notebook you were working on last time and re-run the code cells which build the <code>generate_k_mers()</code> and <code>count_pattern()</code> functions – you can simply run all of the code chunks if you’d like. You’ll be adding on to that notebook today.</p>
 </section>
 <section id="towards-identification-of-the-replication-origin" class="level2">
@@ -138,29 +138,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote class="blockquote">
 <p><strong><em>Input:</em></strong> A DNA string (<code>genomeString</code>) and an integer <code>k</code><br>
 <strong><em>Output:</em></strong> A list containing the most frequent <code>k</code>-mers in <code>genomeString</code>. Note that your list should contain each <code>k</code>-mer at most once.<br>
-<em>Hint</em>: Use <code>unique(frequent_k_mers)</code> on your list of <code>frequent_k_mers</code> before returning the object.</p>
+<em>Hint</em>: Use the <code>unique()</code> function on your list of <code>k</code>-mers before returning the object.</p>
 </blockquote>
 <hr>
+<p>To begin this challenge, let’s practice with a small genome and adapt our <code>generate_k_mers</code> function to return unique <code>k</code>-mers. To start, copy over your <code>generate_k_mers</code> function and run it on the sequence <code>ACACAGACATCCCACCCC</code> and consider 3-mers.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to run your generate_k_mers function</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Think you’ve got it? Try your function on the sequence <code>ACACAGACATCCCACCCC</code> and consider 3-mers. Your function should return a list of two 3-mers, <code>ACA</code> and <code>CCC</code>. Once you’ve done that, head back over to Rosalind and try solving the <a href="http://rosalind.info/problems/ba1b/" target="_blank">Frequent Words Problem</a>. Test your code on the sample data set first – if it works, click the link to download the challenge data set and see if you can generate the correct output. As a reminder, the code to read the data into R is below.</p>
+<p>Your function should return a list of several 3-mers, but you should notice that some 3-mers (<code>ACA</code> and <code>CCC</code>) are repeated. These are the 3-mers that we want to count!</p>
+<p>Now, let’s adapt the function to return only unique <code>k</code>-mers. Copy over your <code>generate_k_mers</code> function and edit it to pipe (<code>%&gt;%</code>) the output of the the <code>str_sub</code> function to <code>unique()</code> function. If you add in this single line before return, your function should now return a unique list of <code>k</code>-mers. Use the code chunk below to test it out on the same small genome for 3-mers.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">"PATH_TO_FILE"</span>, <span class="at">what =</span> <span class="fu">character</span>())</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#The genomeString</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>genomeString <span class="ot">&lt;-</span> data[<span class="dv">1</span>]</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>genomeString</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#The value of k</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(data[<span class="dv">2</span>])</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this code chunk to adapt your generate_k_mers function to return unique k-mers and run it on ACACAGACATCCCACCCC for 3-mers.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, combine your updated <code>generate_k_mers</code> function with your <code>count_ pattern</code> function so that the list of unique <code>k</code>-mers is counted by the <code>count_pattern</code> function.</p>
+<p>Think you’ve got it? Use the code chunk below to complete Challenge 1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once you’re confident that your function works, head back over to Rosalind and try solving the <a href="http://rosalind.info/problems/ba1b/" target="_blank">Frequent Words Problem</a>. Test your code on the sample data set first – if it works, click the link to download the challenge data set and see if you can generate the correct output. As a reminder, the code to read the data into R is below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">"PATH_TO_FILE"</span>, <span class="at">what =</span> <span class="fu">character</span>())</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#The genomeString</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>genomeString <span class="ot">&lt;-</span> data[<span class="dv">1</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>genomeString</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#The value of k</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(data[<span class="dv">2</span>])</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To automatically generate the output in the format Rosalind wants it (all k-mers on one line, each separated by a space), you can use the following.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>freq_k_mers <span class="ot">&lt;-</span> <span class="fu">generate_frequent_k_mers</span>(genomeString, k)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">noquote</span>(freq_k_mers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>freq_k_mers <span class="ot">&lt;-</span> <span class="fu">generate_frequent_k_mers</span>(genomeString, k)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">noquote</span>(freq_k_mers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The code stores the list of most frequent k-mers into the object freq_k_mers and then says that we should print each of these k-mers out with no quotation marks around them.</p>
 <p>Great work. Now that we are feeling good about ourselves, things are going to get messy. Unfortunately the nucleotides in these DnaA boxes we are looking for, don’t always appear in the same way. For example, just like humans make mistakes while typing, DNA polymerase can make mistakes while it replicates the genome – what if one of the base pairs wasn’t copied correctly during the previous round of replication? Additionally, the replication signal we are looking for may appear as both the k-mer signaling that replication should begin, or as its reverse complement. Because of this, we’ll need to build code that is flexible enough to count reverse complements as well as near k-mers (with some pre-defined number of discrepancies allowed). Let’s get on it.</p>
@@ -174,15 +185,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <hr>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The efficiency of our code can make a really big difference in our ability to solve problems at the scale of real genomes (millions of nucleotides in length). We’ll start paying a bit more attention to ways we might be able to speed up our functions (and clean up our code too). While running slow code on our examples so far hasn’t been much of a problem, if we run a series of slow functions on a full genome (say 4 million nucleotides), we may end up with code that takes hours, days, or even weeks to run!</p>
 <p>Let’s see a way to speed up (and clean up) our <code>reverse_complement()</code> function below (we’ll do this together).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Dict)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#We'll update the function together</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Dict)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#We'll update the function together</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Note that we had left last year:</em> The fourth Rosalind problem (<a href="https://rosalind.info/problems/ba1d/" target="_blank">Find all occurrences of a pattern in a string</a>) may be a really good homework problem. It doesn’t really follow the reverse complement problem – what do you think about assigning it for them to complete outside of class? I wonder if we could made an assignment out of pages 12-13 in the book – having them write about why pattern matching is important and how just because we have a frequently occurring k-mer/9-mer this doesn’t necessarily mean we have found a DnaA box, and then having them try to solve the coding challenge.</p>
+<!-- *Note that we had left last year:* The fourth Rosalind problem ([Find all occurrences of a pattern in a string](https://rosalind.info/problems/ba1d/){target="_blank"}) may be a really good homework problem. It doesn't really follow the reverse complement problem -- what do you think about assigning it for them to complete outside of class? I wonder if we could made an assignment out of pages 12-13 in the book -- having them write about why pattern matching is important and how just because we have a frequently occurring k-mer/9-mer this doesn't necessarily mean we have found a DnaA box, and then having them try to solve the coding challenge. -->
 </section>
 <section id="summary-and-debrief" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-debrief">Summary and Debrief</h2>

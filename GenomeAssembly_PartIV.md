@@ -1,5 +1,5 @@
 ---
-title: "Genome Assembly, Part III"
+title: "Genome Assembly, Part IV"
 author: 
   - "Dr. Gilbert" 
   - "Dr. Duryea"
