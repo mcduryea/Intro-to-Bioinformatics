@@ -108,6 +108,16 @@ Unfortunately, there's not much we can do to combat the repeating patterns probl
 
 **Definition (Read-Pairs):** Biologist have devised quite an ingenious approach to increasing the read length by generating *read-pairs*, which are pairs of reads separated by a fixed distance $d$ within the genome. These reads are long, gapped reads in which we obtain $k$ nucleotides, followed by a gap of $d$ nucleotides, and then another read of $k$ nucleotides. The result is a read over $k + d + k$ consecutive nucleotides in the genome.
 
+Each $\left(k, d\right)$-read-pair will correspond to not one edge, but two edges in the corresponding deBruijn Graph. In particular, there is a path in the deBruijn Graph of length $k + d + 1$ nodes corresponding to each $\left(k, d\right)$-read-pair. If only one such path in the deBruijn Graph exists (or if all of these paths spell out the same string), then this single $\left(k, d\right)$-read-pair becomes a long *virtual read* of length $2k + d$ starting from the first $k$-mer in the read-pair and ending in the second $k$-mer of the read-pair.
+
+PERHAPS INCLUDE A VISUAL EXAMPLE HERE...
+
+While the discussion above is exciting, it makes a pretty strong assumption. That is, that the path of length $k + d + 1$ in the deBruijn Graph is either unique or that all such paths spell out the same string. When this isn't the case, we cannot transform a read-pair into a long virtual read. In those cases, we have an alternative approach.
+
+#### From Composition to Paired Composition
+
+
+
 The following ideas need to be included in this notebook:
 
 + Transforming read-pairs into *long virtual reads*

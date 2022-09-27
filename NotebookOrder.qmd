@@ -1,0 +1,34 @@
+---
+title: "Introduction to Bioinformatics Notebook Order"
+author: 
+  - "Dr. Gilbert" 
+  - "Dr. Duryea"
+format: html
+execute:
+  keep-md: true
+---
+
+```{r setup, include = FALSE}
+#Load in any packages you need
+library(tidyverse)
+
+#Read in any data
+
+```
+
+The order of the scripted notebooks encountered in the BIO422 *Introduction to Bioinformatics* course are as follows:
+
+1. `SoftwareSetup`
+2. `MyFirstRepoAndCommit`
+3. `TidyAnalysesInR`
+4. `IntroToRforBioinformatics`
+5. `ReplicationOrigin_PartI`
+6. `ReplicationOrigin_PartII`
+7. `ReplicationOrigin_PartIII`
+8. `ReplicationOrigin_PartIV`
+9. `ReplicationOrigin_PartV` (push to project????) -- Build in a recap notebook to highlight our accomplishments, the assumptions we've made, and the work that still needs to be done to solve the problem in general??
+10. `GenomeAssembly_Intro`
+11. `GenomeAssembly_PartI`
+12. `GenomeAssembly_PartII`
+13. `GenomeAssembly_PartIII`
+14. `GenomeAssembly_PartIV`
