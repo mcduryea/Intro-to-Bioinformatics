@@ -34,9 +34,9 @@ When we open R/RStudio, we have access to basic R functionality. Often, we'll wa
 
 Including a narrative alongside any analysis is extremely important. It is difficult for someone to simply read your code and immediately know what you are doing. Walking a reader through your thought process is helpful. As a reminder, Quarto notebooks allow you to mix R-code and text -- in general, code chunks appear with a grey background while text appears over a white background.
 
-+ Add a new heading to your notebook, titled *Data Manipulation*.
++ Add a new heading to your notebook, titled *Data Manipulation* (remember, you can do this by typing a forward slash and choosing *Heading 2* from the list of options).
 + Write a few sentences below the header to remind yourself that we'll be learning how to use R code to manipulate data in this section. In particular, we'll learn how to filter rows, subset columns, group data, and compute summary statistics.
-+ Since you've seen the `head()` of the `penguins` data frame, create a bulleted list of questions you are interested in answering in your analysis.
++ Since you've seen the `head()` of the `penguins` data frame, create a bulleted list of questions you are interested in answering in your analysis (you can use forward slash to format a list, too!).
 
 ### Data Manipulation and Summarization
 
@@ -377,6 +377,7 @@ penguins %>%
 
   
 + Add this plot to your notebook and include a discussion of it.
++ Also, notice that the code for `ggplot()` includes `+` signs. Speculate on how and why these are used within the `ggplot()` function.
 + Create a new plot visualizing one of the other categorical variables in the dataset and discuss it.
 
 **One Numerical Variable:** We can visualize a single numerical variable with a histogram (`geom_histogram()`), density (`geom_density()`), or boxplot (`geom_boxplot()`).
@@ -535,6 +536,9 @@ penguins %>%
 :::
 :::
 
+
++ Add these plots to your notebook and interpret what you are seeing. Attempt to interpret both the plots and how the different functions in the code produced the plot.
++ Adjust the code to explore another set of variables and see if the code behaves how you expected it to.
 
 ## Summary
 

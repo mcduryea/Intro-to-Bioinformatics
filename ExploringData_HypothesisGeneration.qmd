@@ -1,0 +1,89 @@
+---
+title: "Exploring Data and Generating Hypotheses: Avoiding P-Hacking"
+author: 
+  - "Dr. Gilbert" 
+  - "Dr. Duryea"
+format: html
+execute:
+  keep-md: true
+---
+
+```{r setup, include = FALSE}
+#Load in any packages you need
+library(tidyverse)
+
+#Read in any data
+
+```
+
+**Objectives:** In this notebook, we'll discuss the Scientific Method as it relates to data-based research. We'll also discuss ethical analyses and avoiding $p$-hacking (also known as data snooping or data dredging).
+
+## Exploratory Analysis and Sample Data versus Inference and Populations
+
+Describe EDA and descriptive statistics on samples and compare it to inference for populations...
+
+## Why Can't We Use `palmerpenguins` Anymore?
+
+We've looked at the Palmer Penguins data already. We explored that data without making any hypotheses ahead of time. We searched for relationships within that data set and we were successful in finding some. How do we know that those *relationships*/*associations* aren't just noise in the data? We don't! All that exploratory analysis we did didn't do us any favors either.
+
+### Errors in Statistics
+
+Statistics helps us better understand the world around us by quantifying uncertainty. This means that none of the claims we make using statistics can be made with 100% certainty. Perhaps you remember two major tools from inferential statistics -- confidence intervals and hypothesis tests.
+
++ **Confidence Intervals:** Provide a range of plausible values within which we expect a population parameter to live. For a 95% confidence interval, we would expect that if 100 independent random samples were collected and a confidence interval for our parameter of interest was built corresponding to each sample, approximately 95 of those confidence intervals would contain the true population parameter. 
+
+  + We don't take 100 independent random samples -- we take a single one? How do we know that the random sample we've obtained isn't one of those 5% of samples resulting in a confidence interval that doesn't contain the true population parameter? We don't -- we just know that it is more likely that we've obtained an interval that does contain the population parameter we are looking for.
+  + If the cost of building an interval that misses the population parameter is quite high, then we'll need to change our confidence level. For example, building 99% confidence intervals, we expect only one out of every 100 random samples to result in a confidence interval that misses the population parameter.
+  
++ **Hypothesis Tests:** In classical hypothesis testing, we assume a null claim ("*there's nothing to see here*") against an alternative. In doing so, our goal is to determine whether our data are compatible with the null claim or if the observed data is so extremely unlikely under the assumption that the null claim is true, that we should believe the alternative to be true instead. Like with confidence intervals, there is no guarantee that we come to the correct decision, even if all of our math is right and our samples are random. There are two types of errors that can be made.
+
+  + **Type I Error:** A Type I error occurs when we reject the null hypothesis, but the null hypothesis correctly describes the reality we live in. The likelihood of such an error is $\alpha$, the level of significance of the test. That is, for a test done at the 5% level of significance, the likelihood of rejecting a null hypothesis when we shouldn't have is 5%.
+  + **Type II Error:** A Type II error occurs when we fail to reject the null hypothesis, but the null hypothesis does not reflect the reality we live in -- the alternative hypothesis is the one compatible with our reality. The likelihood of a Type II error is more difficult to obtain. It depends on the true effect-size, the sample size, and $\alpha$. The probability of a Type II error is often described as one minus the *power* of the test.
+  
+**Perhaps more discussion is needed here -- certainly more clarity would be good**
+
+***
+
+### Snooping for Errors
+
+Since we've identified that our data can mislead us into erroneous conclusions, we should also be able to identify why we can no longer use the Palmer Penguins data. All that exploratory work we've done has led us towards identifying those 5% of findings which are just attributable to the sampling error (noise in the data)! There are some things we can do to protect against this.
+
++ **Don't:** Conduct exploratory analyses, find interesting associations in your data, and then run tests (or build confidence intervals) to confirm those findings. This is *data snooping* and is unethical statistics.
++ **Bare Minimum:** If you are working with data that has already been collected and you have no opportunity to collect new data, you should randomly break your data up into an exploratory set (to explore and generate hypotheses) and a separate test set (to test those hypotheses on). In using this strategy, the test set should be completely unseen during the exploratory phase.
++ **Best (With Current Data):** If you are working with data that has already been collected, you can use it to explore and generate hypotheses. Once you are done with this phase, you should register your hypotheses and collect a new (and independent) random sample of observations to test those hypotheses on.
++ **Best (Without Current Data):** See the previous bullet point. If you can afford (time, money, etc) to collect two independent random samples, you should proceed using that strategy. If you can't afford to collect two independent random samples and you have theoretical or previous empirical justification for particular hypotheses, you should register those hypotheses, collect your random sample of data, and then test your hypotheses.
+
+**Warning:** The more hypotheses we test on a single set of data, the greater the likelihood that we obtain at least one result simply due to sampling error. That is, we increase the likelihood of claiming a significant finding when it really is just noise in the data.
+
+***
+
+### Your Task
+
+In this notebook, please do the following:
+
+1. Choose a new dataset other that `palmerpenguins` that interests you.
+2. Look at the variables measured in that dataset.
+3. Define your *population* and your *sample*.
+4. Generate your hypotheses/conjectures.
+  + Do you have theoretical or empirical reasons for any hypotheses? If so, write down your conjectures.
+  + If you do not have theoretical or empirical insight, randomly break your dataset into an exploratory set and a reserved test set. Conduct some initial exploratory analyses on the exploratory set and use those analyses to inform your conjectures. Write the conjectures down.
+
+5. Now that you have hypotheses written out, use techniques from classical statistics -- confidence intervals and/or hypothesis tests -- to evaluate those hypotheses for your *population*.
+
+***
+
+### Classical Statistics versus Simulation-Based Methods
+
+(I think this should go in another notebook...)
+
+In Classical Statistics, we make assumptions about the *distributions* governing an underlying data generating process. For example, in your Applied Statistics coursework, you almost surely made assumptions based on the Central Limit Theorem (the one that says the distribution of a particular sample statistic from random samples drawn from a population tend to be normal, as long as the size of the samples is large enough to overcome skew in the population). That normality assumption is usually satisfied, but it is a big assumption to make -- what if we can't assume that the sampling distribution is nearly normal? Perhaps we don't have lots of data or we are unsure of the true shape of the population distribution. What do we do then?
+
+#### Bootstrapping for Confidence Intervals and Single Sample Tests
+
+
+#### Permutation Tests for Group Comparisons
+
+
+
+
+

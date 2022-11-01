@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.584">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Gilbert">
+<meta name="author" content="Dr.&nbsp;Duryea">
+
+<title>Exploring Data and Generating Hypotheses: Avoiding P-Hacking</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="ExploringData_HypothesisGeneration_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ExploringData_HypothesisGeneration_files/libs/quarto-html/quarto.js"></script>
+<script src="ExploringData_HypothesisGeneration_files/libs/quarto-html/popper.min.js"></script>
+<script src="ExploringData_HypothesisGeneration_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ExploringData_HypothesisGeneration_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ExploringData_HypothesisGeneration_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ExploringData_HypothesisGeneration_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ExploringData_HypothesisGeneration_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ExploringData_HypothesisGeneration_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ExploringData_HypothesisGeneration_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Exploring Data and Generating Hypotheses: Avoiding P-Hacking</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Gilbert </p>
+             <p>Dr.&nbsp;Duryea </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<p><strong>Objectives:</strong> In this notebook, we’ll discuss the Scientific Method as it relates to data-based research. We’ll also discuss ethical analyses and avoiding <span class="math inline">\(p\)</span>-hacking (also known as data snooping or data dredging).</p>
+<section id="exploratory-analysis-and-sample-data-versus-inference-and-populations" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-analysis-and-sample-data-versus-inference-and-populations">Exploratory Analysis and Sample Data versus Inference and Populations</h2>
+<p>Describe EDA and descriptive statistics on samples and compare it to inference for populations…</p>
+</section>
+<section id="why-cant-we-use-palmerpenguins-anymore" class="level2">
+<h2 class="anchored" data-anchor-id="why-cant-we-use-palmerpenguins-anymore">Why Can’t We Use <code>palmerpenguins</code> Anymore?</h2>
+<p>We’ve looked at the Palmer Penguins data already. We explored that data without making any hypotheses ahead of time. We searched for relationships within that data set and we were successful in finding some. How do we know that those <em>relationships</em>/<em>associations</em> aren’t just noise in the data? We don’t! All that exploratory analysis we did didn’t do us any favors either.</p>
+<section id="errors-in-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="errors-in-statistics">Errors in Statistics</h3>
+<p>Statistics helps us better understand the world around us by quantifying uncertainty. This means that none of the claims we make using statistics can be made with 100% certainty. Perhaps you remember two major tools from inferential statistics – confidence intervals and hypothesis tests.</p>
+<ul>
+<li><p><strong>Confidence Intervals:</strong> Provide a range of plausible values within which we expect a population parameter to live. For a 95% confidence interval, we would expect that if 100 independent random samples were collected and a confidence interval for our parameter of interest was built corresponding to each sample, approximately 95 of those confidence intervals would contain the true population parameter.</p>
+<ul>
+<li>We don’t take 100 independent random samples – we take a single one? How do we know that the random sample we’ve obtained isn’t one of those 5% of samples resulting in a confidence interval that doesn’t contain the true population parameter? We don’t – we just know that it is more likely that we’ve obtained an interval that does contain the population parameter we are looking for.</li>
+<li>If the cost of building an interval that misses the population parameter is quite high, then we’ll need to change our confidence level. For example, building 99% confidence intervals, we expect only one out of every 100 random samples to result in a confidence interval that misses the population parameter.</li>
+</ul></li>
+<li><p><strong>Hypothesis Tests:</strong> In classical hypothesis testing, we assume a null claim (“<em>there’s nothing to see here</em>”) against an alternative. In doing so, our goal is to determine whether our data are compatible with the null claim or if the observed data is so extremely unlikely under the assumption that the null claim is true, that we should believe the alternative to be true instead. Like with confidence intervals, there is no guarantee that we come to the correct decision, even if all of our math is right and our samples are random. There are two types of errors that can be made.</p>
+<ul>
+<li><strong>Type I Error:</strong> A Type I error occurs when we reject the null hypothesis, but the null hypothesis correctly describes the reality we live in. The likelihood of such an error is <span class="math inline">\(\alpha\)</span>, the level of significance of the test. That is, for a test done at the 5% level of significance, the likelihood of rejecting a null hypothesis when we shouldn’t have is 5%.</li>
+<li><strong>Type II Error:</strong> A Type II error occurs when we fail to reject the null hypothesis, but the null hypothesis does not reflect the reality we live in – the alternative hypothesis is the one compatible with our reality. The likelihood of a Type II error is more difficult to obtain. It depends on the true effect-size, the sample size, and <span class="math inline">\(\alpha\)</span>. The probability of a Type II error is often described as one minus the <em>power</em> of the test.</li>
+</ul></li>
+</ul>
+<p><strong>Perhaps more discussion is needed here – certainly more clarity would be good</strong></p>
+<hr>
+</section>
+<section id="snooping-for-errors" class="level3">
+<h3 class="anchored" data-anchor-id="snooping-for-errors">Snooping for Errors</h3>
+<p>Since we’ve identified that our data can mislead us into erroneous conclusions, we should also be able to identify why we can no longer use the Palmer Penguins data. All that exploratory work we’ve done has led us towards identifying those 5% of findings which are just attributable to the sampling error (noise in the data)! There are some things we can do to protect against this.</p>
+<ul>
+<li><strong>Don’t:</strong> Conduct exploratory analyses, find interesting associations in your data, and then run tests (or build confidence intervals) to confirm those findings. This is <em>data snooping</em> and is unethical statistics.</li>
+<li><strong>Bare Minimum:</strong> If you are working with data that has already been collected and you have no opportunity to collect new data, you should randomly break your data up into an exploratory set (to explore and generate hypotheses) and a separate test set (to test those hypotheses on). In using this strategy, the test set should be completely unseen during the exploratory phase.</li>
+<li><strong>Best (With Current Data):</strong> If you are working with data that has already been collected, you can use it to explore and generate hypotheses. Once you are done with this phase, you should register your hypotheses and collect a new (and independent) random sample of observations to test those hypotheses on.</li>
+<li><strong>Best (Without Current Data):</strong> See the previous bullet point. If you can afford (time, money, etc) to collect two independent random samples, you should proceed using that strategy. If you can’t afford to collect two independent random samples and you have theoretical or previous empirical justification for particular hypotheses, you should register those hypotheses, collect your random sample of data, and then test your hypotheses.</li>
+</ul>
+<p><strong>Warning:</strong> The more hypotheses we test on a single set of data, the greater the likelihood that we obtain at least one result simply due to sampling error. That is, we increase the likelihood of claiming a significant finding when it really is just noise in the data.</p>
+<hr>
+</section>
+<section id="your-task" class="level3">
+<h3 class="anchored" data-anchor-id="your-task">Your Task</h3>
+<p>In this notebook, please do the following:</p>
+<ol type="1">
+<li>Choose a new dataset other that <code>palmerpenguins</code> that interests you.</li>
+<li>Look at the variables measured in that dataset.</li>
+<li>Define your <em>population</em> and your <em>sample</em>.</li>
+<li>Generate your hypotheses/conjectures.</li>
+</ol>
+<ul>
+<li>Do you have theoretical or empirical reasons for any hypotheses? If so, write down your conjectures.</li>
+<li>If you do not have theoretical or empirical insight, randomly break your dataset into an exploratory set and a reserved test set. Conduct some initial exploratory analyses on the exploratory set and use those analyses to inform your conjectures. Write the conjectures down.</li>
+</ul>
+<ol start="5" type="1">
+<li>Now that you have hypotheses written out, use techniques from classical statistics – confidence intervals and/or hypothesis tests – to evaluate those hypotheses for your <em>population</em>.</li>
+</ol>
+<hr>
+</section>
+<section id="classical-statistics-versus-simulation-based-methods" class="level3">
+<h3 class="anchored" data-anchor-id="classical-statistics-versus-simulation-based-methods">Classical Statistics versus Simulation-Based Methods</h3>
+<p>(I think this should go in another notebook…)</p>
+<p>In Classical Statistics, we make assumptions about the <em>distributions</em> governing an underlying data generating process. For example, in your Applied Statistics coursework, you almost surely made assumptions based on the Central Limit Theorem (the one that says the distribution of a particular sample statistic from random samples drawn from a population tend to be normal, as long as the size of the samples is large enough to overcome skew in the population). That normality assumption is usually satisfied, but it is a big assumption to make – what if we can’t assume that the sampling distribution is nearly normal? Perhaps we don’t have lots of data or we are unsure of the true shape of the population distribution. What do we do then?</p>
+<section id="bootstrapping-for-confidence-intervals-and-single-sample-tests" class="level4">
+<h4 class="anchored" data-anchor-id="bootstrapping-for-confidence-intervals-and-single-sample-tests">Bootstrapping for Confidence Intervals and Single Sample Tests</h4>
+</section>
+<section id="permutation-tests-for-group-comparisons" class="level4">
+<h4 class="anchored" data-anchor-id="permutation-tests-for-group-comparisons">Permutation Tests for Group Comparisons</h4>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
