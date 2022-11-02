@@ -8,8 +8,10 @@ execute:
 
 ```{r include = FALSE}
 library(tidyverse)
-library(palmerpenguins)
+#library(palmerpenguins)
 library(kableExtra)
+
+penguins <- read_csv("data/penguins_samp1.csv")
 ```
 
 ## Activity Objectives
@@ -124,7 +126,7 @@ penguins %>%
   filter(species == "Chinstrap")
 ```
 
-Since we know that these are all `Chinstrap` penguins, perhaps we no longer need the `species` column. We can *de*-select it using the `select()` function and a minus (`-`) sign in front of the column name. We can also store this smaller data frame into a new object called `chinstraps` by using the arror (`<-`) operator.
+Since we know that these are all `Chinstrap` penguins, perhaps we no longer need the `species` column. We can *de*-select it using the `select()` function and a minus (`-`) sign in front of the column name. We can also store this smaller data frame into a new object called `chinstraps` by using the arrow (`<-`) operator.
 
 ```{r}
 chinstraps <- penguins %>%
@@ -242,8 +244,9 @@ penguins %>%
                            shape = sex)) +
   geom_smooth(mapping = aes(x = bill_length_mm,
                             y = flipper_length_mm,
-                            color = species)) +
-  facet_grid(rows = vars(island), cols = vars(sex), scales = "free") +
+                            color = species),
+              method = "lm") +
+  facet_grid(island ~ sex, scales = "free") +
   labs(title = "Flipper and Bill Lengths by Species and Sex",
        x = "Bill Length (mm)",
        y = "Flipper Length(mm)") +

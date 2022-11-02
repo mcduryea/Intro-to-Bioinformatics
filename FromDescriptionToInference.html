@@ -9,7 +9,7 @@
 <meta name="author" content="Dr.&nbsp;Gilbert">
 <meta name="author" content="Dr.&nbsp;Duryea">
 
-<title>Exploring Data and Generating Hypotheses: Avoiding P-Hacking</title>
+<title>Moving from Descriptive Analyses Into Inference</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,16 +20,16 @@ ul.task-list{list-style: none;}
 </style>
 
 
-<script src="ExploringData_HypothesisGeneration_files/libs/clipboard/clipboard.min.js"></script>
-<script src="ExploringData_HypothesisGeneration_files/libs/quarto-html/quarto.js"></script>
-<script src="ExploringData_HypothesisGeneration_files/libs/quarto-html/popper.min.js"></script>
-<script src="ExploringData_HypothesisGeneration_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="ExploringData_HypothesisGeneration_files/libs/quarto-html/anchor.min.js"></script>
-<link href="ExploringData_HypothesisGeneration_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="ExploringData_HypothesisGeneration_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="ExploringData_HypothesisGeneration_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="ExploringData_HypothesisGeneration_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="ExploringData_HypothesisGeneration_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script src="FromDescriptionToInference_files/libs/clipboard/clipboard.min.js"></script>
+<script src="FromDescriptionToInference_files/libs/quarto-html/quarto.js"></script>
+<script src="FromDescriptionToInference_files/libs/quarto-html/popper.min.js"></script>
+<script src="FromDescriptionToInference_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="FromDescriptionToInference_files/libs/quarto-html/anchor.min.js"></script>
+<link href="FromDescriptionToInference_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="FromDescriptionToInference_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="FromDescriptionToInference_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="FromDescriptionToInference_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="FromDescriptionToInference_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -43,7 +43,7 @@ ul.task-list{list-style: none;}
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exploring Data and Generating Hypotheses: Avoiding P-Hacking</h1>
+<h1 class="title">Moving from Descriptive Analyses Into Inference</h1>
 </div>
 
 
@@ -67,13 +67,29 @@ ul.task-list{list-style: none;}
 <p><strong>Objectives:</strong> In this notebook, we’ll discuss the Scientific Method as it relates to data-based research. We’ll also discuss ethical analyses and avoiding <span class="math inline">\(p\)</span>-hacking (also known as data snooping or data dredging).</p>
 <section id="exploratory-analysis-and-sample-data-versus-inference-and-populations" class="level2">
 <h2 class="anchored" data-anchor-id="exploratory-analysis-and-sample-data-versus-inference-and-populations">Exploratory Analysis and Sample Data versus Inference and Populations</h2>
-<p>Describe EDA and descriptive statistics on samples and compare it to inference for populations…</p>
+<p>In the previous notebook, <code>TidyAnalysesInR</code>, you conducted an exploratory analysis of the <code>penguins_samp1</code> dataset. You summarized individual variables and looked for associations between groups of variables. Everything you did there only reflected the <span class="math inline">\(44\)</span> penguins in that particular dataset though. These were your <em>sample</em> penguins, and you did a great job describing them – but how can we use those sample penguins to make and project claims about <em>all</em> penguins?</p>
+<section id="the-importance-of-random-representative-samples" class="level4">
+<h4 class="anchored" data-anchor-id="the-importance-of-random-representative-samples">The Importance of Random Representative Samples</h4>
+<p>The good news is that, under certain conditions, we can use sample data to make claims at the population level. Those conditions are</p>
+<ul>
+<li>that the sample is <em>randomly</em> selected.</li>
+<li>that the sample is <em>representative of</em> the population.</li>
+</ul>
+<p>Even when these conditions are satisfied, we know that repeated samples will result in slightly different summary characteristics, but statistical tools help us to quantify how much these summary characteristics are expected to vary from one sample to the next. Gaining a handle on this sample variation allows us to estimate how far the true population characteristics may fall from our sample characteristics. Understanding this allows us to make assertions (with some degree of confidence) regarding the population we seek to understand.</p>
+<p>There will be more on these statistical tools and using them to build estimates for population characteristics (population parameters) in the next notebook. For now, we’ll highlight some pitfalls and some of the ways statistical inference can go wrong.</p>
 </section>
-<section id="why-cant-we-use-palmerpenguins-anymore" class="level2">
-<h2 class="anchored" data-anchor-id="why-cant-we-use-palmerpenguins-anymore">Why Can’t We Use <code>palmerpenguins</code> Anymore?</h2>
-<p>We’ve looked at the Palmer Penguins data already. We explored that data without making any hypotheses ahead of time. We searched for relationships within that data set and we were successful in finding some. How do we know that those <em>relationships</em>/<em>associations</em> aren’t just noise in the data? We don’t! All that exploratory analysis we did didn’t do us any favors either.</p>
-<section id="errors-in-statistics" class="level3">
-<h3 class="anchored" data-anchor-id="errors-in-statistics">Errors in Statistics</h3>
+</section>
+<section id="what-to-watch-out-for-in-inference" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-watch-out-for-in-inference">What to Watch Out for In Inference</h2>
+<p>It’s worth highlighting some avoidable pitfalls when conducting statistical inference as well as understanding some issues that are unavoidable. We’ll discuss the avoidable issue of <em>data snooping</em>/<em>data dredging</em>/<em>p-hacking</em>, and we’ll also highlight unavoidable errors that come along with the uncertainty inherent in our samples.</p>
+<p>We’ll start with the issue of <em>data snooping</em> below.</p>
+<section id="why-cant-we-use-penguins_samp1-anymore" class="level3">
+<h3 class="anchored" data-anchor-id="why-cant-we-use-penguins_samp1-anymore">Why Can’t We Use <code>penguins_samp1</code> Anymore?</h3>
+<p>We’ve looked at our <em>sample</em> penguins data already. We explored that data without making any hypotheses ahead of time. We searched for relationships within that data set and we were successful in finding some. How do we know that those <em>relationships</em>/<em>associations</em> aren’t just noise in the data? Simply put, we don’t!</p>
+<p>Unfortunately, we can’t go back on this now either. As ethical scientists, we can’t use the <code>penguins_samp1</code> data for inference tasks because we know what those data say. We are now in a scenario where the data has informed which questions should be asked, whereas the data should only be used to answer the questions we had before we looked at it. To put it in terms analogous to school – the <em>data</em> wrote the exam, so certainly the <em>data</em> will do well in answering the questions.</p>
+</section>
+<section id="uncertainty-and-errors-in-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="uncertainty-and-errors-in-statistics">Uncertainty and Errors in Statistics</h3>
 <p>Statistics helps us better understand the world around us by quantifying uncertainty. This means that none of the claims we make using statistics can be made with 100% certainty. Perhaps you remember two major tools from inferential statistics – confidence intervals and hypothesis tests.</p>
 <ul>
 <li><p><strong>Confidence Intervals:</strong> Provide a range of plausible values within which we expect a population parameter to live. For a 95% confidence interval, we would expect that if 100 independent random samples were collected and a confidence interval for our parameter of interest was built corresponding to each sample, approximately 95 of those confidence intervals would contain the true population parameter.</p>
@@ -92,44 +108,21 @@ ul.task-list{list-style: none;}
 </section>
 <section id="snooping-for-errors" class="level3">
 <h3 class="anchored" data-anchor-id="snooping-for-errors">Snooping for Errors</h3>
-<p>Since we’ve identified that our data can mislead us into erroneous conclusions, we should also be able to identify why we can no longer use the Palmer Penguins data. All that exploratory work we’ve done has led us towards identifying those 5% of findings which are just attributable to the sampling error (noise in the data)! There are some things we can do to protect against this.</p>
+<p>Since we’ve identified that our data can mislead us into erroneous conclusions, we should also be able to more concretely identify why we can no longer use the <code>penguins_samp1</code> data. All that exploratory work we’ve done has led us towards identifying those 5% of findings which are just attributable to the sampling error (noise in the data)! There are some things we can do to protect against this.</p>
 <ul>
-<li><strong>Don’t:</strong> Conduct exploratory analyses, find interesting associations in your data, and then run tests (or build confidence intervals) to confirm those findings. This is <em>data snooping</em> and is unethical statistics.</li>
-<li><strong>Bare Minimum:</strong> If you are working with data that has already been collected and you have no opportunity to collect new data, you should randomly break your data up into an exploratory set (to explore and generate hypotheses) and a separate test set (to test those hypotheses on). In using this strategy, the test set should be completely unseen during the exploratory phase.</li>
-<li><strong>Best (With Current Data):</strong> If you are working with data that has already been collected, you can use it to explore and generate hypotheses. Once you are done with this phase, you should register your hypotheses and collect a new (and independent) random sample of observations to test those hypotheses on.</li>
-<li><strong>Best (Without Current Data):</strong> See the previous bullet point. If you can afford (time, money, etc) to collect two independent random samples, you should proceed using that strategy. If you can’t afford to collect two independent random samples and you have theoretical or previous empirical justification for particular hypotheses, you should register those hypotheses, collect your random sample of data, and then test your hypotheses.</li>
+<li><p><strong>Don’t:</strong> Conduct exploratory analyses, find interesting associations in your data, and then run tests (or build confidence intervals) to confirm those findings. This is <em>data snooping</em> and is unethical statistics.</p>
+<ul>
+<li>We can’t let the data “write the exam and also <em>take</em> the exam”.</li>
+</ul></li>
+<li><p><strong>Bare Minimum:</strong> If you are working with data that has already been collected and you have no opportunity to collect new data, you should randomly break your data up into an exploratory set (to explore and generate hypotheses) and a separate test set (to test those hypotheses on). In using this strategy, the test set should be completely unseen during the exploratory phase.</p></li>
+<li><p><strong>Best (With Current Data):</strong> If you have no opportunity to collect new data, refer back to the <em>Bare Minimum</em> above. Otherwise, if you are working with data that has already been collected and you’ll be able to collect more, you can use your existing data to explore and generate hypotheses. Once you are done with this phase, you should register your hypotheses and collect a new (and independent) random sample of observations to test those hypotheses on.</p></li>
+<li><p><strong>Best (Without Current Data):</strong> See the previous bullet point. If you can afford (time, money, etc) to collect two independent random samples, you should proceed using that strategy. If you can’t afford to collect two independent random samples and you have theoretical or previous empirical justification for particular hypotheses, you should register those hypotheses, collect your random sample of data, and then test your hypotheses.</p></li>
 </ul>
 <p><strong>Warning:</strong> The more hypotheses we test on a single set of data, the greater the likelihood that we obtain at least one result simply due to sampling error. That is, we increase the likelihood of claiming a significant finding when it really is just noise in the data.</p>
 <hr>
 </section>
 <section id="your-task" class="level3">
 <h3 class="anchored" data-anchor-id="your-task">Your Task</h3>
-<p>In this notebook, please do the following:</p>
-<ol type="1">
-<li>Choose a new dataset other that <code>palmerpenguins</code> that interests you.</li>
-<li>Look at the variables measured in that dataset.</li>
-<li>Define your <em>population</em> and your <em>sample</em>.</li>
-<li>Generate your hypotheses/conjectures.</li>
-</ol>
-<ul>
-<li>Do you have theoretical or empirical reasons for any hypotheses? If so, write down your conjectures.</li>
-<li>If you do not have theoretical or empirical insight, randomly break your dataset into an exploratory set and a reserved test set. Conduct some initial exploratory analyses on the exploratory set and use those analyses to inform your conjectures. Write the conjectures down.</li>
-</ul>
-<ol start="5" type="1">
-<li>Now that you have hypotheses written out, use techniques from classical statistics – confidence intervals and/or hypothesis tests – to evaluate those hypotheses for your <em>population</em>.</li>
-</ol>
-<hr>
-</section>
-<section id="classical-statistics-versus-simulation-based-methods" class="level3">
-<h3 class="anchored" data-anchor-id="classical-statistics-versus-simulation-based-methods">Classical Statistics versus Simulation-Based Methods</h3>
-<p>(I think this should go in another notebook…)</p>
-<p>In Classical Statistics, we make assumptions about the <em>distributions</em> governing an underlying data generating process. For example, in your Applied Statistics coursework, you almost surely made assumptions based on the Central Limit Theorem (the one that says the distribution of a particular sample statistic from random samples drawn from a population tend to be normal, as long as the size of the samples is large enough to overcome skew in the population). That normality assumption is usually satisfied, but it is a big assumption to make – what if we can’t assume that the sampling distribution is nearly normal? Perhaps we don’t have lots of data or we are unsure of the true shape of the population distribution. What do we do then?</p>
-<section id="bootstrapping-for-confidence-intervals-and-single-sample-tests" class="level4">
-<h4 class="anchored" data-anchor-id="bootstrapping-for-confidence-intervals-and-single-sample-tests">Bootstrapping for Confidence Intervals and Single Sample Tests</h4>
-</section>
-<section id="permutation-tests-for-group-comparisons" class="level4">
-<h4 class="anchored" data-anchor-id="permutation-tests-for-group-comparisons">Permutation Tests for Group Comparisons</h4>
-</section>
 </section>
 </section>
 

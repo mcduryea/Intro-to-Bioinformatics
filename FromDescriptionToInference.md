@@ -1,5 +1,5 @@
 ---
-title: "Exploring Data and Generating Hypotheses: Avoiding P-Hacking"
+title: "Moving from Descriptive Analyses Into Inference"
 author: 
   - "Dr. Gilbert" 
   - "Dr. Duryea"
@@ -8,25 +8,40 @@ execute:
   keep-md: true
 ---
 
-```{r setup, include = FALSE}
-#Load in any packages you need
-library(tidyverse)
 
-#Read in any data
 
-```
+
 
 **Objectives:** In this notebook, we'll discuss the Scientific Method as it relates to data-based research. We'll also discuss ethical analyses and avoiding $p$-hacking (also known as data snooping or data dredging).
 
 ## Exploratory Analysis and Sample Data versus Inference and Populations
 
-Describe EDA and descriptive statistics on samples and compare it to inference for populations...
+In the previous notebook, `TidyAnalysesInR`, you conducted an exploratory analysis of the `penguins_samp1` dataset. You summarized individual variables and looked for associations between groups of variables. Everything you did there only reflected the $44$ penguins in that particular dataset though. These were your *sample* penguins, and you did a great job describing them -- but how can we use those sample penguins to make and project claims about *all* penguins?
 
-## Why Can't We Use `palmerpenguins` Anymore?
+#### The Importance of Random Representative Samples
 
-We've looked at the Palmer Penguins data already. We explored that data without making any hypotheses ahead of time. We searched for relationships within that data set and we were successful in finding some. How do we know that those *relationships*/*associations* aren't just noise in the data? We don't! All that exploratory analysis we did didn't do us any favors either.
+The good news is that, under certain conditions, we can use sample data to make claims at the population level. Those conditions are 
 
-### Errors in Statistics
++ that the sample is *randomly* selected. 
++ that the sample is *representative of* the population.
+
+Even when these conditions are satisfied, we know that repeated samples will result in slightly different summary characteristics, but statistical tools help us to quantify how much these summary characteristics are expected to vary from one sample to the next. Gaining a handle on this sample variation allows us to estimate how far the true population characteristics may fall from our sample characteristics. Understanding this allows us to make assertions (with some degree of confidence) regarding the population we seek to understand.
+
+There will be more on these statistical tools and using them to build estimates for population characteristics (population parameters) in the next notebook. For now, we'll highlight some pitfalls and some of the ways statistical inference can go wrong.
+
+## What to Watch Out for In Inference
+
+It's worth highlighting some avoidable pitfalls when conducting statistical inference as well as understanding some issues that are unavoidable. We'll discuss the avoidable issue of *data snooping*/*data dredging*/*p-hacking*, and we'll also highlight unavoidable errors that come along with the uncertainty inherent in our samples. 
+
+We'll start with the issue of *data snooping* below.
+
+### Why Can't We Use `penguins_samp1` Anymore?
+
+We've looked at our *sample* penguins data already. We explored that data without making any hypotheses ahead of time. We searched for relationships within that data set and we were successful in finding some. How do we know that those *relationships*/*associations* aren't just noise in the data? Simply put, we don't! 
+
+Unfortunately, we can't go back on this now either. As ethical scientists, we can't use the `penguins_samp1` data for inference tasks because we know what those data say. We are now in a scenario where the data has informed which questions should be asked, whereas the data should only be used to answer the questions we had before we looked at it. To put it in terms analogous to school -- the *data* wrote the exam, so certainly the *data* will do well in answering the questions.
+
+### Uncertainty and Errors in Statistics
 
 Statistics helps us better understand the world around us by quantifying uncertainty. This means that none of the claims we make using statistics can be made with 100% certainty. Perhaps you remember two major tools from inferential statistics -- confidence intervals and hypothesis tests.
 
@@ -46,11 +61,14 @@ Statistics helps us better understand the world around us by quantifying uncerta
 
 ### Snooping for Errors
 
-Since we've identified that our data can mislead us into erroneous conclusions, we should also be able to identify why we can no longer use the Palmer Penguins data. All that exploratory work we've done has led us towards identifying those 5% of findings which are just attributable to the sampling error (noise in the data)! There are some things we can do to protect against this.
+Since we've identified that our data can mislead us into erroneous conclusions, we should also be able to more concretely identify why we can no longer use the `penguins_samp1` data. All that exploratory work we've done has led us towards identifying those 5% of findings which are just attributable to the sampling error (noise in the data)! There are some things we can do to protect against this.
 
 + **Don't:** Conduct exploratory analyses, find interesting associations in your data, and then run tests (or build confidence intervals) to confirm those findings. This is *data snooping* and is unethical statistics.
+
+  + We can't let the data "write the exam and also *take* the exam".
+  
 + **Bare Minimum:** If you are working with data that has already been collected and you have no opportunity to collect new data, you should randomly break your data up into an exploratory set (to explore and generate hypotheses) and a separate test set (to test those hypotheses on). In using this strategy, the test set should be completely unseen during the exploratory phase.
-+ **Best (With Current Data):** If you are working with data that has already been collected, you can use it to explore and generate hypotheses. Once you are done with this phase, you should register your hypotheses and collect a new (and independent) random sample of observations to test those hypotheses on.
++ **Best (With Current Data):** If you have no opportunity to collect new data, refer back to the *Bare Minimum* above. Otherwise, if you are working with data that has already been collected and you'll be able to collect more, you can use your existing data to explore and generate hypotheses. Once you are done with this phase, you should register your hypotheses and collect a new (and independent) random sample of observations to test those hypotheses on.
 + **Best (Without Current Data):** See the previous bullet point. If you can afford (time, money, etc) to collect two independent random samples, you should proceed using that strategy. If you can't afford to collect two independent random samples and you have theoretical or previous empirical justification for particular hypotheses, you should register those hypotheses, collect your random sample of data, and then test your hypotheses.
 
 **Warning:** The more hypotheses we test on a single set of data, the greater the likelihood that we obtain at least one result simply due to sampling error. That is, we increase the likelihood of claiming a significant finding when it really is just noise in the data.
@@ -58,32 +76,4 @@ Since we've identified that our data can mislead us into erroneous conclusions, 
 ***
 
 ### Your Task
-
-In this notebook, please do the following:
-
-1. Choose a new dataset other that `palmerpenguins` that interests you.
-2. Look at the variables measured in that dataset.
-3. Define your *population* and your *sample*.
-4. Generate your hypotheses/conjectures.
-  + Do you have theoretical or empirical reasons for any hypotheses? If so, write down your conjectures.
-  + If you do not have theoretical or empirical insight, randomly break your dataset into an exploratory set and a reserved test set. Conduct some initial exploratory analyses on the exploratory set and use those analyses to inform your conjectures. Write the conjectures down.
-
-5. Now that you have hypotheses written out, use techniques from classical statistics -- confidence intervals and/or hypothesis tests -- to evaluate those hypotheses for your *population*.
-
-***
-
-### Classical Statistics versus Simulation-Based Methods
-
-(I think this should go in another notebook...)
-
-In Classical Statistics, we make assumptions about the *distributions* governing an underlying data generating process. For example, in your Applied Statistics coursework, you almost surely made assumptions based on the Central Limit Theorem (the one that says the distribution of a particular sample statistic from random samples drawn from a population tend to be normal, as long as the size of the samples is large enough to overcome skew in the population). That normality assumption is usually satisfied, but it is a big assumption to make -- what if we can't assume that the sampling distribution is nearly normal? Perhaps we don't have lots of data or we are unsure of the true shape of the population distribution. What do we do then?
-
-#### Bootstrapping for Confidence Intervals and Single Sample Tests
-
-
-#### Permutation Tests for Group Comparisons
-
-
-
-
 

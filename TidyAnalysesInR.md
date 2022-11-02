@@ -60,10 +60,10 @@ penguins %>%
 ```
 # A tibble: 3 × 2
   island        n
-  <fct>     <int>
-1 Biscoe      168
-2 Dream       124
-3 Torgersen    52
+  <chr>     <int>
+1 Biscoe       22
+2 Dream        17
+3 Torgersen     5
 ```
 :::
 :::
@@ -86,10 +86,10 @@ penguins %>%
 ```
 # A tibble: 3 × 4
   island    Adelie Gentoo Chinstrap
-  <fct>      <int>  <int>     <int>
-1 Biscoe        44    124         0
-2 Dream         56      0        68
-3 Torgersen     52      0         0
+  <chr>      <int>  <int>     <int>
+1 Biscoe         4     18         0
+2 Dream          9      0         8
+3 Torgersen      5      0         0
 ```
 :::
 :::
@@ -122,19 +122,19 @@ penguins %>%
 <tbody>
   <tr>
    <td style="text-align:left;"> Biscoe </td>
-   <td style="text-align:right;"> 44 </td>
-   <td style="text-align:right;"> 124 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 18 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Dream </td>
-   <td style="text-align:right;"> 56 </td>
+   <td style="text-align:right;"> 9 </td>
    <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 68 </td>
+   <td style="text-align:right;"> 8 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Torgersen </td>
-   <td style="text-align:right;"> 52 </td>
+   <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
@@ -163,7 +163,7 @@ penguins %>%
 # A tibble: 1 × 1
   mean_bill_length_mm
                 <dbl>
-1                  NA
+1                44.7
 ```
 :::
 :::
@@ -182,7 +182,7 @@ penguins %>%
 # A tibble: 1 × 1
   mean_bill_length_mm
                 <dbl>
-1                43.9
+1                44.7
 ```
 :::
 :::
@@ -211,12 +211,12 @@ penguins %>%
 # A tibble: 6 × 2
   name                           value
   <chr>                          <dbl>
-1 min_bill_length                32.1 
-2 first_quartile_bill_length     39.2 
-3 median_bill_length             44.4 
-4 mean_bill_length_mm            43.9 
-5 third_quartile_bill_length     48.5 
-6 standard_deviation_bill_length  5.46
+1 min_bill_length                36.4 
+2 first_quartile_bill_length     40.1 
+3 median_bill_length             44.3 
+4 mean_bill_length_mm            44.7 
+5 third_quartile_bill_length     48.2 
+6 standard_deviation_bill_length  5.34
 ```
 :::
 :::
@@ -241,20 +241,20 @@ penguins %>%
 
 ::: {.cell-output .cell-output-stdout}
 ```
-# A tibble: 344 × 4
-   species island    sex     year
-   <fct>   <fct>     <fct>  <int>
- 1 Adelie  Torgersen male    2007
- 2 Adelie  Torgersen female  2007
- 3 Adelie  Torgersen female  2007
- 4 Adelie  Torgersen <NA>    2007
- 5 Adelie  Torgersen female  2007
- 6 Adelie  Torgersen male    2007
- 7 Adelie  Torgersen female  2007
- 8 Adelie  Torgersen male    2007
- 9 Adelie  Torgersen <NA>    2007
-10 Adelie  Torgersen <NA>    2007
-# … with 334 more rows
+# A tibble: 44 × 4
+   species   island sex     year
+   <chr>     <chr>  <chr>  <dbl>
+ 1 Adelie    Dream  male    2008
+ 2 Adelie    Dream  male    2007
+ 3 Chinstrap Dream  male    2008
+ 4 Gentoo    Biscoe female  2009
+ 5 Gentoo    Biscoe male    2007
+ 6 Adelie    Biscoe female  2007
+ 7 Chinstrap Dream  female  2007
+ 8 Chinstrap Dream  male    2009
+ 9 Adelie    Dream  male    2009
+10 Chinstrap Dream  male    2007
+# … with 34 more rows
 ```
 :::
 :::
@@ -273,26 +273,23 @@ penguins %>%
 
 ::: {.cell-output .cell-output-stdout}
 ```
-# A tibble: 68 × 4
-   species   island sex     year
-   <fct>     <fct>  <fct>  <int>
- 1 Chinstrap Dream  female  2007
- 2 Chinstrap Dream  male    2007
- 3 Chinstrap Dream  male    2007
- 4 Chinstrap Dream  female  2007
- 5 Chinstrap Dream  male    2007
- 6 Chinstrap Dream  female  2007
- 7 Chinstrap Dream  female  2007
- 8 Chinstrap Dream  male    2007
- 9 Chinstrap Dream  female  2007
-10 Chinstrap Dream  male    2007
-# … with 58 more rows
+# A tibble: 8 × 4
+  species   island sex     year
+  <chr>     <chr>  <chr>  <dbl>
+1 Chinstrap Dream  male    2008
+2 Chinstrap Dream  female  2007
+3 Chinstrap Dream  male    2009
+4 Chinstrap Dream  male    2007
+5 Chinstrap Dream  female  2008
+6 Chinstrap Dream  female  2009
+7 Chinstrap Dream  male    2008
+8 Chinstrap Dream  male    2007
 ```
 :::
 :::
 
 
-Since we know that these are all `Chinstrap` penguins, perhaps we no longer need the `species` column. We can *de*-select it using the `select()` function and a minus (`-`) sign in front of the column name. We can also store this smaller data frame into a new object called `chinstraps` by using the arror (`<-`) operator.
+Since we know that these are all `Chinstrap` penguins, perhaps we no longer need the `species` column. We can *de*-select it using the `select()` function and a minus (`-`) sign in front of the column name. We can also store this smaller data frame into a new object called `chinstraps` by using the arrow (`<-`) operator.
 
 
 ::: {.cell}
@@ -311,13 +308,13 @@ chinstraps %>%
 ```
 # A tibble: 6 × 3
   island sex     year
-  <fct>  <fct>  <int>
-1 Dream  female  2007
-2 Dream  male    2007
-3 Dream  male    2007
-4 Dream  female  2007
-5 Dream  male    2007
-6 Dream  female  2007
+  <chr>  <chr>  <dbl>
+1 Dream  male    2008
+2 Dream  female  2007
+3 Dream  male    2009
+4 Dream  male    2007
+5 Dream  female  2008
+6 Dream  female  2009
 ```
 :::
 :::
@@ -343,10 +340,10 @@ penguins %>%
 ```
 # A tibble: 3 × 3
   species   mean_bill_depth_mm sd_bill_depth_mm
-  <fct>                  <dbl>            <dbl>
-1 Adelie                  18.3            1.22 
-2 Chinstrap               18.4            1.14 
-3 Gentoo                  15.0            0.981
+  <chr>                  <dbl>            <dbl>
+1 Adelie                  18.7             1.20
+2 Chinstrap               18.6             1.47
+3 Gentoo                  14.8             1.10
 ```
 :::
 :::
@@ -400,12 +397,6 @@ penguins %>%
 ```
 :::
 
-::: {.cell-output .cell-output-stderr}
-```
-Warning: Removed 2 rows containing non-finite values (stat_bin).
-```
-:::
-
 ::: {.cell-output-display}
 ![](TidyAnalysesInR_files/figure-html/unnamed-chunk-13-1.png){width=672}
 :::
@@ -427,12 +418,6 @@ penguins %>%
        x = "Bill Depth (mm)",
        y = "Bill Length (mm)")
 ```
-
-::: {.cell-output .cell-output-stderr}
-```
-Warning: Removed 2 rows containing missing values (geom_point).
-```
-:::
 
 ::: {.cell-output-display}
 ![](TidyAnalysesInR_files/figure-html/unnamed-chunk-14-1.png){width=672}
@@ -517,8 +502,9 @@ penguins %>%
                            shape = sex)) +
   geom_smooth(mapping = aes(x = bill_length_mm,
                             y = flipper_length_mm,
-                            color = species)) +
-  facet_grid(rows = vars(island), cols = vars(sex), scales = "free") +
+                            color = species),
+              method = "lm") +
+  facet_grid(island ~ sex, scales = "free") +
   labs(title = "Flipper and Bill Lengths by Species and Sex",
        x = "Bill Length (mm)",
        y = "Flipper Length(mm)") +
@@ -527,7 +513,20 @@ penguins %>%
 
 ::: {.cell-output .cell-output-stderr}
 ```
-`geom_smooth()` using method = 'loess' and formula 'y ~ x'
+`geom_smooth()` using formula 'y ~ x'
+```
+:::
+
+::: {.cell-output .cell-output-stderr}
+```
+Warning in qt((1 - level)/2, df): NaNs produced
+```
+:::
+
+::: {.cell-output .cell-output-stderr}
+```
+Warning in max(ids, na.rm = TRUE): no non-missing arguments to max; returning
+-Inf
 ```
 :::
 

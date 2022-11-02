@@ -1,0 +1,35 @@
+---
+title: "Classical Inference Methods and Simulation-Based Inference"
+author: 
+  - "Dr. Gilbert" 
+  - "Dr. Duryea"
+format: html
+execute:
+  keep-md: true
+---
+
+```{r setup, include = FALSE}
+#Load in any packages you need
+library(tidyverse)
+
+#Read in any data
+
+```
+
+**Objectives:** 
+
+### Classical Statistics versus Simulation-Based Methods
+
+(I think this should go in another notebook...)
+
+In Classical Statistics, we make assumptions about the *distributions* governing an underlying data generating process. For example, in your Applied Statistics coursework, you almost surely made assumptions based on the Central Limit Theorem (the one that says the distribution of a particular sample statistic from random samples drawn from a population tend to be normal, as long as the size of the samples is large enough to overcome skew in the population). That normality assumption is usually satisfied, but it is a big assumption to make -- what if we can't assume that the sampling distribution is nearly normal? Perhaps we don't have lots of data or we are unsure of the true shape of the population distribution. What do we do then?
+
+#### Bootstrapping for Confidence Intervals and Single Sample Tests
+
+
+#### Permutation Tests for Group Comparisons
+
+
+
+
+
