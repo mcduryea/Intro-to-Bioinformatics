@@ -20,28 +20,28 @@ The order of the scripted notebooks encountered in the BIO422 *Introduction to B
 
 Part I: Introduction
 
-1. `SoftwareSetup`
-2. `MyFirstRepoAndCommit`
-3. `TidyAnalysesInR`
-4. `FromDescriptionToInference`
-5. `ClassicalInferenceAndSimulationBasedInference`
+1. `SoftwareSetup` (Draft: $\checkmark$, Final: ?)
+2. `MyFirstRepoAndCommit` (Draft: $\checkmark$, Final: ?)
+3. `TidyAnalysesInR` (Draft: $\checkmark$, Final: ?)
+4. `FromDescriptionToInference` (Draft: $\checkmark$, Final: ?)
+5. `ClassicalInferenceAndSimulationBasedInference` (Draft: $\checkmark$, Final: ?)
 
 Part II: Biostatistics
 
-6. `GeneratingHypotheses`
-7. `ExploratoryDataAnalysisAndReporting`
-8. `DataAnalysisInferenceAndReporting`
-9. `GitHubPagesAndPublishing`
+6. `GeneratingHypotheses` (Draft: $\checkmark$, Final: )
+7. `ExploratoryDataAnalysisAndReporting` (Draft: $\checkmark$ , Final: )
+8. `InferenceAndReporting` (Draft: , Final: )
+9. `GitHubPagesAndPublishing` (Draft: , Final: )
 
 Part III: Bioinformatics
 
 10. Katie on the genome, a basic introduction to bioinformatics, and replication (Part I).
-11. `IntroToRforBioinformatics`
+11. `IntroToRforBioinformatics` (Draft: $\checkmark$, Final: ?)
 12. Katie (Part II)
-13. `ReplicationOrigin_PartI`
-14. `ReplicationOrigin_PartII`
-15. `ReplicationOrigin_PartIII`
-16. `ReplicationOrigin_PartIV`
+13. `ReplicationOrigin_PartI` (Draft: $\checkmark$, Final: ?)
+14. `ReplicationOrigin_PartII` (Draft: $\checkmark$, Final: ?)
+15. `ReplicationOrigin_PartIII` (Draft: $\checkmark$, Final: ?)
+16. `ReplicationOrigin_PartIV` (Draft: $\checkmark$, Final: ?)
 17. `ReplicationOrigin_PartV` (push to project????) -- Build in a recap notebook to highlight our accomplishments, the assumptions we've made, and the work that still needs to be done to solve the problem in general??
 
 Part IV: Projects
