@@ -39,7 +39,9 @@ We'll start with the issue of *data snooping* below.
 
 We've looked at our *sample* penguins data already. We explored that data without making any hypotheses ahead of time. We searched for relationships within that data set and we were successful in finding some. How do we know that those *relationships*/*associations* aren't just noise in the data? Simply put, we don't! 
 
-Unfortunately, we can't go back on this now either. As ethical scientists, we can't use the `penguins_samp1` data for inference tasks because we know what those data say. We are now in a scenario where the data has informed which questions should be asked, whereas the data should only be used to answer the questions we had before we looked at it. To put it in terms analogous to school -- the *data* wrote the exam, so certainly the *data* will do well in answering the questions.
+Unfortunately, we can't go back on this now either. As ethical scientists, we can't use the `penguins_samp1` data for inference tasks because we know what those data say. We are now in a scenario where the data has informed which questions should be asked, whereas the data should only be used to answer the questions we had before we looked at it. To put it in terms analogous to school -- the *data* wrote the exam, so certainly the *data* has an advantage in answering the questions.
+
+**For Example:** In our exploratory data analysis, we saw that the [INSERT MISLEADING INSIGHT HERE]. If we test that hypothesis using the data from last time, it should be no surprise that we obtain a statistically significant result -- we *snooped* for it.
 
 ### Uncertainty and Errors in Statistics
 
@@ -47,7 +49,7 @@ Statistics helps us better understand the world around us by quantifying uncerta
 
 + **Confidence Intervals:** Provide a range of plausible values within which we expect a population parameter to live. For a 95% confidence interval, we would expect that if 100 independent random samples were collected and a confidence interval for our parameter of interest was built corresponding to each sample, approximately 95 of those confidence intervals would contain the true population parameter. 
 
-  + We don't take 100 independent random samples -- we take a single one? How do we know that the random sample we've obtained isn't one of those 5% of samples resulting in a confidence interval that doesn't contain the true population parameter? We don't -- we just know that it is more likely that we've obtained an interval that does contain the population parameter we are looking for.
+  + We don't take 100 independent random samples -- we take a single one. How do we know that the random sample we've obtained isn't one of those 5% of samples resulting in a confidence interval that doesn't contain the true population parameter? We don't -- we just know that it is more likely that we've obtained an interval that does contain the population parameter we are looking for.
   + If the cost of building an interval that misses the population parameter is quite high, then we'll need to change our confidence level. For example, building 99% confidence intervals, we expect only one out of every 100 random samples to result in a confidence interval that misses the population parameter.
   
 + **Hypothesis Tests:** In classical hypothesis testing, we assume a null claim ("*there's nothing to see here*") against an alternative. In doing so, our goal is to determine whether our data are compatible with the null claim or if the observed data is so extremely unlikely under the assumption that the null claim is true, that we should believe the alternative to be true instead. Like with confidence intervals, there is no guarantee that we come to the correct decision, even if all of our math is right and our samples are random. There are two types of errors that can be made.
@@ -63,9 +65,9 @@ Statistics helps us better understand the world around us by quantifying uncerta
 
 Since we've identified that our data can mislead us into erroneous conclusions, we should also be able to more concretely identify why we can no longer use the `penguins_samp1` data. All that exploratory work we've done has led us towards identifying those 5% of findings which are just attributable to the sampling error (noise in the data)! There are some things we can do to protect against this.
 
-+ **Don't:** Conduct exploratory analyses, find interesting associations in your data, and then run tests (or build confidence intervals) to confirm those findings. This is *data snooping* and is unethical statistics.
++ **Don't:** Conduct exploratory analyses, find interesting associations in your data, and then run tests (or build confidence intervals) on that same data to confirm those findings. This is *data snooping* and is unethical statistics.
 
-  + We can't let the data "write the exam and also *take* the exam".
+  + We can't let the data "*write* the exam and also *take* the exam".
   
 + **Bare Minimum:** If you are working with data that has already been collected and you have no opportunity to collect new data, you should randomly break your data up into an exploratory set (to explore and generate hypotheses) and a separate test set (to test those hypotheses on). In using this strategy, the test set should be completely unseen during the exploratory phase.
 + **Best (With Current Data):** If you have no opportunity to collect new data, refer back to the *Bare Minimum* above. Otherwise, if you are working with data that has already been collected and you'll be able to collect more, you can use your existing data to explore and generate hypotheses. Once you are done with this phase, you should register your hypotheses and collect a new (and independent) random sample of observations to test those hypotheses on.
@@ -77,3 +79,4 @@ Since we've identified that our data can mislead us into erroneous conclusions, 
 
 ### Your Task
 
+...

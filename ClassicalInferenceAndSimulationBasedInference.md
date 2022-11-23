@@ -8,13 +8,9 @@ execute:
   keep-md: true
 ---
 
-```{r setup, include = FALSE}
-#Load in any packages you need
-library(tidyverse)
 
-#Read in any data
-penguins_samp1 <- read_csv("C:/users/agilb/documents/github/intro-to-bioinformatics/data/penguins_samp1.csv")
-```
+
+
 
 **Objectives:** 
 
@@ -27,9 +23,17 @@ In your introductory statistics courses, you spent lots of time using confidence
 In Classical Statistics, we assume the Central Limit Theorem. That Theorem guarantees that the sampling distribution (the distribution of summary statistics for *all* samples of our size from the population) is approximately Normal. This allows us to
 
 + Use critical values from a *Normal* or *t*-distribution when building confidence intervals. As a reminder, confidence intervals are constructed using the following formula:
+
+
 $$\left(\text{point\_estimate}\right) \pm \left(\text{critical\_value}\right)\left(\text{standard\_error}\right)$$
+
+
 + Compute $p$-values using a test statistic and then computing a $p$-value using a *Normal* or *t*-distribution. As a reminder, our test statistics were computed as follows:
+
+
 $$\text{test\_statistic} = \frac{\left(\text{point\_estimate}\right) - \left(\text{null\_value}\right)}{\text{standard\_error}}$$
+
+
 
 While the Central Limit Theorem often applies, we can't always assume it. Simulation techniques are helpful in those situations.
 
@@ -41,7 +45,10 @@ If we are in a scenario where we are unable to assume that our underlying sampli
 
 As long as we are comfortable assuming that our sample data is *random* and *representative* of our population, then we can treat our sample data as if it were a population. We can then redraw samples of the same size out of it. We can do this over and over again, computing our sample statistic for each redrawn (*bootstrapped*) sample. Let's see that in action below, using our original `penguins_samp1` data.
 
-```{r}
+
+::: {.cell}
+
+```{.r .cell-code}
 n_samps <- 1000
 sample_means <- rep(NA, n_samps)
 for(i in 1:n_samps){
@@ -59,19 +66,46 @@ ggplot() +
        y = "")
 ```
 
+::: {.cell-output .cell-output-stderr}
+```
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+:::
+
+::: {.cell-output-display}
+![](ClassicalInferenceAndSimulationBasedInference_files/figure-html/unnamed-chunk-1-1.png){width=672}
+:::
+:::
+
+
 Through this process, we've built our own sampling distribution which isn't beholden to the normality assumption.
 
 ##### Bootstrapping a Confidence Interval
 
 Now that we've bootsrapped $1000$ sample means of flipper lengths, we can find the cutoff for the shortest $2.5$% of sample means and the longest $2.5$% of sample means -- that is, we look for the $2.5^{th}$ percentile and the $97.5^{th}$ percentile. The resulting interval between those two percentiles is a $95$% confidence interval. Let's do that with our bootstrapped sample results from above.
 
-```{r}
+
+::: {.cell}
+
+```{.r .cell-code}
 quantile(sample_means, c(0.025, 0.975))
 ```
 
-We can now claim, with $95$% confidence, that the population mean flipper length for penguins falls somewhere between `r round(quantile(sample_means, 0.025), 2)`mm and `r round(quantile(sample_means, 0.975), 2)`mm. Visually, what we've done appears below -- with the confidence interval bounds represented by the two vertical dashed lines.
+::: {.cell-output .cell-output-stdout}
+```
+    2.5%    97.5% 
+199.2273 206.5682 
+```
+:::
+:::
 
-```{r}
+
+We can now claim, with $95$% confidence, that the population mean flipper length for penguins falls somewhere between 199.23mm and 206.57mm. Visually, what we've done appears below -- with the confidence interval bounds represented by the two vertical dashed lines.
+
+
+::: {.cell}
+
+```{.r .cell-code}
 ggplot() +
   geom_histogram(aes(x = sample_means)) +
   geom_vline(aes(xintercept = quantile(sample_means, 0.025)),
@@ -87,6 +121,18 @@ ggplot() +
        y = "")
 ```
 
+::: {.cell-output .cell-output-stderr}
+```
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+:::
+
+::: {.cell-output-display}
+![](ClassicalInferenceAndSimulationBasedInference_files/figure-html/unnamed-chunk-3-1.png){width=672}
+:::
+:::
+
+
 Note that all of your confidence intervals from your introductory statistics work are symmetrical. Confidence intervals resulting from the Bootstrapping process are not necessarily symmetric. This means that Bootstrapped confidence intervals are particularly well-suited to data and populations which may be skewed!
 
 #### Hypothesis Tests for Single Group Parameters
@@ -95,7 +141,10 @@ We can also use this Bootstrapping procedure as an alternative to the classical 
 
 For example, perhaps we are wondering whether there is evidence to suggest that our penguin flipper lengths were pulled from a normal distribution whose mean is $200$mm and whose standard deviation is $7$mm. Let's draw $1000$ random samples of flipper lengths from this assumed population distribution, build the sampling distribution of mean flipper lengths, and then compare our sample to the Bootstrapped sampling distribution.
 
-```{r}
+
+::: {.cell}
+
+```{.r .cell-code}
 num_samps <- 1000
 bootstrapped_mean_lengths <- rep(NA, num_samps)
 
@@ -120,14 +169,37 @@ ggplot() +
        Y = "")
 ```
 
+::: {.cell-output .cell-output-stderr}
+```
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+:::
+
+::: {.cell-output-display}
+![](ClassicalInferenceAndSimulationBasedInference_files/figure-html/unnamed-chunk-4-1.png){width=672}
+:::
+:::
+
+
 Visually, we see that our sample is an outlier in the sampling distribution pulled from a population which is *normally distributed with mean $200$ and standard deviation $7$*. We can obtain a $p$-value for this Bootstrapped hypothesis test by counting the number of bootstrapped samples with sample statistics at least as extreme as ours and then dividing by the total number of Bootstrapped samples we constructed. As a reminder, if we are simply testing for a difference, we must multiply our $p$-value by $2$ to account for the idea that a difference can be *greater* or *less* than the assumed null value. Let's see that below:
 
-```{r}
+
+::: {.cell}
+
+```{.r .cell-code}
 num_extreme <- sum(bootstrapped_mean_lengths >= my_mean_flipper_length)
 
 bootstrapped_p_value <- 2*(num_extreme / num_samps)
 bootstrapped_p_value
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+[1] 0.012
+```
+:::
+:::
+
 
 Since we've obtained a Bootstrapped $p$-value below $0.05$, we have statistically significant evidence to suggest that our penguin flipper lengths do not come from a normal distribution with mean $200$mm and standard deviation $7$mm. Three things are possible here:
 
@@ -143,7 +215,10 @@ Next, we can permute (shuffle) the values in the `sex` column, creating a new gr
 
 Let's try it!
 
-```{r}
+
+::: {.cell}
+
+```{.r .cell-code}
 my_female_avg_flipper_length <- penguins_samp1 %>%
   filter(sex == "female") %>%
   summarize(mean = mean(flipper_length_mm, na.rm = TRUE)) %>%
@@ -187,11 +262,31 @@ ggplot() +
        subtitle = "Difference in Flipper Lengths by Sex",
        x = "Difference in Flipper Lengths (mm)",
        y = "")
+```
 
+::: {.cell-output .cell-output-stderr}
+```
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+:::
+
+::: {.cell-output-display}
+![](ClassicalInferenceAndSimulationBasedInference_files/figure-html/unnamed-chunk-6-1.png){width=672}
+:::
+
+```{.r .cell-code}
 extreme_samples <- sum(independent_differences >= my_difference)
 bootstrapped_p_value <- 2*(extreme_samples/num_samps)
 bootstrapped_p_value
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+[1] 0.914
+```
+:::
+:::
+
 
 The Bootstrapped $p$-value above indicates that our difference in average flipper lengths, where `sex` was a meaningful variable was not an outlier in the distribution of differences where `sex` was a truly meaningless variable. That is, there is no evidence here to suggest a difference in mean flipper lengths across the two sexes of penguin.
 
