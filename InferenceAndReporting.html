@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.584">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="You, Scientist">
+
+<title>Inference and Reporting</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="InferenceAndReporting_files/libs/clipboard/clipboard.min.js"></script>
+<script src="InferenceAndReporting_files/libs/quarto-html/quarto.js"></script>
+<script src="InferenceAndReporting_files/libs/quarto-html/popper.min.js"></script>
+<script src="InferenceAndReporting_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="InferenceAndReporting_files/libs/quarto-html/anchor.min.js"></script>
+<link href="InferenceAndReporting_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="InferenceAndReporting_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="InferenceAndReporting_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="InferenceAndReporting_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="InferenceAndReporting_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Inference and Reporting</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>You, Scientist </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="activity-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="activity-objectives">Activity Objectives</h2>
+<p>Throughout this activity, you’ll practice the following skills.</p>
+<ul>
+<li>Documenting and communicating a technical analysis.</li>
+<li>Conducting statistical inference and communicating the results of those analyses transparently and clearly.</li>
+<li>Choosing inferential techniques which are appropriate to answer your proposed research question(s).</li>
+<li>Connecting the results of inference back to your original questions of interest and your associated hypotheses.</li>
+<li>Transparently communicating your process by documenting and sharing your code in a manner that allows your research to be reproduced by other scientists.</li>
+<li>Building a conclusion which ties together your entire project, from identifying your initial questions, to generating hypotheses, and through the resolutions of those initial questions and whether your hypotheses were confirmed, rebutted, or your results were inconclusive.</li>
+</ul>
+</section>
+<section id="your-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="your-tasks">Your Tasks</h2>
+<p>Please complete the following tasks.</p>
+<ol type="1">
+<li>Re-open the R Project you created last time and open your Hypothesis Generating notebook.</li>
+<li>Add a new section to your notebook, titled <em>methodology</em> or <em>inference</em>.</li>
+<li>Write an introductory paragraph for this section highlighting that you’ll be using “new” data, which was unseen during the exploratory analyses you ran earlier. Outline your chosen inference methods, clearly explaining how they will help in answering your hypotheses that were refined at the end of the <em>exploratory analysis</em>. Identify whether you’ll be using classical methods or simulation methods, and discuss why.</li>
+<li>Run your tests and/or construct your intervals, being sure to include and describe your code in your report.</li>
+</ol>
+<ul>
+<li>Sharing your code is an important aspect of transparent science. In projects where a large code-base is utilized, researchers will either publish it as an appendix (so as not to distract from the discussion in the paper) or as an entire stand-alone repository.</li>
+</ul>
+<ol start="5" type="1">
+<li><p>Interpret the results of your tests and intervals and provide answers to your questions of interest. Perhaps your hypotheses were confirmed – very interesting! Perhaps your hypotheses were not confirmed (insignificant results), or maybe you even found results opposite to what your hypotheses suggested – also, very interesting! Provide a robust discussion regarding what can be taken away from your inferential analysis.</p></li>
+<li><p>Write a <em>conclusions</em> section into your notebook which recaps your entire report, from initial questions of interests, through hypothesis generation, and resolution. Include any future questions of interest that you or a future researcher could investigate using this data or additional data if it is possible to collect. Are there any <em>features</em>/<em>variables</em> which were missing from your data set that you would have liked to have access to?</p></li>
+<li><p>Return to the <em>abstract</em> and edit it to reflect the question(s) of interest that you attempted to answer in this report. You’ll additionally include your findings.</p></li>
+<li><p>Use the <em>Git</em> tab in the top-right of your RStudio window to <code>Pull -&gt; Commit -&gt; Push</code> changes to your Repository on GitHub.</p></li>
+</ol>
+<p>When all of this is done, you should have a nearly complete technical report. The sections you’ve written are the <em>abstract</em>, the <em>introduction</em>, the <em>exploratory analysis</em>, the <em>methodology</em>/<em>inference</em> section, and a <em>conclusion</em>. Go back and proofread your report, you’ll be shown how to share your report out in our next notebook.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

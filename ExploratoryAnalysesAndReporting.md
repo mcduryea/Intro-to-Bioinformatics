@@ -1,5 +1,5 @@
 ---
-title: "Generating Hypotheses"
+title: "Exploratory Analyses and Reporting"
 author: "You, Scientist"
 format: html
 execute:
@@ -14,8 +14,9 @@ execute:
 
 Throughout this activity, you'll practice the following skills.
 
-
-
++ Documenting and communicating a technical analysis.
++ Conducting exploratory analyses and communicative the results of those analyses transparently and clearly.
++ Connecting exploratory analyses to hypothesis generation, transparently communicating your process and highlighting that hypotheses will be tested on data which was held out during your exploratory analysis.
 
 ## Your Tasks
 
@@ -29,4 +30,5 @@ Please complete the following tasks.
 6. Use the *Git* tab in the top-right of your RStudio window to `Pull -> Commit -> Push` changes to your Repository on GitHub.
 
 When all of this is done, you should have three subsections of a technical report completed. These are the *abstract*, the *introduction*, and the *exploratory analysis*. We'll add to this report in the next notebook.
+
 
