@@ -30,8 +30,8 @@ Part II: Biostatistics
 
 6. `GeneratingHypotheses` (Draft: $\checkmark$, Final: )
 7. `ExploratoryDataAnalysisAndReporting` (Draft: $\checkmark$ , Final: )
-8. `InferenceAndReporting` (Draft: , Final: )
-9. `GitHubPagesAndPublishing` (Draft: , Final: )
+8. `InferenceAndReporting` (Draft: $\checkmark$, Final: )
+9. `GitHubPagesAndPublishing` (Draft: $\checkmark$, Final: )
 
 Part III: Bioinformatics
 
