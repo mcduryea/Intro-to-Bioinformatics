@@ -61,9 +61,11 @@ Statistics helps us better understand the world around us by quantifying uncerta
   + **Type I Error:** A Type I error occurs when we reject the null hypothesis, but the null hypothesis correctly describes the reality we live in. The likelihood of such an error is $\alpha$, the level of significance of the test. That is, for a test done at the 5% level of significance, the likelihood of rejecting a null hypothesis when we shouldn't have is 5%.
   + **Type II Error:** A Type II error occurs when we fail to reject the null hypothesis, but the null hypothesis does not reflect the reality we live in -- the alternative hypothesis is the one compatible with our reality. The likelihood of a Type II error is more difficult to obtain. It depends on the true effect-size, the sample size, and $\alpha$. The probability of a Type II error is often described as one minus the *power* of the test.
   
-**Perhaps more discussion is needed here -- certainly more clarity would be good**
+Both Type I and Type II Error can occur in biological datasets. For example, if our sample size was too small, we could encounter Type II error because we did not collect enough data to detect meaningful differences. This is common in the field of ecology, where each datapoint is labor-intensive to collect.
 
-***
+Type I error is more likely to occur with VERY large sample sizes or when our sample is not representative. If our sample size is very large, we might pick up on small differences that are not biologically meaningful. If our sample is different from the population, we might detect a difference that is meaningful for our sample, but not the entire population.
+
+This is why it is important to think about experimental design before collecting data!
 
 ### Snooping for Errors
 
@@ -82,5 +84,8 @@ Since we've identified that our data can mislead us into erroneous conclusions, 
 ***
 
 ### Your Task
-
++ With your group, select one of the biological datasets available. You can read the description of the dataset and variables, but don't snoop!
++ Following the principles outlined above, decide on a hypothesis that you could test with this dataset. Formulate both a null and alternative hypothesis.
++ Design and conduct an analysis of the dataset. Can you reject your null hypothesis?
++ Once your analysis is complete, follow the instructions for publishing your notebook to GitHub.
 ...

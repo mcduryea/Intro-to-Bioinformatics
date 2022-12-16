@@ -199,7 +199,11 @@ The Bootstrapped $p$-value above indicates that our difference in average flippe
 
 ## Your Tasks
 
-Add some tasks here for students to test their understanding.
++ With your group, decide on another question you would like to test with the penguins dataset.
++ Write an alternative and null hypothesis that relates to your question.
++ Decide how you can adjust the code above to test your question using bootstrapping methods.
++ Conduct your analysis. Does the bootstrapping analysis support your hypothesis?
++ Publish your completed notebook to GitHub.
 
 ***
 
