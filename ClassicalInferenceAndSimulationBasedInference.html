@@ -181,10 +181,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(sample_means, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    2.5%    97.5% 
-199.2273 206.5682 </code></pre>
+199.0000 206.5239 </code></pre>
 </div>
 </div>
-<p>We can now claim, with <span class="math inline">\(95\)</span>% confidence, that the population mean flipper length for penguins falls somewhere between 199.23mm and 206.57mm. Visually, what we’ve done appears below – with the confidence interval bounds represented by the two vertical dashed lines.</p>
+<p>We can now claim, with <span class="math inline">\(95\)</span>% confidence, that the population mean flipper length for penguins falls somewhere between 199mm and 206.52mm. Visually, what we’ve done appears below – with the confidence interval bounds represented by the two vertical dashed lines.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sample_means)) <span class="sc">+</span></span>
@@ -250,7 +250,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>bootstrapped_p_value <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(num_extreme <span class="sc">/</span> num_samps)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>bootstrapped_p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.012</code></pre>
+<pre><code>[1] 0.01</code></pre>
 </div>
 </div>
 <p>Since we’ve obtained a Bootstrapped <span class="math inline">\(p\)</span>-value below <span class="math inline">\(0.05\)</span>, we have statistically significant evidence to suggest that our penguin flipper lengths do not come from a normal distribution with mean <span class="math inline">\(200\)</span>mm and standard deviation <span class="math inline">\(7\)</span>mm. Three things are possible here:</p>
@@ -319,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>bootstrapped_p_value <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(extreme_samples<span class="sc">/</span>num_samps)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>bootstrapped_p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.914</code></pre>
+<pre><code>[1] 0.954</code></pre>
 </div>
 </div>
 <p>The Bootstrapped <span class="math inline">\(p\)</span>-value above indicates that our difference in average flipper lengths, where <code>sex</code> was a meaningful variable was not an outlier in the distribution of differences where <code>sex</code> was a truly meaningless variable. That is, there is no evidence here to suggest a difference in mean flipper lengths across the two sexes of penguin.</p>

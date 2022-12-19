@@ -16,18 +16,18 @@ The order of the scripted notebooks encountered in the BIO422 *Introduction to B
 
 Part I: Introduction
 
-1. `SoftwareSetup` (Draft: $\checkmark$, Final: ?)
-2. `MyFirstRepoAndCommit` (Draft: $\checkmark$, Final: ?)
-3. `TidyAnalysesInR` (Draft: $\checkmark$, Final: ?)
-4. `FromDescriptionToInference` (Draft: $\checkmark$, Final: ?)
-5. `ClassicalInferenceAndSimulationBasedInference` (Draft: $\checkmark$, Final: ?)
+1.  `SoftwareSetup` (Draft: $\checkmark$, Final: ?)
+2.  `MyFirstRepoAndCommit` (Draft: $\checkmark$, Final: ?)
+3.  `TidyAnalysesInR` (Draft: $\checkmark$, Final: ?)
+4.  `FromDescriptionToInference` (Draft: $\checkmark$, Final: ?)
+5.  `ClassicalInferenceAndSimulationBasedInference` (Draft: $\checkmark$, Final: ?)
 
 Part II: Biostatistics
 
-6. `GeneratingHypotheses` (Draft: $\checkmark$, Final: )
-7. `ExploratoryDataAnalysisAndReporting` (Draft: $\checkmark$ , Final: )
-8. `InferenceAndReporting` (Draft: $\checkmark$, Final: )
-9. `GitHubPagesAndPublishing` (Draft: $\checkmark$, Final: )
+6.  `GeneratingHypotheses` (Draft: $\checkmark$, Final: )
+7.  `ExploratoryDataAnalysisAndReporting` (Draft: $\checkmark$ , Final: )
+8.  `InferenceAndReporting` (Draft: $\checkmark$, Final: )
+9.  `GitHubPagesAndPublishing` (Draft: $\checkmark$, Final: )
 
 Part III: Bioinformatics
 
@@ -44,8 +44,8 @@ Part IV: Projects
 
 Unused
 
-1. `GenomeAssembly_Intro`
-2. `GenomeAssembly_PartI`
-3. `GenomeAssembly_PartII`
-4. `GenomeAssembly_PartIII`
-5. `GenomeAssembly_PartIV`
+1.  `GenomeAssembly_Intro`
+2.  `GenomeAssembly_PartI`
+3.  `GenomeAssembly_PartII`
+4.  `GenomeAssembly_PartIII`
+5.  `GenomeAssembly_PartIV`

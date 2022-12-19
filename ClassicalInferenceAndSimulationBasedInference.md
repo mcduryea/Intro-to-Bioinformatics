@@ -94,13 +94,13 @@ quantile(sample_means, c(0.025, 0.975))
 ::: {.cell-output .cell-output-stdout}
 ```
     2.5%    97.5% 
-199.2273 206.5682 
+199.0000 206.5239 
 ```
 :::
 :::
 
 
-We can now claim, with $95$% confidence, that the population mean flipper length for penguins falls somewhere between 199.23mm and 206.57mm. Visually, what we've done appears below -- with the confidence interval bounds represented by the two vertical dashed lines.
+We can now claim, with $95$% confidence, that the population mean flipper length for penguins falls somewhere between 199mm and 206.52mm. Visually, what we've done appears below -- with the confidence interval bounds represented by the two vertical dashed lines.
 
 
 ::: {.cell}
@@ -195,7 +195,7 @@ bootstrapped_p_value
 
 ::: {.cell-output .cell-output-stdout}
 ```
-[1] 0.012
+[1] 0.01
 ```
 :::
 :::
@@ -282,7 +282,7 @@ bootstrapped_p_value
 
 ::: {.cell-output .cell-output-stdout}
 ```
-[1] 0.914
+[1] 0.954
 ```
 :::
 :::
