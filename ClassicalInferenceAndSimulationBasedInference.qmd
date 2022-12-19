@@ -203,10 +203,8 @@ The Bootstrapped $p$-value above indicates that our difference in average flippe
 + Write an alternative and null hypothesis that relates to your question.
 + Decide how you can adjust the code above to test your question using bootstrapping methods.
 + Conduct your analysis. Does the bootstrapping analysis support your hypothesis?
++ Be sure your analysis is well documented and described in your notebook. Envision your notebook as your methodology that you're sharing with the scientific community. 
 + Publish your completed notebook to GitHub.
 
-***
-
-## Summary
 
 

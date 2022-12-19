@@ -87,5 +87,6 @@ Since we've identified that our data can mislead us into erroneous conclusions, 
 + With your group, select one of the biological datasets available. You can read the description of the dataset and variables, but don't snoop!
 + Following the principles outlined above, decide on a hypothesis that you could test with this dataset. Formulate both a null and alternative hypothesis.
 + Design and conduct an analysis of the dataset. Can you reject your null hypothesis?
++ Be sure your analysis is well documented and described in your notebook. Envision your notebook as your methodology that you're sharing with the scientific community. 
 + Once your analysis is complete, follow the instructions for publishing your notebook to GitHub.
 ...
