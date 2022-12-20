@@ -58,7 +58,7 @@ Great! You've now built an Rproject inside of your repository. Among other thing
     execute:
       keep-md: true
     ```
-  
+
 + Replace the "Quarto" header with *Palmer Penguins*
 + Replace the text below the header with an informative blurb.
 + Delete all of the text and code cells below -- it will be better to build the rest from scratch.
@@ -66,9 +66,13 @@ Great! You've now built an Rproject inside of your repository. Among other thing
 
   + Inside the grey code chunk, type the three lines below and run each line either with `ctrl+Enter`/`cmd+Return`, or run the entire chunk using the green "play" button in the top-right corner of the code chunk.
     ```{r}
+    #Load the tidyverse
     library(tidyverse)
-    library(palmerpenguins)
     
+    #Read the penguins_samp1 data file from github
+    penguins <- read_csv("https://raw.githubusercontent.com/mcduryea/Intro-to-Bioinformatics/main/data/penguins_samp1.csv")
+    
+    #See the first six rows of the data we've read in to our notebook
     penguins %>% head()
     ```
   

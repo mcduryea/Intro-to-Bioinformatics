@@ -65,7 +65,7 @@ Great! You've now built an Rproject inside of your repository. Among other thing
     ```
     :::
 
-  
+
 + Replace the "Quarto" header with *Palmer Penguins*
 + Replace the text below the header with an informative blurb.
 + Delete all of the text and code cells below -- it will be better to build the rest from scratch.
@@ -76,6 +76,7 @@ Great! You've now built an Rproject inside of your repository. Among other thing
     ::: {.cell}
     
     ```{.r .cell-code}
+    #Load the tidyverse
     library(tidyverse)
     ```
     
@@ -103,22 +104,44 @@ Great! You've now built an Rproject inside of your repository. Among other thing
     :::
     
     ```{.r .cell-code}
-    library(palmerpenguins)
+    #Read the penguins_samp1 data file from github
+    penguins <- read_csv("https://raw.githubusercontent.com/mcduryea/Intro-to-Bioinformatics/main/data/penguins_samp1.csv")
+    ```
     
+    ::: {.cell-output .cell-output-stderr}
+    ```
+    Rows: 44 Columns: 8
+    ```
+    :::
+    
+    ::: {.cell-output .cell-output-stderr}
+    ```
+    ── Column specification ────────────────────────────────────────────────────────
+    Delimiter: ","
+    chr (3): species, island, sex
+    dbl (5): bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, year
+    
+    ℹ Use `spec()` to retrieve the full column specification for this data.
+    ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+    ```
+    :::
+    
+    ```{.r .cell-code}
+    #See the first six rows of the data we've read in to our notebook
     penguins %>% head()
     ```
     
     ::: {.cell-output .cell-output-stdout}
     ```
     # A tibble: 6 × 8
-      species island    bill_length_mm bill_depth_mm flipper_l…¹ body_…² sex    year
-      <fct>   <fct>              <dbl>         <dbl>       <int>   <int> <fct> <int>
-    1 Adelie  Torgersen           39.1          18.7         181    3750 male   2007
-    2 Adelie  Torgersen           39.5          17.4         186    3800 fema…  2007
-    3 Adelie  Torgersen           40.3          18           195    3250 fema…  2007
-    4 Adelie  Torgersen           NA            NA            NA      NA <NA>   2007
-    5 Adelie  Torgersen           36.7          19.3         193    3450 fema…  2007
-    6 Adelie  Torgersen           39.3          20.6         190    3650 male   2007
+      species   island bill_length_mm bill_depth_mm flipper_le…¹ body_…² sex    year
+      <chr>     <chr>           <dbl>         <dbl>        <dbl>   <dbl> <chr> <dbl>
+    1 Adelie    Dream            43.2          18.5          192    4100 male   2008
+    2 Adelie    Dream            44.1          19.7          196    4400 male   2007
+    3 Chinstrap Dream            49            19.5          210    3950 male   2008
+    4 Gentoo    Biscoe           48.4          14.4          203    4625 fema…  2009
+    5 Gentoo    Biscoe           59.6          17            230    6050 male   2007
+    6 Adelie    Biscoe           37.9          18.6          172    3150 fema…  2007
     # … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g
     ```
     :::
