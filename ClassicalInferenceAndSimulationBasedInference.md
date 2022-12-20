@@ -23,17 +23,9 @@ In your introductory statistics courses, you spent lots of time using confidence
 In Classical Statistics, we assume the Central Limit Theorem. That Theorem guarantees that the sampling distribution (the distribution of summary statistics for *all* samples of our size from the population) is approximately Normal. This allows us to
 
 + Use critical values from a *Normal* or *t*-distribution when building confidence intervals. As a reminder, confidence intervals are constructed using the following formula:
-
-
 $$\left(\text{point\_estimate}\right) \pm \left(\text{critical\_value}\right)\left(\text{standard\_error}\right)$$
-
-
 + Compute $p$-values using a test statistic and then computing a $p$-value using a *Normal* or *t*-distribution. As a reminder, our test statistics were computed as follows:
-
-
 $$\text{test\_statistic} = \frac{\left(\text{point\_estimate}\right) - \left(\text{null\_value}\right)}{\text{standard\_error}}$$
-
-
 
 While the Central Limit Theorem often applies, we can't always assume it. Simulation techniques are helpful in those situations.
 
@@ -94,13 +86,13 @@ quantile(sample_means, c(0.025, 0.975))
 ::: {.cell-output .cell-output-stdout}
 ```
     2.5%    97.5% 
-199.0000 206.5239 
+198.9540 206.6375 
 ```
 :::
 :::
 
 
-We can now claim, with $95$% confidence, that the population mean flipper length for penguins falls somewhere between 199mm and 206.52mm. Visually, what we've done appears below -- with the confidence interval bounds represented by the two vertical dashed lines.
+We can now claim, with $95$% confidence, that the population mean flipper length for penguins falls somewhere between 198.95mm and 206.64mm. Visually, what we've done appears below -- with the confidence interval bounds represented by the two vertical dashed lines.
 
 
 ::: {.cell}
@@ -282,7 +274,7 @@ bootstrapped_p_value
 
 ::: {.cell-output .cell-output-stdout}
 ```
-[1] 0.954
+[1] 0.908
 ```
 :::
 :::
@@ -294,10 +286,12 @@ The Bootstrapped $p$-value above indicates that our difference in average flippe
 
 ## Your Tasks
 
-Add some tasks here for students to test their understanding.
++ With your group, decide on another question you would like to test with the penguins dataset.
++ Write an alternative and null hypothesis that relates to your question.
++ Decide how you can adjust the code above to test your question using bootstrapping methods.
++ Conduct your analysis. Does the bootstrapping analysis support your hypothesis?
++ Be sure your analysis is well documented and described in your notebook. Envision your notebook as your methodology that you're sharing with the scientific community. 
++ Publish your completed notebook to GitHub.
 
-***
-
-## Summary
 
 

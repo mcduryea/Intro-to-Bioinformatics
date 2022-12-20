@@ -13,7 +13,7 @@ execute:
 library(tidyverse)
 
 #Read in any data
-penguins_samp1 <- read_csv("C:/users/agilb/documents/github/intro-to-bioinformatics/data/penguins_samp1.csv")
+penguins_samp1 <- read_csv("https://raw.githubusercontent.com/mcduryea/Intro-to-Bioinformatics/main/data/penguins_samp1.csv")
 ```
 
 **Objectives:** 
