@@ -16,11 +16,7 @@ Welcome to BIO422, Bioinformatics. This is a course that will pull together your
 
 There's quite a bit of software to set up for our course. We hope that most of this setup can be done outside of class time, but Dr. Duryea and Dr. Gilbert will be available to help troubleshoot any issues that arise. Much of this document is summarized from the [Happy Git with R](https://happygitwithr.com/) book. As that book mentions, all of this work is well worth it in the end -- just stick with it and reach out for help when you need it.
 
-Setup instructions for Windows, macOS, and linux follow. For convenience, if you prefer to follow video setup instructions, those are below.
-
-+ Full Windows Setup (link to come, Adam will record)
-+ Full mac setup (link to come, Katie will record)
-+ Full (Ubuntu) linux setup (link to come, Adam will record)
+Setup instructions for Windows and macOS follow.
 
 ## Software
 
