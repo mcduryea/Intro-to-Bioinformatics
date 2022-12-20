@@ -23,9 +23,9 @@ In this activity, we'll achieve the following goals.
 + Navigate to [GitHub](https://www.github.com) and log in, if necessary.
 + Identify the `+` icon in the top-right corner of the webpage. Click on it, and select *New Repository*.
 
-  + In the *repository name* field, type `PalmerPenguinsAnalysis`.
+  + In the *repository name* field, type `BioStatisticsAnalysis`.
   + Include a meaningful description.
-  + You may choose to leave the repository as Public or switch it to Private.
+  + Please leave the repository as Public -- you can talk to Dr. Gilbert or Dr. Duryea if you have concerns about this.
   + Click the checkbox to *Add a README file*.
   + You can leave both `.gitignore` and `license` set to *None* for now.
   + Click the green button to *Create Repository*.
@@ -40,7 +40,7 @@ Congratulations; you've created your first GitHub repository! It's pretty boring
 + Choose to create a new project from *Version Control*.
   
   + Choose *Git* as the version control system.
-  + Paste the URL to your *PalmerPenguinsAnalysis* repository into the URL. The project directory name field will auto-populate.
+  + Paste the URL to your *BioStatisticsAnalysis* repository into the URL. The project directory name field will auto-populate.
   + Choose a location on your computer to house the project. I have a directory (folder) on my computer called *GitHub* and all of my local clones of repositories reside inside of it. You should do the same.
   + Check the box to *open in new session*
   + Click the button to *Create Project*
@@ -53,7 +53,8 @@ Great! You've now built an Rproject inside of your repository. Among other thing
 + Give your document the title *Palmer Penguins Initial Analysis*.
 + Add yourself as the Author of the document.
 + If you want a convenient interface with familiar formatting buttons (bold, italics, lists, etc.) to work in, select the box that says *use the visual editor*. If you prefer to work directly in markdown, then leave that box unchecked.
-+ In the YAML (Yet Another Markdown Language) header -- that's the chunk in between the triple hypens (\-\-\-) -- add the code below. This says that we'd like to keep the intermediate markdown file during the rendering process. The reason for this is that markdown files display nicely in GitHub.
++ Click the *Create* button.
++ In the YAML (Yet Another Markdown Language) header -- that's the chunk in between the triple hyphens (\-\-\-) -- add the code below to the bottom of the header (before the second set of hyphens). This says that we'd like to keep the intermediate markdown file during the rendering process. The reason for this is that markdown files display nicely in GitHub.
 
 
     ::: {.cell}
@@ -86,8 +87,8 @@ Great! You've now built an Rproject inside of your repository. Among other thing
     
     ::: {.cell-output .cell-output-stderr}
     ```
-    ✔ ggplot2 3.3.5     ✔ purrr   0.3.4
-    ✔ tibble  3.1.6     ✔ dplyr   1.0.9
+    ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+    ✔ tibble  3.1.8     ✔ dplyr   1.0.9
     ✔ tidyr   1.2.0     ✔ stringr 1.4.0
     ✔ readr   2.1.2     ✔ forcats 0.5.1
     ```
@@ -110,15 +111,15 @@ Great! You've now built an Rproject inside of your repository. Among other thing
     ::: {.cell-output .cell-output-stdout}
     ```
     # A tibble: 6 × 8
-      species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
-      <fct>   <fct>           <dbl>         <dbl>            <int>       <int> <fct>
-    1 Adelie  Torge…           39.1          18.7              181        3750 male 
-    2 Adelie  Torge…           39.5          17.4              186        3800 fema…
-    3 Adelie  Torge…           40.3          18                195        3250 fema…
-    4 Adelie  Torge…           NA            NA                 NA          NA <NA> 
-    5 Adelie  Torge…           36.7          19.3              193        3450 fema…
-    6 Adelie  Torge…           39.3          20.6              190        3650 male 
-    # … with 1 more variable: year <int>
+      species island    bill_length_mm bill_depth_mm flipper_l…¹ body_…² sex    year
+      <fct>   <fct>              <dbl>         <dbl>       <int>   <int> <fct> <int>
+    1 Adelie  Torgersen           39.1          18.7         181    3750 male   2007
+    2 Adelie  Torgersen           39.5          17.4         186    3800 fema…  2007
+    3 Adelie  Torgersen           40.3          18           195    3250 fema…  2007
+    4 Adelie  Torgersen           NA            NA            NA      NA <NA>   2007
+    5 Adelie  Torgersen           36.7          19.3         193    3450 fema…  2007
+    6 Adelie  Torgersen           39.3          20.6         190    3650 male   2007
+    # … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g
     ```
     :::
     :::
@@ -143,18 +144,17 @@ Now your local repository has some files that your GitHub repository doesn't hav
 + Click the check boxes next to all of the files listed.
 + Click the *Commit* button.
   
-  + Before doing anything with our Commit, let's 
   + Add a relevant Commit Message -- something like "Created Quarto Document -- PalmerPenguins_Initial".
   + Click the *Commit* button below the Commit Message dialogue box.
 + Close the message box that summarizes the Commit tasks.
 + Click the green *Push* arrow (it's pointing upwards) to push your committed changes to the main GitHub repository.
 + Navigate to your GitHub repository on the web and click refresh to see that the new files now appear there.
 
-Fantastic! You've now updated your main repository on GitHub with the new files you've created. Both your local and main GitHub repository are up to date and hold the same versions of all the project files.
+Fantastic! You've now updated your main repository on GitHub with the new files you've created. Both your local and main/remote GitHub repository are up to date and hold the same versions of all the project files.
 
 ## Summary
 
-Nice work through this activity. You've accomplished a lot here. You created a GitHub repository, used RStudio to clone the repository and created an Rproject to manage it, you created a Quarto Document which contained some text as well as your first few lines of R code, you rendered the document, and you reconciled all of the differences between the "origin" repository on GitHub and your local clone of it by first *Pulling* in any changes present on GitHub then *Committing* your local changes and *Pushing* them back out to GitHub.
+Nice work! You've accomplished a lot in this activity. You created a GitHub repository, used RStudio to clone the repository and created an Rproject to manage it, you created a Quarto Document which contained some text as well as your first few lines of R code, you rendered the document, and you reconciled all of the differences between the "origin" repository on GitHub and your local clone of it by first *Pulling* in any changes present on GitHub then *Committing* your local changes and *Pushing* them back out to GitHub.
 
 The major takeaways from this activity are summarized below.
 
@@ -172,7 +172,7 @@ The major takeaways from this activity are summarized below.
 
 + We can use Quarto Documents in RStudio to mix R code, text, and more into a reproducible analysis (more on this later on).
 
-  + GitHub can be used to host much more than just Quarto Documents -- in fact, your `PalmerPenguinsAnalysis` repository already contains lots of types of files.
+  + GitHub can be used to host much more than just Quarto Documents -- in fact, your `BioStatisticsAnalysis` repository already contains lots of types of files.
 
 + GitHub nicely displays markdown (`.md`) files directly within your repository. This means that people viewing your repository can see your work without needing to download and run all of your files. Try opening one of your `.rmd` or `.html` files from GitHub and notice how difficult they are to read when compared to the `.md` files.
 

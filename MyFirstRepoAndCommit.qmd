@@ -21,9 +21,9 @@ In this activity, we'll achieve the following goals.
 + Navigate to [GitHub](https://www.github.com) and log in, if necessary.
 + Identify the `+` icon in the top-right corner of the webpage. Click on it, and select *New Repository*.
 
-  + In the *repository name* field, type `PalmerPenguinsAnalysis`.
+  + In the *repository name* field, type `BioStatisticsAnalysis`.
   + Include a meaningful description.
-  + You may choose to leave the repository as Public or switch it to Private.
+  + Please leave the repository as Public -- you can talk to Dr. Gilbert or Dr. Duryea if you have concerns about this.
   + Click the checkbox to *Add a README file*.
   + You can leave both `.gitignore` and `license` set to *None* for now.
   + Click the green button to *Create Repository*.
@@ -38,7 +38,7 @@ Congratulations; you've created your first GitHub repository! It's pretty boring
 + Choose to create a new project from *Version Control*.
   
   + Choose *Git* as the version control system.
-  + Paste the URL to your *PalmerPenguinsAnalysis* repository into the URL. The project directory name field will auto-populate.
+  + Paste the URL to your *BioStatisticsAnalysis* repository into the URL. The project directory name field will auto-populate.
   + Choose a location on your computer to house the project. I have a directory (folder) on my computer called *GitHub* and all of my local clones of repositories reside inside of it. You should do the same.
   + Check the box to *open in new session*
   + Click the button to *Create Project*
@@ -91,14 +91,13 @@ Now your local repository has some files that your GitHub repository doesn't hav
 + Click the check boxes next to all of the files listed.
 + Click the *Commit* button.
   
-  + Before doing anything with our Commit, let's 
   + Add a relevant Commit Message -- something like "Created Quarto Document -- PalmerPenguins_Initial".
   + Click the *Commit* button below the Commit Message dialogue box.
 + Close the message box that summarizes the Commit tasks.
 + Click the green *Push* arrow (it's pointing upwards) to push your committed changes to the main GitHub repository.
 + Navigate to your GitHub repository on the web and click refresh to see that the new files now appear there.
 
-Fantastic! You've now updated your main repository on GitHub with the new files you've created. Both your local and main GitHub repository are up to date and hold the same versions of all the project files.
+Fantastic! You've now updated your main repository on GitHub with the new files you've created. Both your local and main/remote GitHub repository are up to date and hold the same versions of all the project files.
 
 ## Summary
 
@@ -120,7 +119,7 @@ The major takeaways from this activity are summarized below.
 
 + We can use Quarto Documents in RStudio to mix R code, text, and more into a reproducible analysis (more on this later on).
 
-  + GitHub can be used to host much more than just Quarto Documents -- in fact, your `PalmerPenguinsAnalysis` repository already contains lots of types of files.
+  + GitHub can be used to host much more than just Quarto Documents -- in fact, your `BioStatisticsAnalysis` repository already contains lots of types of files.
 
 + GitHub nicely displays markdown (`.md`) files directly within your repository. This means that people viewing your repository can see your work without needing to download and run all of your files. Try opening one of your `.rmd` or `.html` files from GitHub and notice how difficult they are to read when compared to the `.md` files.
 
