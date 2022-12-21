@@ -21,8 +21,8 @@ library(tidyverse)
 
 ::: {.cell-output .cell-output-stderr}
 ```
-✔ ggplot2 3.3.5     ✔ purrr   0.3.4
-✔ tibble  3.1.7     ✔ dplyr   1.0.9
+✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+✔ tibble  3.1.8     ✔ dplyr   1.0.9
 ✔ tidyr   1.2.0     ✔ stringr 1.4.0
 ✔ readr   2.1.2     ✔ forcats 0.5.1
 ```
@@ -59,7 +59,7 @@ We'll make better use of collaboration later in our course, but we are still get
 
 ### Accessing and Cloning Your Group Repo
 
-Check your e-mail (*if this is how we want to communicate with them*) for a list of your group members and a link to your shared group repository.
+Check Slack for a list of your group members and a link to your shared group repository. You'll have been added to a new restricted channel in Slack containing only your group members as well as Dr. Duryea and Dr. Gilbert.
 
 1. Navigate to the shared repository. 
 2. Hit the green *Code* button and copy the HTTPS link.
@@ -80,6 +80,6 @@ Check your e-mail (*if this is how we want to communicate with them*) for a list
   + Use the green arrow pointing upwards to *Push* your local files to "origin". 
 
 13. Confirm with your group-mates that everyone was able to push their files to "origin".
-14. If everyone was successful, make one last *Pull* to bring everyone elses notebook files in to your local repository.
+14. If everyone was successful, make one last *Pull* to bring everyone else's notebook files in to your local repository.
 
 And now we're ready to collaborate! See you in the next notebook.
