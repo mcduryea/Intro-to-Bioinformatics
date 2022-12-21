@@ -11,8 +11,8 @@ library(tidyverse)
 #library(palmerpenguins)
 library(kableExtra)
 
-penguins_samp1 <- read_csv("https://raw.githubusercontent.com/mcduryea/Intro-to-Bioinformatics/main/data/penguins_samp1.csv")
-penguins_samp2 <- read_csv("https://raw.githubusercontent.com/mcduryea/Intro-to-Bioinformatics/main/data/penguins_samp2.csv")
+#penguins_samp1 <- read_csv("https://raw.githubusercontent.com/mcduryea/Intro-to-Bioinformatics/main/data/penguins_samp1.csv")
+#penguins_samp2 <- read_csv("https://raw.githubusercontent.com/mcduryea/Intro-to-Bioinformatics/main/data/penguins_samp2.csv")
 ```
 
 ## Activity Objectives
