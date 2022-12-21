@@ -23,6 +23,10 @@ Now that we have some exposure to data analysis in R, let's get our first exposu
 -   Read in a real bacterial genome from a text file.
 -   Analyse the genome using the ideas and tools developed in the first part of the notebook.
 
+### Setup
+
+Open the project that you built last time, linking to your group repository, and open up your `Replication_<YOURNAME>.qmd` file. You'll be taking notes (documenting what you are doing and why), and writing/testing code in that notebook over the next several weeks. As you work through this notebook, add your work to `Replication_<YOURNAME>.qmd` -- you can *render* and `Pull -> Commit -> Push` as often as you like. Doing so will be helpful to your you and to your groupmates.
+
 ### Getting Started with R for Bioinformatics
 
 Let's start with lists of strings -- it will be really useful to be able to generate our own (fake) genomes. This will help us experiment with code on small examples, without the need to utilize an entire genome. Even a small, bacterial genome is typically over a thousand nucleotides long! The ability to generate strings of nucleotides will also help us to explore how efficient (or inefficient) our code is before we choose to run it on an entire genome.

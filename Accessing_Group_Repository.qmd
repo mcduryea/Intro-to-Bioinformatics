@@ -12,7 +12,7 @@ library(tidyverse)
 
 ## Preliminary Comments
 
-Over the course of the first few activities in our course, we've come a long way. You've gained some familiarity with R, used Quarto to build reproducible notebooks, many of you have had a crash course in programming (we'll continue learning and practicing more), and you've used a GitHub repository to track changes to your work along the way. As mentioned at the end of the last activity, you should be proud of what you've accomplished so far.
+Through the first few activities in our course, we've come a long way. You've gained some familiarity with R, used Quarto to build reproducible notebooks, many of you have had a crash course in programming (we'll continue learning and practicing more), and you've used a GitHub repository to track changes to your work along the way. As mentioned at the end of the last activity, you should be proud of what you've accomplished so far.
 
 Soon, we'll embark on our first real bioinformatics endeavor. Our goal will be to identify the section of a genome which sends the signal that genetic replication should begin. It is along this segment of the genome that DNA polymerase binds to DNA and begins unzipping and copying the sequence of nucleotides. We'll be asking questions about genetic code, searching for patterns, and finding clues about which sections of the genome signal for DNA polymerase to bind and begin replication. Each of you will benefit by having colleagues to bounce ideas off of, to test and share code, and to collaborate more generally. 
 
