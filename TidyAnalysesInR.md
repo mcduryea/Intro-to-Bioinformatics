@@ -26,7 +26,7 @@ This activity serves as an introduction to using R to interact with data. The pu
 
 When we open R/RStudio, we have access to basic R functionality. Often, we'll want to extend that functionality to perform specialized tasks. Developers in the R community write and publish packages which can be installed and used by R-users. We install packages with `install.packages("package_name")` and load packages into our current R session with `library(package_name)`. While packages only need to be *installed* once, they must be loaded in each R Session you intend to use them in (**note:** an R Session begins when R/RStudio are opened and ends when they are closed or terminated). For example, you've already run `install.packages("palmerpenguins")` and `library(palmerpenguins)` to install and load the `palmerpenguins` package in your `PalmerPenguins_Initial` Quarto notebook. You won't need to run `install.packages("palmerpenguins:)` again, but you will need to re-load the library when we open our notebook again. 
 
-+ Open an RStudio Session and then use `File -> Recent Projects` and select the `PalmerPenguinsAnalysis` project from the list to open it.
++ Open an RStudio Session and then use `File -> Recent Projects` and select the `BioStatisticsAnalysis` project from the list to open it.
 + Open your `PalmerPenguins_Initial` notebook.
 + Rerun the lines of code you wrote in that notebook. As a reminder, you can run lines of code with `ctrl+Enter`, `cmd+Return`, or by hitting the green *play* button in the top-right corner of the code chunk.
 
