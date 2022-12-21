@@ -43,7 +43,7 @@ We'll start with the issue of *data snooping* below.
 
 We've looked at our *sample* penguins data already. We explored that data without making any hypotheses ahead of time. We searched for relationships within that data set and we were successful in finding some. How do we know that those *relationships*/*associations* aren't just noise in the data? Simply put, we don't! 
 
-Unfortunately, we can't go back on this now either. As ethical scientists, we can't use the `penguins_samp1` data for inference tasks because we know what those data say. We are now in a scenario where the data has informed which questions should be asked, whereas the data should only be used to answer the questions we had before we looked at it. To put it in terms analogous to school -- the *data* wrote the exam, so certainly the *data* has an advantage in answering the questions.
+Unfortunately, we can't go back on this now either. As ethical scientists, we can't use the `penguins_samp1` data for inference tasks because we know what those data say. We are now in a scenario where the data has informed which questions should be asked, whereas the data should only be used to answer the questions we had before we looked at it. To put it in terms analogous to schooling -- the *data* wrote the exam, so certainly the *data* has an advantage in answering the questions.
 
 **For Example:** In our exploratory data analysis, we saw that the [INSERT MISLEADING INSIGHT HERE]. If we test that hypothesis using the data from last time, it should be no surprise that we obtain a statistically significant result -- we *snooped* for it.
 
@@ -84,9 +84,12 @@ Since we've identified that our data can mislead us into erroneous conclusions, 
 ***
 
 ### Your Task
-+ With your group, select one of the biological datasets available. You can read the description of the dataset and variables, but don't snoop!
+
+Over the next several class meetings you will, 
+
++ Select one of the biological datasets available. You can read the description of the dataset and variables, but don't snoop!
 + Following the principles outlined above, decide on a hypothesis that you could test with this dataset. Formulate both a null and alternative hypothesis.
 + Design and conduct an analysis of the dataset. Can you reject your null hypothesis?
 + Be sure your analysis is well documented and described in your notebook. Envision your notebook as your methodology that you're sharing with the scientific community. 
-+ Once your analysis is complete, follow the instructions for publishing your notebook to GitHub.
-...
++ Once your analysis is complete, follow the `Pull -> Commit -> Push` workflow for publishing your notebook to your GitHub Repository.
+
