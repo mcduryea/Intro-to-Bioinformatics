@@ -183,10 +183,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(sample_means, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    2.5%    97.5% 
-199.1294 202.2787 </code></pre>
+199.0373 202.2575 </code></pre>
 </div>
 </div>
-<p>We can now claim, with <span class="math inline">\(95\)</span>% confidence, that the population mean flipper length for penguins falls somewhere between 199.13mm and 202.28mm. Visually, what we’ve done appears below – with the confidence interval bounds represented by the two vertical dashed lines.</p>
+<p>We can now claim, with <span class="math inline">\(95\)</span>% confidence, that the population mean flipper length for penguins falls somewhere between 199.04mm and 202.26mm. Visually, what we’ve done appears below – with the confidence interval bounds represented by the two vertical dashed lines.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sample_means)) <span class="sc">+</span></span>
@@ -252,12 +252,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>bootstrapped_p_value <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(num_extreme <span class="sc">/</span> num_samps)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>bootstrapped_p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.026</code></pre>
+<pre><code>[1] 0.036</code></pre>
 </div>
 </div>
 <p>Since we’ve obtained a Bootstrapped <span class="math inline">\(p\)</span>-value below <span class="math inline">\(0.05\)</span>, we have statistically significant evidence to suggest that our penguin flipper lengths do not come from a normal distribution with mean <span class="math inline">\(200\)</span>mm and standard deviation <span class="math inline">\(5\)</span>mm. Three things are possible here:</p>
 <ul>
-<li>The population mean is truly greater than <span class="math inline">\(200\)</span>mm</li>
+<li>The population mean is truly different than <span class="math inline">\(200\)</span>mm</li>
 <li>The population standard deviation is truly greater than <span class="math inline">\(5mm\)</span></li>
 <li>The overall population distribution is not a normal distribution at all</li>
 </ul>
@@ -332,12 +332,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="your-tasks" class="level2">
 <h2 class="anchored" data-anchor-id="your-tasks">Your Tasks</h2>
 <ul>
-<li>With your group, decide on another question you would like to test with the penguins dataset.</li>
+<li>Decide on another question you would like to test with the penguins dataset.</li>
 <li>Write an alternative and null hypothesis that relates to your question.</li>
 <li>Decide how you can adjust the code above to test your question using bootstrapping methods.</li>
 <li>Conduct your analysis. Does the bootstrapping analysis support your hypothesis?</li>
-<li>Be sure your analysis is well documented and described in your notebook. Envision your notebook as your methodology that you’re sharing with the scientific community.</li>
-<li>Use the <code>Pull -&gt; Commit -&gt; Push</code> workflow to publish your completed notebook to GitHub.</li>
+<li>Be sure your analysis is well documented and described in your notebook. Again, envision your notebook as your methodology that you’re sharing with the scientific community.</li>
+<li>Use the <code>Pull -&gt; Commit -&gt; Push</code> workflow to publish your completed notebook to your GitHub repository.</li>
 </ul>
 </section>
 

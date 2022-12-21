@@ -86,13 +86,13 @@ quantile(sample_means, c(0.025, 0.975))
 ::: {.cell-output .cell-output-stdout}
 ```
     2.5%    97.5% 
-199.1294 202.2787 
+199.0373 202.2575 
 ```
 :::
 :::
 
 
-We can now claim, with $95$% confidence, that the population mean flipper length for penguins falls somewhere between 199.13mm and 202.28mm. Visually, what we've done appears below -- with the confidence interval bounds represented by the two vertical dashed lines.
+We can now claim, with $95$% confidence, that the population mean flipper length for penguins falls somewhere between 199.04mm and 202.26mm. Visually, what we've done appears below -- with the confidence interval bounds represented by the two vertical dashed lines.
 
 
 ::: {.cell}
@@ -187,7 +187,7 @@ bootstrapped_p_value
 
 ::: {.cell-output .cell-output-stdout}
 ```
-[1] 0.026
+[1] 0.036
 ```
 :::
 :::
@@ -195,7 +195,7 @@ bootstrapped_p_value
 
 Since we've obtained a Bootstrapped $p$-value below $0.05$, we have statistically significant evidence to suggest that our penguin flipper lengths do not come from a normal distribution with mean $200$mm and standard deviation $5$mm. Three things are possible here:
 
-+ The population mean is truly greater than $200$mm
++ The population mean is truly different than $200$mm
 + The population standard deviation is truly greater than $5mm$
 + The overall population distribution is not a normal distribution at all
 
@@ -286,12 +286,9 @@ The Bootstrapped $p$-value above indicates that our difference in average flippe
 
 ## Your Tasks
 
-+ With your group, decide on another question you would like to test with the penguins dataset.
++ Decide on another question you would like to test with the penguins dataset.
 + Write an alternative and null hypothesis that relates to your question.
 + Decide how you can adjust the code above to test your question using bootstrapping methods.
 + Conduct your analysis. Does the bootstrapping analysis support your hypothesis?
-+ Be sure your analysis is well documented and described in your notebook. Envision your notebook as your methodology that you're sharing with the scientific community. 
-+ Use the `Pull -> Commit -> Push` workflow to publish your completed notebook to GitHub.
-
-
-
++ Be sure your analysis is well documented and described in your notebook. Again, envision your notebook as your methodology that you're sharing with the scientific community.
++ Use the `Pull -> Commit -> Push` workflow to publish your completed notebook to your GitHub repository.
