@@ -16,9 +16,9 @@ library(tidyverse)
 
 ## Preliminary Thoughts
 
-Welcome back! Today we begin to tackle our first *real* bioinformatics application. We'll be seeking out the section of the genome which signals for replication of the genetic code. We'll continue using short, randomly generated strings of nucleotides to help us built and test code but then we'll apply it to the *Vibrio Cholerae* genome (and other bacterial genomes) to obtain real results.
+Welcome back! Today we begin to tackle our first *real* bioinformatics application. We'll be seeking out the section of the genome which signals for replication of the genetic code. We'll continue using short, randomly generated strings of nucleotides to help us build and test code but then we'll apply it to the *Vibrio Cholerae* genome (and other bacterial genomes) to obtain real results.
 
-Now, open up RStudio, open the project that you built last time to manage your group repository, and open up your `Replication_<YOURNAME>.qmd` file. You'll be completing the tasks outlined here in that notebook. Be sure to add your own discussion throughout, rather than simply using your notebook as a "code-container". Your groupmates and your future self will thank you.
+Now, open up RStudio, open the project that you built and connected to your group repository, and open up your `Replication_<YOURNAME>.qmd` file. Like last time, you'll be completing the tasks outlined here in that notebook. Be sure to add your own discussion throughout, rather than simply using your notebook as a "code-container". Your groupmates and your future self will thank you.
 
 Throughout the activity you'll be making progress on the Challenge tasks outlined in this `ReplicationOrigin_PartI` notebook. You are encouraged to *Push* your changes out to the "origin" repo, and to *Pull* in the changes made by your group-mates often. Your code will help them make progress, and their code will help you. When looking at your group-mates notebooks, please open their `*.html` files -- **do not** open and edit their `*.qmd` file. This will lead to badness that we don't want to encounter yet.
 

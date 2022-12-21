@@ -12,21 +12,21 @@ execute:
 
 ## Preliminary Thoughts
 
-Welcome back! Today we begin to tackle our first *real* bioinformatics application. We'll be seeking out the section of the genome which signals for replication of the genetic code. We'll continue using short, randomly generated strings of nucleotides to help us built and test code but then we'll apply it to the *Vibrio Cholerae* genome (and other bacterial genomes) to obtain real results.
+Welcome back! Today we begin to tackle our first *real* bioinformatics application. We'll be seeking out the section of the genome which signals for replication of the genetic code. We'll continue using short, randomly generated strings of nucleotides to help us build and test code but then we'll apply it to the *Vibrio Cholerae* genome (and other bacterial genomes) to obtain real results.
 
-Now, open up RStudio, open the project that you built last time to manage your group repository, and open up your `Replication_<YOURNAME>.qmd` file. You'll be completing the tasks outlined here in that notebook. Be sure to add your own discussion throughout, rather than simply using your notebook as a "code-container". Your groupmates and your future self will thank you.
+Now, open up RStudio, open the project that you built and connected to your group repository, and open up your `Replication_<YOURNAME>.qmd` file. Like last time, you'll be completing the tasks outlined here in that notebook. Be sure to add your own discussion throughout, rather than simply using your notebook as a "code-container". Your groupmates and your future self will thank you.
 
-Throughout the activity you'll be making progress on the Challenge tasks outlined in this `ReplicationOrigin_PartI` notebook. You are encouraged to *Push* your changes out to the "origin" repo, and to *Pull* in the changes made by your group-mates often. Your code will help them make progress, and their code will help you. When looking at your group-mates notebooks, please open their `*.html` files -- **do not** open and edit their `*.qmd` file. This will lead to badness that we don't want to encounter yet. 
+Throughout the activity you'll be making progress on the Challenge tasks outlined in this `ReplicationOrigin_PartI` notebook. You are encouraged to *Push* your changes out to the "origin" repo, and to *Pull* in the changes made by your group-mates often. Your code will help them make progress, and their code will help you. When looking at your group-mates notebooks, please open their `*.html` files -- **do not** open and edit their `*.qmd` file. This will lead to badness that we don't want to encounter yet.
 
 ## Notebook Objectives
 
 We'll be building on our previous work in the following ways:
 
-+ Learn to eliminate "single-use code" by encapsulating code in *functions* which can be easily applied to different genomes.
-+ Think about, and implement, techniques which will lead to efficient code.
-+ Expand your ability to count the frequency of each individual nucleotide within a genome to an ability to count the appearance of patterns in the genome.
-+ Build and execute functions to find "hidden messages" within the genome by identifying patterns appearing much more often than they would be expected to if a genome included nucleotides at random.
-+ Exploit transcription errors to narrow a search region for the *replication origin*. 
+-   Learn to eliminate "single-use code" by encapsulating code in *functions* which can be easily applied to different genomes.
+-   Think about, and implement, techniques which will lead to efficient code.
+-   Expand your ability to count the frequency of each individual nucleotide within a genome to an ability to count the appearance of patterns in the genome.
+-   Build and execute functions to find "hidden messages" within the genome by identifying patterns appearing much more often than they would be expected to if a genome included nucleotides at random.
+-   Exploit transcription errors to narrow a search region for the *replication origin*.
 
 ## The Search for the Replication Origin
 
@@ -65,11 +65,11 @@ nucleotide_frequency("ACTTGCGGGTATCGAG", "G")
 
 Notice that we define a function with the `function` keyword and provide the arguments/parameters it expects inside of parentheses. Functions can have any number of arguments and we can even supply default values if we wish (for example, I set the default for the `nucleotide` parameter to be `A`). Similar to the `for` loop and `if` statement, the body of the function appears between curly braces `{}` -- the indentation is not necessary in R, but it does improve readability. The body of the function contains the instructions to be run when the function is called, and the body ends with a `return()` statement, containing the object that is to be returned after the function has been applied to its inputs. The function is stored using the arrow operator (`<-`) and the object containing the function defines the function's name. The best part about functions is that we can use them over and over again!
 
-***
+------------------------------------------------------------------------
 
-**Challenge 1:**  Use the `sample()` function in conjunction with the `paste(..., collapse = "")` method to generate a random genome of length at least 2000. Use the `nucleotide_frequency()` function to count the frequency of Cytosine in the random genome you constructed. Are you surprised by the result? As a follow-up, what happens if you don't provide a second argument to the `nucleotide_frequency()` function? What is being counted in this case?
+**Challenge 1:** Use the `sample()` function in conjunction with the `paste(..., collapse = "")` method to generate a random genome of length at least 2000. Use the `nucleotide_frequency()` function to count the frequency of Cytosine in the random genome you constructed. Are you surprised by the result? As a follow-up, what happens if you don't provide a second argument to the `nucleotide_frequency()` function? What is being counted in this case?
 
-***
+------------------------------------------------------------------------
 
 
 ::: {.cell}
@@ -82,11 +82,11 @@ Notice that we define a function with the `function` keyword and provide the arg
 
 Okay, good work! We've seen how useful it can be to generate random genomes of various lengths. Let's make a function that we can reuse over and over again to generate a random genome of whatever size we would like.
 
-***
+------------------------------------------------------------------------
 
 **Challenge 2:** Build a function `rand_genome()` which takes a single parameter `k`, denoting the number of nucleotides in the genome we wish to generate. Your function should return a single genome string of length k.
 
-***
+------------------------------------------------------------------------
 
 
 ::: {.cell}
@@ -160,13 +160,42 @@ myList
 :::
 
 
-Now you are ready to take on a challenge.
+Now, let's combine these principles with what we know about loops to make a simple for loop that will "walk" through our string to return consecutive characters. This is useful because most genomes will be very long, unlike Dr. Gilbert's name.
 
-***
+For example, let's imagine we wanted our loop to go through Dr. Gilbert's name and store each pair of 2 consecutive characters in a list. We can call these pairs "2-mers". Here is how we might do that:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+generate_2_mers <- function(myString) {
+  list_2_mers <- c()
+
+  for(i in 1:(nchar(myString) - 1)){
+  list_2_mers <- list_2_mers %>%
+  append(str_sub(myString, start = i, end = i + 1))
+    }
+  return(list_2_mers)
+}
+
+generate_2_mers(myString)
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[1] "Gi" "il" "lb" "be" "er" "rt"
+```
+:::
+:::
+
+
+Now you are ready to take on a challenge. See if you can adapt the loop above to walk through a longer string (a random genome) and store consecutive substrings of 3 nucleotides.
+
+------------------------------------------------------------------------
 
 **Challenge 3:** Build a function called `generate_3_mers()` to generate all of the substrings of 3 nucleotides (we'll call these 3-mers) in a genome string. Your function should accept a single argument `gemomeString` and return a list containing all of the 3-mers in `genomeString` (including repeats). Once you've built your function, use the `rand_genome()` function you built earlier, to construct a random genome of length at least 2000 nucleotides -- then use `generate_3_mers()` to compute a list of all the 3-mers in your random genome.
 
-***
+------------------------------------------------------------------------
 
 
 ::: {.cell}
@@ -179,15 +208,15 @@ Now you are ready to take on a challenge.
 
 Did your function collect a list of 3-mers? How many 3-mers did your function produce? Did you produce only 3-mers or did you end up with a 2-mer and single nucleotide as your final elements? To answer this question, use the built-in `tail()` function on your list of generated 3-mers. Go back and adjust your code so that the loop inside your function terminates before it runs out of characters in your string.
 
-***Question:*** If you have a genome string of length `n`  nucleotides. How many `k`-mers will it contain? At what position will the final  `k`-mer start? Remember that R starts counting from position 1.
+***Question:*** If you have a genome string of length `n` nucleotides. How many `k`-mers will it contain? At what position will the final `k`-mer start? Remember that R starts counting from position 1.
 
 Armed with the answer to that question, update your `generate_3_mers()` function to a more flexible version called `generate_k_mers()` as described in the challenge below.
 
-***
+------------------------------------------------------------------------
 
 **Challenge 4:** Create an updated version of the `generate_3_mers()` function so that it can generate k-mers of any length we desire (provided that length is greater than 0 and less than the size of the `genomeString` we begin with). This `generate_k_mers()` function should take two parameters -- `genomeString` and `k`, where `k` controls the number of nucleotides in each `k`-mer. Similar to `generate_3_mers()`, this function should return a list of all `k`-mers in `genomeString` (including repeats).
 
-***
+------------------------------------------------------------------------
 
 
 ::: {.cell}
@@ -198,13 +227,42 @@ Armed with the answer to that question, update your `generate_3_mers()` function
 :::
 
 
+Finally, let's see if we can create function to find specific patterns. This will be useful in finding the particular combination of nucleotides that are found at the origin of replication.
+
+To model how we might do this, let's imagine we wanted to create a function that went through Dr. Gilbert's name and counted the number of times the pattern "be" appeared. We could combine our knowledge of loops, counter variables, and functions to do this:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+count_pattern <- function(myString, pattern){
+  count <- 0
+  for(i in 1:nchar(myString)){
+    if(str_sub(myString, start = i, end = i+1) == pattern){
+      count = count + 1
+    }
+  }
+  return(count)
+}
+  
+count_pattern(myString, "be")
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[1] 1
+```
+:::
+:::
+
+
 Now that you know about functions, you are nearly ready to tackle your second Rosalind problem. Take on the challenge below and then we'll apply your solution to a much larger-scale problem.
 
-***
+------------------------------------------------------------------------
 
 **Challenge 5:** Write a new function, called `count_pattern()` that will count occurrences of a particular `pattern` within a larger `genomeString`. Your function should take two arguments, `genomeString` and the `pattern` we want to count occurrences of. Your function should return the count of occurrences of the `pattern` within the `genomeString`.
 
-***
+------------------------------------------------------------------------
 
 
 ::: {.cell}
@@ -219,17 +277,16 @@ That was a tough challenge -- did you build a function that accomplishes what yo
 
 Once you've confirmed that your `count_pattern()` function works as intended, proceed to the final challenge of this notebook, below.
 
-***
+------------------------------------------------------------------------
 
 **Challenge 5:** Navigate to [this challenge problem](http://rosalind.info/problems/ba1a/) on the Rosalind site. Make sure that your code solves the sample problem as suggested. Once you've solved the sample problem, try solving the challenge by clicking the blue *Download dataset* button -- you'll have 5 minutes to upload a solution.
 
-+ The dataset will be pulled into your downloads folder.
-+ Use the `scan()` function with the file-path as the first argument, and pass a second argument `what = character()` to read the dataset into R. Store the result in an object called `data`.
-+ The result will be a list of two elements. The item in `data[1]` will be the `genomeString`, while the item in `data[2]` is the `pattern`.
-+ Use your function to count the number of occurrences of the pattern in the genome string and submit the result to Rosalind!
+-   The dataset will be pulled into your downloads folder.
+-   Use the `scan()` function with the file-path as the first argument, and pass a second argument `what = character()` to read the dataset into R. Store the result in an object called `data`.
+-   The result will be a list of two elements. The item in `data[1]` will be the `genomeString`, while the item in `data[2]` is the `pattern`.
+-   Use your function to count the number of occurrences of the pattern in the genome string and submit the result to Rosalind!
 
-
-***
+------------------------------------------------------------------------
 
 
 ::: {.cell}

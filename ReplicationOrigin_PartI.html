@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.584">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -54,7 +59,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -67,7 +72,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -91,7 +96,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="ReplicationOrigin_PartI_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="ReplicationOrigin_PartI_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="ReplicationOrigin_PartI_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="ReplicationOrigin_PartI_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="ReplicationOrigin_PartI_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -118,6 +123,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
   </div>
     
+  
     
   </div>
   
@@ -126,8 +132,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="preliminary-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="preliminary-thoughts">Preliminary Thoughts</h2>
-<p>Welcome back! Today we begin to tackle our first <em>real</em> bioinformatics application. We’ll be seeking out the section of the genome which signals for replication of the genetic code. We’ll continue using short, randomly generated strings of nucleotides to help us built and test code but then we’ll apply it to the <em>Vibrio Cholerae</em> genome (and other bacterial genomes) to obtain real results.</p>
-<p>Now, open up RStudio, open the project that you built last time to manage your group repository, and open up your <code>Replication_&lt;YOURNAME&gt;.qmd</code> file. You’ll be completing the tasks outlined here in that notebook. Be sure to add your own discussion throughout, rather than simply using your notebook as a “code-container”. Your groupmates and your future self will thank you.</p>
+<p>Welcome back! Today we begin to tackle our first <em>real</em> bioinformatics application. We’ll be seeking out the section of the genome which signals for replication of the genetic code. We’ll continue using short, randomly generated strings of nucleotides to help us build and test code but then we’ll apply it to the <em>Vibrio Cholerae</em> genome (and other bacterial genomes) to obtain real results.</p>
+<p>Now, open up RStudio, open the project that you built and connected to your group repository, and open up your <code>Replication_&lt;YOURNAME&gt;.qmd</code> file. Like last time, you’ll be completing the tasks outlined here in that notebook. Be sure to add your own discussion throughout, rather than simply using your notebook as a “code-container”. Your groupmates and your future self will thank you.</p>
 <p>Throughout the activity you’ll be making progress on the Challenge tasks outlined in this <code>ReplicationOrigin_PartI</code> notebook. You are encouraged to <em>Push</em> your changes out to the “origin” repo, and to <em>Pull</em> in the changes made by your group-mates often. Your code will help them make progress, and their code will help you. When looking at your group-mates notebooks, please open their <code>*.html</code> files – <strong>do not</strong> open and edit their <code>*.qmd</code> file. This will lead to badness that we don’t want to encounter yet.</p>
 </section>
 <section id="notebook-objectives" class="level2">
@@ -211,12 +217,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[1] "Gi" "rt"</code></pre>
 </div>
 </div>
-<p>Now you are ready to take on a challenge.</p>
+<p>Now, let’s combine these principles with what we know about loops to make a simple for loop that will “walk” through our string to return consecutive characters. This is useful because most genomes will be very long, unlike Dr.&nbsp;Gilbert’s name.</p>
+<p>For example, let’s imagine we wanted our loop to go through Dr.&nbsp;Gilbert’s name and store each pair of 2 consecutive characters in a list. We can call these pairs “2-mers”. Here is how we might do that:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>generate_2_mers <span class="ot">&lt;-</span> <span class="cf">function</span>(myString) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  list_2_mers <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">nchar</span>(myString) <span class="sc">-</span> <span class="dv">1</span>)){</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  list_2_mers <span class="ot">&lt;-</span> list_2_mers <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">append</span>(<span class="fu">str_sub</span>(myString, <span class="at">start =</span> i, <span class="at">end =</span> i <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(list_2_mers)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">generate_2_mers</span>(myString)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Gi" "il" "lb" "be" "er" "rt"</code></pre>
+</div>
+</div>
+<p>Now you are ready to take on a challenge. See if you can adapt the loop above to walk through a longer string (a random genome) and store consecutive substrings of 3 nucleotides.</p>
 <hr>
 <p><strong>Challenge 3:</strong> Build a function called <code>generate_3_mers()</code> to generate all of the substrings of 3 nucleotides (we’ll call these 3-mers) in a genome string. Your function should accept a single argument <code>gemomeString</code> and return a list containing all of the 3-mers in <code>genomeString</code> (including repeats). Once you’ve built your function, use the <code>rand_genome()</code> function you built earlier, to construct a random genome of length at least 2000 nucleotides – then use <code>generate_3_mers()</code> to compute a list of all the 3-mers in your random genome.</p>
 <hr>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Did your function collect a list of 3-mers? How many 3-mers did your function produce? Did you produce only 3-mers or did you end up with a 2-mer and single nucleotide as your final elements? To answer this question, use the built-in <code>tail()</code> function on your list of generated 3-mers. Go back and adjust your code so that the loop inside your function terminates before it runs out of characters in your string.</p>
 <p><strong><em>Question:</em></strong> If you have a genome string of length <code>n</code> nucleotides. How many <code>k</code>-mers will it contain? At what position will the final <code>k</code>-mer start? Remember that R starts counting from position 1.</p>
@@ -225,14 +249,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Challenge 4:</strong> Create an updated version of the <code>generate_3_mers()</code> function so that it can generate k-mers of any length we desire (provided that length is greater than 0 and less than the size of the <code>genomeString</code> we begin with). This <code>generate_k_mers()</code> function should take two parameters – <code>genomeString</code> and <code>k</code>, where <code>k</code> controls the number of nucleotides in each <code>k</code>-mer. Similar to <code>generate_3_mers()</code>, this function should return a list of all <code>k</code>-mers in <code>genomeString</code> (including repeats).</p>
 <hr>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, let’s see if we can create function to find specific patterns. This will be useful in finding the particular combination of nucleotides that are found at the origin of replication.</p>
+<p>To model how we might do this, let’s imagine we wanted to create a function that went through Dr.&nbsp;Gilbert’s name and counted the number of times the pattern “be” appeared. We could combine our knowledge of loops, counter variables, and functions to do this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>count_pattern <span class="ot">&lt;-</span> <span class="cf">function</span>(myString, pattern){</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  count <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nchar</span>(myString)){</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">str_sub</span>(myString, <span class="at">start =</span> i, <span class="at">end =</span> i<span class="sc">+</span><span class="dv">1</span>) <span class="sc">==</span> pattern){</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>      count <span class="ot">=</span> count <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(count)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">count_pattern</span>(myString, <span class="st">"be"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
 </div>
 <p>Now that you know about functions, you are nearly ready to tackle your second Rosalind problem. Take on the challenge below and then we’ll apply your solution to a much larger-scale problem.</p>
 <hr>
 <p><strong>Challenge 5:</strong> Write a new function, called <code>count_pattern()</code> that will count occurrences of a particular <code>pattern</code> within a larger <code>genomeString</code>. Your function should take two arguments, <code>genomeString</code> and the <code>pattern</code> we want to count occurrences of. Your function should return the count of occurrences of the <code>pattern</code> within the <code>genomeString</code>.</p>
 <hr>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>That was a tough challenge – did you build a function that accomplishes what you intended it to? How do you know?</p>
 <p>Once you’ve confirmed that your <code>count_pattern()</code> function works as intended, proceed to the final challenge of this notebook, below.</p>
@@ -246,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <hr>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Complete the challenge here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="summary-and-debrief" class="level2">
@@ -258,6 +300,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -279,7 +339,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -307,31 +384,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
