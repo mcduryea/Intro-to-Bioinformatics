@@ -269,8 +269,8 @@ Throughout this activity, you had your first exposure to using R to interact wit
 + Revisit the questions of interest you had at the beginning of this notebook. If there are any that remain unanswered, try answering them with the use of your new data superpowers! 
 + Once you are done, use the blue *Render* button to build your notebook.
 + Click on the `Git` tab in the top-right pane of RStudio. 
-+ Click on the blue *Pull* arrow to pull in all of the most updates to your *origin* repository.
-+ Click the check boxes next to all of your changed files
++ Click on the blue *Pull* arrow to pull in all of the most recent updates to your *origin* repository.
++ Click the check boxes next to all of your changed files.
 + Click the *Commit* button, add a commit message about what we've done here, then click to *Commit*.
 + Finally, *Push* your changes out to GitHub using the green *Push* arrow.
 
