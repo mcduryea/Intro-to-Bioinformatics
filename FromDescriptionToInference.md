@@ -41,7 +41,7 @@ We've looked at our *sample* penguins data already. We explored that data withou
 
 Unfortunately, we can't go back on this now either. As ethical scientists, we can't use the `penguins_samp1` data for inference tasks because we know what those data say. We are now in a scenario where the data has informed which questions should be asked, whereas the data should only be used to answer the questions we had before we looked at it. To put it in terms analogous to schooling -- the *data* wrote the exam, so certainly the *data* has an advantage in answering the questions.
 
-**For Example:** In our exploratory data analysis, we saw that the [INSERT MISLEADING INSIGHT HERE]. If we test that hypothesis using the data from last time, it should be no surprise that we obtain a statistically significant result -- we *snooped* for it.
+**For Example:** In our analysis from the `TidyAnalysesInR` notebook, at the end of our exploratory analysis, we asked whether the average penguin `bill_length_mm` exceeded $45$mm. I suggested that you ask this questions because the average bill length for a penguin in that dataset was over $46$mm. If we test that hypothesis using the data from last time (`penguins_samp1`), it should be no surprise that we obtain a statistically significant result -- we *snooped* for it.
 
 ### Uncertainty and Errors in Statistics
 

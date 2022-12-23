@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p><strong>Objectives:</strong> In this notebook we’ll be reminded of classical inference techniques built on the Central Limit Theorem. We’ll also address bootstrapping methods and how statistical inference can still be made from data even if we refuse to assume the Central Limit Theorem. We’ll attempt some statistical inferences using these bootstrapping techniques and our <code>penguins_samp2</code> data.</p>
+<p><strong>Objectives:</strong> In this notebook we’ll be reminded of classical inference techniques built on the Central Limit Theorem. We’ll also address bootstrapping methods and how statistical inference can still be made from data even if we refuse to assume the Central Limit Theorem. We’ll attempt some statistical inferences using these bootstrapping techniques and our <code>penguins</code> data.</p>
 <section id="classical-statistics-versus-simulation-based-methods" class="level2">
 <h2 class="anchored" data-anchor-id="classical-statistics-versus-simulation-based-methods">Classical Statistics versus Simulation-Based Methods</h2>
 <p>In your introductory statistics courses, you spent lots of time using confidence intervals and hypothesis tests to make or test claims about populations by using sample data. Those are really powerful tools, but you saw them in a fairly restrictive environment – that entire course assumed that the underlying sampling distribution was nearly normal. While this is often the case, it isn’t always a reasonable assumption – particularly in the case of small sample sizes or extremely skewed metrics. We’ll recap those classical approaches and introduce simulation-based methods in this notebook.</p>
@@ -141,8 +141,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="classical-approaches-a-reminder">Classical Approaches: A Reminder</h3>
 <p>In Classical Statistics, we assume the Central Limit Theorem. That Theorem guarantees that the sampling distribution (the distribution of summary statistics for <em>all</em> samples of our size from the population) is approximately Normal. This allows us to</p>
 <ul>
-<li>Use critical values from a <em>Normal</em> or <em>t</em>-distribution when building confidence intervals. As a reminder, confidence intervals are constructed using the following formula: <span class="math display">\[\left(\text{point_estimate}\right) \pm \left(\text{critical_value}\right)\left(\text{standard_error}\right)\]</span></li>
-<li>Compute <span class="math inline">\(p\)</span>-values using a test statistic and then computing a <span class="math inline">\(p\)</span>-value using a <em>Normal</em> or <em>t</em>-distribution. As a reminder, our test statistics were computed as follows: <span class="math display">\[\text{test_statistic} = \frac{\left(\text{point_estimate}\right) - \left(\text{null_value}\right)}{\text{standard_error}}\]</span></li>
+<li>Use critical values from a <em>Normal</em> or <em>t</em>-distribution when building confidence intervals. As a reminder, confidence intervals are constructed using the following formula: <span class="math display">\[\left(\text{point\_estimate}\right) \pm \left(\text{critical\_value}\right)\left(\text{standard\_error}\right)\]</span></li>
+<li>Compute <span class="math inline">\(p\)</span>-values using a test statistic and then computing a <span class="math inline">\(p\)</span>-value using a <em>Normal</em> or <em>t</em>-distribution. As a reminder, our test statistics were computed as follows: <span class="math display">\[\text{test\_statistic} = \frac{\left(\text{point\_estimate}\right) - \left(\text{null\_value}\right)}{\text{standard\_error}}\]</span></li>
 </ul>
 <p>While the Central Limit Theorem often applies, we can’t always assume it. Simulation techniques are helpful in those situations.</p>
 </section>
@@ -151,13 +151,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If we are in a scenario where we are unable to assume that our underlying sampling distribution is nearly normal, then we’ll need another technique. Essentially, by refusing to assume that the sampling distribution is nearly normal, we concede that any <span class="math inline">\(p\)</span>-value we find, or confidence intervals we build will be untrustworthy. As long as we are willing to assume that our sample data is <em>random</em> and <em>representative</em> of the population, then we can use simulation techniques to find <span class="math inline">\(p\)</span>-values and generate confidence intervals.</p>
 <section id="bootstrapping" class="level4">
 <h4 class="anchored" data-anchor-id="bootstrapping">Bootstrapping</h4>
-<p>As long as we are comfortable assuming that our sample data is <em>random</em> and <em>representative</em> of our population, then we can treat our sample data as if it were a population. We can then redraw samples of the same size out of it. We can do this over and over again, computing our sample statistic for each redrawn (<em>bootstrapped</em>) sample. Let’s see that in action below, using our <code>penguins_samp2</code> data.</p>
+<p>As long as we are comfortable assuming that our sample data is <em>random</em> and <em>representative</em> of our population, then we can treat our sample data as if it were a population. We can then redraw samples of the same size out of it. We can do this over and over again, computing our sample statistic for each redrawn (<em>bootstrapped</em>) sample. Let’s see that in action below, using our full <code>penguins</code> data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n_samps <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sample_means <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_samps)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_samps){</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  my_samp <span class="ot">&lt;-</span> penguins_samp2 <span class="sc">%&gt;%</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample_n</span>(<span class="fu">nrow</span>(penguins_samp2), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  my_samp <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample_n</span>(<span class="fu">nrow</span>(penguins), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  sample_means[i] <span class="ot">&lt;-</span> my_samp <span class="sc">%&gt;%</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(flipper_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(mean)</span>
@@ -183,10 +183,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(sample_means, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    2.5%    97.5% 
-199.0373 202.2575 </code></pre>
+199.4006 202.4362 </code></pre>
 </div>
 </div>
-<p>We can now claim, with <span class="math inline">\(95\)</span>% confidence, that the population mean flipper length for penguins falls somewhere between 199.04mm and 202.26mm. Visually, what we’ve done appears below – with the confidence interval bounds represented by the two vertical dashed lines.</p>
+<p>We can now claim, with <span class="math inline">\(95\)</span>% confidence, that the population mean flipper length for penguins falls somewhere between 199.4mm and 202.44mm. Visually, what we’ve done appears below – with the confidence interval bounds represented by the two vertical dashed lines.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sample_means)) <span class="sc">+</span></span>
@@ -220,11 +220,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>bootstrapped_mean_lengths <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, num_samps)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_samps){</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  my_samp <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">nrow</span>(penguins_samp2), <span class="dv">200</span>, <span class="dv">5</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  my_samp <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">nrow</span>(penguins), <span class="dv">200</span>, <span class="dv">5</span>)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  bootstrapped_mean_lengths[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(my_samp)</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>my_mean_flipper_length <span class="ot">&lt;-</span> penguins_samp2 <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>my_mean_flipper_length <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(flipper_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(mean)</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
@@ -252,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>bootstrapped_p_value <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(num_extreme <span class="sc">/</span> num_samps)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>bootstrapped_p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.036</code></pre>
+<pre><code>[1] 0</code></pre>
 </div>
 </div>
 <p>Since we’ve obtained a Bootstrapped <span class="math inline">\(p\)</span>-value below <span class="math inline">\(0.05\)</span>, we have statistically significant evidence to suggest that our penguin flipper lengths do not come from a normal distribution with mean <span class="math inline">\(200\)</span>mm and standard deviation <span class="math inline">\(5\)</span>mm. Three things are possible here:</p>
@@ -264,16 +264,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="permutation-tests-for-group-comparisons" class="level4">
 <h4 class="anchored" data-anchor-id="permutation-tests-for-group-comparisons">Permutation Tests for Group Comparisons</h4>
-<p>We can also use a Bootstrapping procedure for conducting two-sample comparison hypothesis tests. Perhaps we are wondering whether there is a difference in the mean flipper lengths for male and female penguins. We know that our sample <code>penguins_samp2</code> has the correct/meaningful assignment of each penguin’s <code>sex</code>. This results in a group of male and female penguins whose average flipper length is a quantity we can compute. Once we have those average flipper lengths, we can subtract them to find the difference in mean flipper lengths between male and female penguins in our sample.</p>
+<p>We can also use a Bootstrapping procedure for conducting two-sample comparison hypothesis tests. Perhaps we are wondering whether there is a difference in the mean flipper lengths for male and female penguins. We know that our sample <code>penguins</code> has the correct/meaningful assignment of each penguin’s <code>sex</code>. This results in a group of male and female penguins whose average flipper length is a quantity we can compute. Once we have those average flipper lengths, we can subtract them to find the difference in mean flipper lengths between male and female penguins in our sample.</p>
 <p>Next, we can permute (shuffle) the values in the <code>sex</code> column, creating a new grouping of the penguins which is not actually related to the <code>sex</code> of the penguins at all. Similarly, we can compute the average flipper length within each group and subtract those averages to find the difference in mean flipper length between the two groups. We can do this lots of times, obtaining lots of differences in average flipper lengths for which the <code>sex</code> variable is meaningless. Then, we can see whether our sample, where <code>sex</code> is a meaningful variable, is an outlier in this distribution of bootstrapped results.</p>
 <p>Let’s try it!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>my_female_avg_flipper_length <span class="ot">&lt;-</span> penguins_samp2 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>my_female_avg_flipper_length <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(flipper_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(mean)</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>my_male_avg_flipper_length <span class="ot">&lt;-</span> penguins_samp2 <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>my_male_avg_flipper_length <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"male"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(flipper_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(mean)</span>
@@ -285,8 +285,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>independent_differences <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, num_samps)</span>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_samps){</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  penguins_reassigned <span class="ot">&lt;-</span> penguins_samp2 <span class="sc">%&gt;%</span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">sample</span>(sex, <span class="fu">nrow</span>(penguins_samp2), <span class="at">replace =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  penguins_reassigned <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">sample</span>(sex, <span class="fu">nrow</span>(penguins), <span class="at">replace =</span> <span class="cn">FALSE</span>))</span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  fem_avg <span class="ot">&lt;-</span> penguins_reassigned <span class="sc">%&gt;%</span></span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"female"</span>) <span class="sc">%&gt;%</span></span>

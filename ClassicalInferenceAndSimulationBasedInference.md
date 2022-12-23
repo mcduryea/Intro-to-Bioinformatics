@@ -12,7 +12,7 @@ execute:
 
 
 
-**Objectives:** In this notebook we'll be reminded of classical inference techniques built on the Central Limit Theorem. We'll also address bootstrapping methods and how statistical inference can still be made from data even if we refuse to assume the Central Limit Theorem. We'll attempt some statistical inferences using these bootstrapping techniques and our `penguins_samp2` data.
+**Objectives:** In this notebook we'll be reminded of classical inference techniques built on the Central Limit Theorem. We'll also address bootstrapping methods and how statistical inference can still be made from data even if we refuse to assume the Central Limit Theorem. We'll attempt some statistical inferences using these bootstrapping techniques and our `penguins` data.
 
 ## Classical Statistics versus Simulation-Based Methods
 
@@ -23,9 +23,9 @@ In your introductory statistics courses, you spent lots of time using confidence
 In Classical Statistics, we assume the Central Limit Theorem. That Theorem guarantees that the sampling distribution (the distribution of summary statistics for *all* samples of our size from the population) is approximately Normal. This allows us to
 
 + Use critical values from a *Normal* or *t*-distribution when building confidence intervals. As a reminder, confidence intervals are constructed using the following formula:
-$$\left(\text{point_estimate}\right) \pm \left(\text{critical_value}\right)\left(\text{standard_error}\right)$$
+$$\left(\text{point\_estimate}\right) \pm \left(\text{critical\_value}\right)\left(\text{standard\_error}\right)$$
 + Compute $p$-values using a test statistic and then computing a $p$-value using a *Normal* or *t*-distribution. As a reminder, our test statistics were computed as follows:
-$$\text{test_statistic} = \frac{\left(\text{point_estimate}\right) - \left(\text{null_value}\right)}{\text{standard_error}}$$
+$$\text{test\_statistic} = \frac{\left(\text{point\_estimate}\right) - \left(\text{null\_value}\right)}{\text{standard\_error}}$$
 
 While the Central Limit Theorem often applies, we can't always assume it. Simulation techniques are helpful in those situations.
 
@@ -35,7 +35,7 @@ If we are in a scenario where we are unable to assume that our underlying sampli
 
 #### Bootstrapping
 
-As long as we are comfortable assuming that our sample data is *random* and *representative* of our population, then we can treat our sample data as if it were a population. We can then redraw samples of the same size out of it. We can do this over and over again, computing our sample statistic for each redrawn (*bootstrapped*) sample. Let's see that in action below, using our `penguins_samp2` data.
+As long as we are comfortable assuming that our sample data is *random* and *representative* of our population, then we can treat our sample data as if it were a population. We can then redraw samples of the same size out of it. We can do this over and over again, computing our sample statistic for each redrawn (*bootstrapped*) sample. Let's see that in action below, using our full `penguins` data.
 
 
 ::: {.cell}
@@ -44,8 +44,8 @@ As long as we are comfortable assuming that our sample data is *random* and *rep
 n_samps <- 1000
 sample_means <- rep(NA, n_samps)
 for(i in 1:n_samps){
-  my_samp <- penguins_samp2 %>%
-    sample_n(nrow(penguins_samp2), replace = TRUE)
+  my_samp <- penguins %>%
+    sample_n(nrow(penguins), replace = TRUE)
   sample_means[i] <- my_samp %>%
     summarize(mean = mean(flipper_length_mm, na.rm = TRUE)) %>%
     pull(mean)
@@ -86,13 +86,13 @@ quantile(sample_means, c(0.025, 0.975))
 ::: {.cell-output .cell-output-stdout}
 ```
     2.5%    97.5% 
-199.0373 202.2575 
+199.4006 202.4362 
 ```
 :::
 :::
 
 
-We can now claim, with $95$% confidence, that the population mean flipper length for penguins falls somewhere between 199.04mm and 202.26mm. Visually, what we've done appears below -- with the confidence interval bounds represented by the two vertical dashed lines.
+We can now claim, with $95$% confidence, that the population mean flipper length for penguins falls somewhere between 199.4mm and 202.44mm. Visually, what we've done appears below -- with the confidence interval bounds represented by the two vertical dashed lines.
 
 
 ::: {.cell}
@@ -141,11 +141,11 @@ num_samps <- 1000
 bootstrapped_mean_lengths <- rep(NA, num_samps)
 
 for(i in 1:num_samps){
-  my_samp <- rnorm(nrow(penguins_samp2), 200, 5)
+  my_samp <- rnorm(nrow(penguins), 200, 5)
   bootstrapped_mean_lengths[i] <- mean(my_samp)
   }
 
-my_mean_flipper_length <- penguins_samp2 %>%
+my_mean_flipper_length <- penguins %>%
   summarize(mean = mean(flipper_length_mm, na.rm = TRUE)) %>%
   pull(mean)
 
@@ -187,7 +187,7 @@ bootstrapped_p_value
 
 ::: {.cell-output .cell-output-stdout}
 ```
-[1] 0.036
+[1] 0
 ```
 :::
 :::
@@ -201,7 +201,7 @@ Since we've obtained a Bootstrapped $p$-value below $0.05$, we have statisticall
 
 #### Permutation Tests for Group Comparisons
 
-We can also use a Bootstrapping procedure for conducting two-sample comparison hypothesis tests. Perhaps we are wondering whether there is a difference in the mean flipper lengths for male and female penguins. We know that our sample `penguins_samp2` has the correct/meaningful assignment of each penguin's `sex`. This results in a group of male and female penguins whose average flipper length is a quantity we can compute. Once we have those average flipper lengths, we can subtract them to find the difference in mean flipper lengths between male and female penguins in our sample.
+We can also use a Bootstrapping procedure for conducting two-sample comparison hypothesis tests. Perhaps we are wondering whether there is a difference in the mean flipper lengths for male and female penguins. We know that our sample `penguins` has the correct/meaningful assignment of each penguin's `sex`. This results in a group of male and female penguins whose average flipper length is a quantity we can compute. Once we have those average flipper lengths, we can subtract them to find the difference in mean flipper lengths between male and female penguins in our sample.
 
 Next, we can permute (shuffle) the values in the `sex` column, creating a new grouping of the penguins which is not actually related to the `sex` of the penguins at all. Similarly, we can compute the average flipper length within each group and subtract those averages to find the difference in mean flipper length between the two groups. We can do this lots of times, obtaining lots of differences in average flipper lengths for which the `sex` variable is meaningless. Then, we can see whether our sample, where `sex` is a meaningful variable, is an outlier in this distribution of bootstrapped results.
 
@@ -211,12 +211,12 @@ Let's try it!
 ::: {.cell}
 
 ```{.r .cell-code}
-my_female_avg_flipper_length <- penguins_samp2 %>%
+my_female_avg_flipper_length <- penguins %>%
   filter(sex == "female") %>%
   summarize(mean = mean(flipper_length_mm, na.rm = TRUE)) %>%
   pull(mean)
 
-my_male_avg_flipper_length <- penguins_samp2 %>%
+my_male_avg_flipper_length <- penguins %>%
   filter(sex == "male") %>%
   summarize(mean = mean(flipper_length_mm, na.rm = TRUE)) %>%
   pull(mean)
@@ -228,8 +228,8 @@ num_samps <- 1000
 independent_differences <- rep(NA, num_samps)
 
 for(i in 1:num_samps){
-  penguins_reassigned <- penguins_samp2 %>%
-    mutate(sex = sample(sex, nrow(penguins_samp2), replace = FALSE))
+  penguins_reassigned <- penguins %>%
+    mutate(sex = sample(sex, nrow(penguins), replace = FALSE))
   
   fem_avg <- penguins_reassigned %>%
     filter(sex == "female") %>%
