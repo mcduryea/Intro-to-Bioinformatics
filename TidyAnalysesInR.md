@@ -24,7 +24,7 @@ This activity serves as an introduction to using R to interact with data. The pu
 
 ### Installing and Loading Packages
 
-When we open R/RStudio, we have access to basic R functionality. Often, we'll want to extend that functionality to perform specialized tasks. Developers in the R community write and publish packages which can be installed and used by R-users. We install packages with `install.packages("package_name")` and load packages into our current R session with `library(package_name)`. While packages only need to be *installed* once, they must be loaded in each R Session you intend to use them in (**note:** an R Session begins when R/RStudio are opened and ends when they are closed or terminated). For example, you've already run `install.packages("palmerpenguins")` and `library(palmerpenguins)` to install and load the `palmerpenguins` package in your `PalmerPenguins_Initial` Quarto notebook. You won't need to run `install.packages("palmerpenguins:)` again, but you will need to re-load the library when we open our notebook again. 
+When we open R/RStudio, we have access to basic R functionality. Often, we'll want to extend that functionality to perform specialized tasks. Developers in the R community write and publish packages which can be installed and used by R-users. We install packages with `install.packages("package_name")` and load packages into our current R session with `library(package_name)`. While packages only need to be *installed* once, they must be loaded in each R Session you intend to use them in (**note:** an R Session begins when R/RStudio are opened and ends when they are closed or terminated). For example, you've already run `install.packages("tidyverse")` and `library(tidyverse)` to install and load the `tidyverse` package in your `PalmerPenguins_Initial` Quarto notebook. You won't need to run `install.packages("tidyverse")` again, but you will need to re-load the library when we open our notebook again. 
 
 + Open an RStudio Session and then use `File -> Recent Projects` and select the `BioStatisticsAnalysis` project from the list to open it.
 + Open your `PalmerPenguins_Initial` notebook.
@@ -61,8 +61,8 @@ penguins %>%
 # A tibble: 3 × 2
   island        n
   <chr>     <int>
-1 Biscoe       22
-2 Dream        17
+1 Biscoe       36
+2 Dream         3
 3 Torgersen     5
 ```
 :::
@@ -87,8 +87,8 @@ penguins %>%
 # A tibble: 3 × 4
   island    Adelie Gentoo Chinstrap
   <chr>      <int>  <int>     <int>
-1 Biscoe         4     18         0
-2 Dream          9      0         8
+1 Biscoe         3     33         0
+2 Dream          1      0         2
 3 Torgersen      5      0         0
 ```
 :::
@@ -122,15 +122,15 @@ penguins %>%
 <tbody>
   <tr>
    <td style="text-align:left;"> Biscoe </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 33 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Dream </td>
-   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 2 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Torgersen </td>
@@ -163,7 +163,7 @@ penguins %>%
 # A tibble: 1 × 1
   mean_bill_length_mm
                 <dbl>
-1                44.7
+1                46.4
 ```
 :::
 :::
@@ -182,7 +182,7 @@ penguins %>%
 # A tibble: 1 × 1
   mean_bill_length_mm
                 <dbl>
-1                44.7
+1                46.4
 ```
 :::
 :::
@@ -211,12 +211,12 @@ penguins %>%
 # A tibble: 6 × 2
   name                           value
   <chr>                          <dbl>
-1 min_bill_length                36.4 
-2 first_quartile_bill_length     40.1 
-3 median_bill_length             44.3 
-4 mean_bill_length_mm            44.7 
-5 third_quartile_bill_length     48.2 
-6 standard_deviation_bill_length  5.34
+1 min_bill_length                36.2 
+2 first_quartile_bill_length     44.6 
+3 median_bill_length             46.4 
+4 mean_bill_length_mm            46.4 
+5 third_quartile_bill_length     49.1 
+6 standard_deviation_bill_length  4.93
 ```
 :::
 :::
@@ -242,18 +242,18 @@ penguins %>%
 ::: {.cell-output .cell-output-stdout}
 ```
 # A tibble: 44 × 4
-   species   island sex     year
-   <chr>     <chr>  <chr>  <dbl>
- 1 Adelie    Dream  male    2008
- 2 Adelie    Dream  male    2007
- 3 Chinstrap Dream  male    2008
- 4 Gentoo    Biscoe female  2009
- 5 Gentoo    Biscoe male    2007
- 6 Adelie    Biscoe female  2007
- 7 Chinstrap Dream  female  2007
- 8 Chinstrap Dream  male    2009
- 9 Adelie    Dream  male    2009
-10 Chinstrap Dream  male    2007
+   species island sex    year
+   <chr>   <chr>  <chr> <dbl>
+ 1 Gentoo  Biscoe male   2007
+ 2 Gentoo  Biscoe male   2008
+ 3 Gentoo  Biscoe male   2009
+ 4 Gentoo  Biscoe male   2009
+ 5 Gentoo  Biscoe male   2009
+ 6 Gentoo  Biscoe male   2009
+ 7 Gentoo  Biscoe male   2008
+ 8 Gentoo  Biscoe male   2009
+ 9 Gentoo  Biscoe male   2008
+10 Gentoo  Biscoe male   2007
 # … with 34 more rows
 ```
 :::
@@ -273,17 +273,11 @@ penguins %>%
 
 ::: {.cell-output .cell-output-stdout}
 ```
-# A tibble: 8 × 4
+# A tibble: 2 × 4
   species   island sex     year
   <chr>     <chr>  <chr>  <dbl>
-1 Chinstrap Dream  male    2008
+1 Chinstrap Dream  male    2009
 2 Chinstrap Dream  female  2007
-3 Chinstrap Dream  male    2009
-4 Chinstrap Dream  male    2007
-5 Chinstrap Dream  female  2008
-6 Chinstrap Dream  female  2009
-7 Chinstrap Dream  male    2008
-8 Chinstrap Dream  male    2007
 ```
 :::
 :::
@@ -306,15 +300,11 @@ chinstraps %>%
 
 ::: {.cell-output .cell-output-stdout}
 ```
-# A tibble: 6 × 3
+# A tibble: 2 × 3
   island sex     year
   <chr>  <chr>  <dbl>
-1 Dream  male    2008
+1 Dream  male    2009
 2 Dream  female  2007
-3 Dream  male    2009
-4 Dream  male    2007
-5 Dream  female  2008
-6 Dream  female  2009
 ```
 :::
 :::
@@ -341,9 +331,9 @@ penguins %>%
 # A tibble: 3 × 3
   species   mean_bill_depth_mm sd_bill_depth_mm
   <chr>                  <dbl>            <dbl>
-1 Adelie                  18.7             1.20
-2 Chinstrap               18.6             1.47
-3 Gentoo                  14.8             1.10
+1 Adelie                  17.8            0.935
+2 Chinstrap               18.8            1.41 
+3 Gentoo                  15.2            0.951
 ```
 :::
 :::
@@ -368,7 +358,7 @@ penguins %>%
 ```
 
 ::: {.cell-output-display}
-![](TidyAnalysesInR_files/figure-html/unnamed-chunk-12-1.png){width=672}
+![](TidyAnalysesInR_files/figure-html/unnamed-chunk-11-1.png){width=672}
 :::
 :::
 
@@ -398,7 +388,7 @@ penguins %>%
 :::
 
 ::: {.cell-output-display}
-![](TidyAnalysesInR_files/figure-html/unnamed-chunk-13-1.png){width=672}
+![](TidyAnalysesInR_files/figure-html/unnamed-chunk-12-1.png){width=672}
 :::
 :::
 
@@ -420,7 +410,7 @@ penguins %>%
 ```
 
 ::: {.cell-output-display}
-![](TidyAnalysesInR_files/figure-html/unnamed-chunk-14-1.png){width=672}
+![](TidyAnalysesInR_files/figure-html/unnamed-chunk-13-1.png){width=672}
 :::
 :::
 
@@ -443,7 +433,7 @@ penguins %>%
 ```
 
 ::: {.cell-output-display}
-![](TidyAnalysesInR_files/figure-html/unnamed-chunk-15-1.png){width=672}
+![](TidyAnalysesInR_files/figure-html/unnamed-chunk-14-1.png){width=672}
 :::
 :::
 
@@ -464,7 +454,7 @@ penguins %>%
 ```
 
 ::: {.cell-output-display}
-![](TidyAnalysesInR_files/figure-html/unnamed-chunk-16-1.png){width=672}
+![](TidyAnalysesInR_files/figure-html/unnamed-chunk-15-1.png){width=672}
 :::
 
 ```{.r .cell-code}
@@ -478,7 +468,7 @@ penguins %>%
 ```
 
 ::: {.cell-output-display}
-![](TidyAnalysesInR_files/figure-html/unnamed-chunk-16-2.png){width=672}
+![](TidyAnalysesInR_files/figure-html/unnamed-chunk-15-2.png){width=672}
 :::
 :::
 
@@ -520,6 +510,8 @@ penguins %>%
 ::: {.cell-output .cell-output-stderr}
 ```
 Warning in qt((1 - level)/2, df): NaNs produced
+
+Warning in qt((1 - level)/2, df): NaNs produced
 ```
 :::
 
@@ -527,17 +519,24 @@ Warning in qt((1 - level)/2, df): NaNs produced
 ```
 Warning in max(ids, na.rm = TRUE): no non-missing arguments to max; returning
 -Inf
+
+Warning in max(ids, na.rm = TRUE): no non-missing arguments to max; returning
+-Inf
 ```
 :::
 
 ::: {.cell-output-display}
-![](TidyAnalysesInR_files/figure-html/unnamed-chunk-17-1.png){width=672}
+![](TidyAnalysesInR_files/figure-html/unnamed-chunk-16-1.png){width=672}
 :::
 :::
 
 
 + Add these plots to your notebook and interpret what you are seeing. Attempt to interpret both the plots and how the different functions in the code produced the plot.
 + Adjust the code to explore another set of variables and see if the code behaves how you expected it to.
+
+### A Final Question
+
+If you haven't done so already, can you determine whether the average bill length for a penguin exceeds $45$mm? Are you able to answer only for a subset of penguins or for the entire population? How certain are you with your answer?
 
 ## Summary
 
@@ -548,8 +547,8 @@ Throughout this activity, you had your first exposure to using R to interact wit
 + Revisit the questions of interest you had at the beginning of this notebook. If there are any that remain unanswered, try answering them with the use of your new data superpowers! 
 + Once you are done, use the blue *Render* button to build your notebook.
 + Click on the `Git` tab in the top-right pane of RStudio. 
-+ Click on the blue *Pull* arrow to pull in all of the most updates to your *origin* repository.
-+ Click the check boxes next to all of your changed files
++ Click on the blue *Pull* arrow to pull in all of the most recent updates to your *origin* repository.
++ Click the check boxes next to all of your changed files.
 + Click the *Commit* button, add a commit message about what we've done here, then click to *Commit*.
 + Finally, *Push* your changes out to GitHub using the green *Push* arrow.
 

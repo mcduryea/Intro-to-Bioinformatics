@@ -69,7 +69,7 @@ Great! You've now built an Rproject inside of your repository. Among other thing
 + Replace the "Quarto" header with *Palmer Penguins*
 + Replace the text below the header with an informative blurb.
 + Delete all of the text and code cells below -- it will be better to build the rest from scratch.
-+ Type a forward slash ("//") and choose *R Code Chunk* from the dropdown list.
++ Type a forward slash ("/") and choose *R Code Chunk* from the dropdown list.
 
   + Inside the grey code chunk, type the three lines below and run each line either with `ctrl+Enter`/`cmd+Return`, or run the entire chunk using the green "play" button in the top-right corner of the code chunk.
 
@@ -78,55 +78,10 @@ Great! You've now built an Rproject inside of your repository. Among other thing
     ```{.r .cell-code}
     #Load the tidyverse
     library(tidyverse)
-    ```
     
-    ::: {.cell-output .cell-output-stderr}
-    ```
-    ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-    ```
-    :::
-    
-    ::: {.cell-output .cell-output-stderr}
-    ```
-    ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-    ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-    ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-    ✔ readr   2.1.2     ✔ forcats 0.5.1
-    ```
-    :::
-    
-    ::: {.cell-output .cell-output-stderr}
-    ```
-    ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ✖ dplyr::filter() masks stats::filter()
-    ✖ dplyr::lag()    masks stats::lag()
-    ```
-    :::
-    
-    ```{.r .cell-code}
     #Read the penguins_samp1 data file from github
     penguins <- read_csv("https://raw.githubusercontent.com/mcduryea/Intro-to-Bioinformatics/main/data/penguins_samp1.csv")
-    ```
     
-    ::: {.cell-output .cell-output-stderr}
-    ```
-    Rows: 44 Columns: 8
-    ```
-    :::
-    
-    ::: {.cell-output .cell-output-stderr}
-    ```
-    ── Column specification ────────────────────────────────────────────────────────
-    Delimiter: ","
-    chr (3): species, island, sex
-    dbl (5): bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, year
-    
-    ℹ Use `spec()` to retrieve the full column specification for this data.
-    ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    ```
-    :::
-    
-    ```{.r .cell-code}
     #See the first six rows of the data we've read in to our notebook
     penguins %>% head()
     ```
@@ -134,14 +89,14 @@ Great! You've now built an Rproject inside of your repository. Among other thing
     ::: {.cell-output .cell-output-stdout}
     ```
     # A tibble: 6 × 8
-      species   island bill_length_mm bill_depth_mm flipper_le…¹ body_…² sex    year
-      <chr>     <chr>           <dbl>         <dbl>        <dbl>   <dbl> <chr> <dbl>
-    1 Adelie    Dream            43.2          18.5          192    4100 male   2008
-    2 Adelie    Dream            44.1          19.7          196    4400 male   2007
-    3 Chinstrap Dream            49            19.5          210    3950 male   2008
-    4 Gentoo    Biscoe           48.4          14.4          203    4625 fema…  2009
-    5 Gentoo    Biscoe           59.6          17            230    6050 male   2007
-    6 Adelie    Biscoe           37.9          18.6          172    3150 fema…  2007
+      species island bill_length_mm bill_depth_mm flipper_leng…¹ body_…² sex    year
+      <chr>   <chr>           <dbl>         <dbl>          <dbl>   <dbl> <chr> <dbl>
+    1 Gentoo  Biscoe           59.6          17              230    6050 male   2007
+    2 Gentoo  Biscoe           48.6          16              230    5800 male   2008
+    3 Gentoo  Biscoe           52.1          17              230    5550 male   2009
+    4 Gentoo  Biscoe           51.5          16.3            230    5500 male   2009
+    5 Gentoo  Biscoe           55.1          16              230    5850 male   2009
+    6 Gentoo  Biscoe           49.8          15.9            229    5950 male   2009
     # … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g
     ```
     :::

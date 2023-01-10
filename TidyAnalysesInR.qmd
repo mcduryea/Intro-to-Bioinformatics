@@ -6,11 +6,14 @@ execute:
   keep-md: true
 ---
 
-```{r include = FALSE}
+```{r setup, include = FALSE}
+#load very commonly used packages for data analysis
 library(tidyverse)
-#library(palmerpenguins)
+
+#Load a package to help with formatting tabular output
 library(kableExtra)
 
+#Read in data
 penguins <- read_csv("https://raw.githubusercontent.com/mcduryea/Intro-to-Bioinformatics/main/data/penguins_samp1.csv")
 ```
 
@@ -258,7 +261,7 @@ penguins %>%
 
 ### A Final Question
 
-**Note to Adam and Katie:** I think I'll need to resplit the penguins data here because none of the claims I'm testing are statistically significant. I'll go back and "cook the books" a bit better.
+If you haven't done so already, can you determine whether the average bill length for a penguin exceeds $45$mm? Are you able to answer only for a subset of penguins or for the entire population? How certain are you with your answer?
 
 ## Summary
 

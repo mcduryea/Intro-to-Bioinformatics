@@ -62,10 +62,10 @@ Great! You've now built an Rproject inside of your repository. Among other thing
 + Replace the "Quarto" header with *Palmer Penguins*
 + Replace the text below the header with an informative blurb.
 + Delete all of the text and code cells below -- it will be better to build the rest from scratch.
-+ Type a forward slash ("//") and choose *R Code Chunk* from the dropdown list.
++ Type a forward slash ("/") and choose *R Code Chunk* from the dropdown list.
 
   + Inside the grey code chunk, type the three lines below and run each line either with `ctrl+Enter`/`cmd+Return`, or run the entire chunk using the green "play" button in the top-right corner of the code chunk.
-    ```{r}
+    ```{r message = FALSE, warning = FALSE}
     #Load the tidyverse
     library(tidyverse)
     
