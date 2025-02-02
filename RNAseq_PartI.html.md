@@ -196,7 +196,7 @@ rownames(count_matrix) <- genes
 
 You can check the Environment tab to see what this did. You should have a data table called `count_dataframe` with 14,869 observations (these are the different gene transcripts) and 147 variables (these are the different fly samples).
 
-Now, we will use another data set from `rbioinfcoockbook` called `pheno_data`. This has the phenotypic data or physical information about the samples. We will specify that we want to work with two experiments about the larvae and their larval stage.
+Now, we will use another data set from `rbioinfcoockbook` called `pheno_data`. This has the phenotypic data or physical information about the samples. We will specify that we want to work with two experiments about the larvae and their larval stage, L1 (first instar) and L2 (second instar).
 
 
 
@@ -300,7 +300,7 @@ FBgn0243586 6.966860  7.769756 24146.95 3.698699e-33 5.499595e-30
 
 Let's interpret this output! The first column shows us our gene transcript of interest (e.g. FBgn0037430), the logFC stands for log Fold Change, which is a measure of the differences between the two samples. The logCPM column which stands for log Counts Per Million, this is similar to the average expression value of the gene across samples but accounts for the large number of gene transcripts. The F value, P value, and false detection rate (FDR) columns are the results of our statistical test. FDR is the most relevant to us because it is a p-value that has been corrected for the number of tests we're conducting, or adjusted to decrease the probability of false detection.
 
-Using FDR, we can see that a number of gene transcripts are differentially expressed between our two treatments. However, at this point we may be left with more questions than answers! This is typical of bioinformatics analysis. It will take more research to better understand this data!
+Using FDR, we can see that a number of gene transcripts are differentially expressed between our two treatments. This is showing us how gene epression differs between the first and second larval instar. However, at this point we may be left with more questions than answers! This is typical of bioinformatics analysis. It will take more research to better understand this data!
 
 ## Summary and Debrief
 

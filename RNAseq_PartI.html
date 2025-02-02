@@ -204,7 +204,7 @@ Attaching package: 'BiocGenerics'</code></pre>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(count_matrix) <span class="ot">&lt;-</span> genes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can check the Environment tab to see what this did. You should have a data table called <code>count_dataframe</code> with 14,869 observations (these are the different gene transcripts) and 147 variables (these are the different fly samples).</p>
-<p>Now, we will use another data set from <code>rbioinfcoockbook</code> called <code>pheno_data</code>. This has the phenotypic data or physical information about the samples. We will specify that we want to work with two experiments about the larvae and their larval stage.</p>
+<p>Now, we will use another data set from <code>rbioinfcoockbook</code> called <code>pheno_data</code>. This has the phenotypic data or physical information about the samples. We will specify that we want to work with two experiments about the larvae and their larval stage, L1 (first instar) and L2 (second instar).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>experiments_of_interest <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"L1Larvae"</span>, <span class="st">"L2Larvae"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>columns_of_interest <span class="ot">&lt;-</span> <span class="fu">which</span>(pheno_data[[<span class="st">'stage'</span>]] <span class="sc">%in%</span> experiments_of_interest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -252,7 +252,7 @@ FBgn0243586 6.966860  7.769756 24146.95 3.698699e-33 5.499595e-30</code></pre>
 </div>
 </div>
 <p>Let’s interpret this output! The first column shows us our gene transcript of interest (e.g.&nbsp;FBgn0037430), the logFC stands for log Fold Change, which is a measure of the differences between the two samples. The logCPM column which stands for log Counts Per Million, this is similar to the average expression value of the gene across samples but accounts for the large number of gene transcripts. The F value, P value, and false detection rate (FDR) columns are the results of our statistical test. FDR is the most relevant to us because it is a p-value that has been corrected for the number of tests we’re conducting, or adjusted to decrease the probability of false detection.</p>
-<p>Using FDR, we can see that a number of gene transcripts are differentially expressed between our two treatments. However, at this point we may be left with more questions than answers! This is typical of bioinformatics analysis. It will take more research to better understand this data!</p>
+<p>Using FDR, we can see that a number of gene transcripts are differentially expressed between our two treatments. This is showing us how gene epression differs between the first and second larval instar. However, at this point we may be left with more questions than answers! This is typical of bioinformatics analysis. It will take more research to better understand this data!</p>
 </section>
 </section>
 <section id="summary-and-debrief" class="level2">
