@@ -22,9 +22,9 @@ In this notebook, you will:
 
 ## RNA-seq Project
 
-At this point it would be a good idea to open a New Project in R Studio. Make sure it is connected to your GitHub by using Version Control and give it a meaningful name like Bioinformatics. Once you have your New Project, open a new Quarto Document and give it a meaningful title, like "RNA-seq Part I." Once you have your document set up, type a description (you can update this later), and then we are ready to start loading the packages we need!
+At this point it would be a good idea to open a New Project in R Studio. Make sure it is connected to your GitHub by using Version Control and give it a meaningful name like Bioinformatics. Once you have your New Project, open a new Quarto Document and give it a meaningful title, like "RNA-seq Part I." Once you have your document set up, type a description (you can update this later), and then we are ready to start our Bioinformatics journey!
 
-Let's start by installing the packages we will need to do this analysis. First, wee will install a package called `rbioinfocookbook`. This is from the book *R Bioinformatics Cookbook* by Dan MacLean. This book is a great resource for those who want to continue on with Bioinformatics. We will install `rbioinfocoobook` from Dan MacLean's GitHub repository using `devtools.`
+Let's start by installing the packages we will need to do this analysis. First, wee will install a package called `rbioinfcookbook`. This is from the book *R Bioinformatics Cookbook* by Dan MacLean. This book is a great resource for those who want to continue on with Bioinformatics. We will install `rbioinfcoobook` from Dan MacLean's GitHub repository using `devtools.`
 
 ```{r}
 #install.packages("devtools")
@@ -58,7 +58,7 @@ library(Biobase)
 
 ## Using edgeR to estimate differential expression
 
-The `edgeR` package is one common tool for estimating differential expression, or how two or more samples differ in what genes are being expressed (turned on or off). We will practice this using a sample data set from the R Bioinformatics Cookbook - `modencodefly`. This data set contains data on the model organsim, *Drosophila melanogaster*. Even this sample data set contains 147 different samples and about 15,000 genes. You can read more about this data set at <http://data.modencode.org/>.
+The `edgeR` package is one common tool for estimating differential expression, or how two or more samples differ in what genes are being expressed (turned on or off). We will practice this using a sample data set from the R Bioinformatics Cookbook - `modencodefly`. This data set contains data on the model organism, *Drosophila melanogaster*. Even this sample data set contains 147 different samples and about 15,000 genes. You can read more about this data set at <http://data.modencode.org/>.
 
 To estimate differential expression, we will use two tools available in `edgeR`:
 
@@ -94,13 +94,13 @@ Now we will set stage as the grouping factor, or categorical variable that we wi
 grouping <- pheno_data[["stage"]] [columns_of_interest] |> forcats::as_factor()
 ```
 
-Now, we will form a subset of the `count_matrix` data table that only includes our columns of interest.
+The next step involves subseting our data to pull out the columns we are interested in. We will form a subset of the `count_matrix` data table that only includes our columns of interest and is called `counts_of_interest.`
 
 ```{r}
 counts_of_interest <- count_matrix[,counts = columns_of_interest]
 ```
 
-Now, we will use the `DGEList` function in `edgeR` to assemble all our data into one object called `count_dge`.
+Now, we will use the `DGEList` function in `edgeR` to assemble all our data into one object called `count_dge`. This will combine the transcript counts and the larval stage information in one place, so we can perform our analysis.
 
 ```{r}
 count_dge <- edgeR::DGEList(counts = counts_of_interest, group = grouping)
@@ -114,7 +114,7 @@ Our data is now assembled in the format that we need and we can finally perform 
 
 -   `glmQLFit` is used to fit a generalized linear model to our data
 
--   `glmQLFTest` is used to perform a likelihood ratio test to identify differentially expressed genes
+-   `glmQLFTest` is used to perform a likelihood ratio test to identify differentially expressed genes. This is a statistical test that will help us identify which genes are significantly different between samples
 
 -   `topTags` displays the top differentially expressed genes
 
@@ -132,12 +132,16 @@ Let's interpret this output! The first column shows us our gene transcript of in
 
 Using FDR, we can see that a number of gene transcripts are differentially expressed between our two treatments. This is showing us how gene epression differs between the first and second larval instar. However, at this point we may be left with more questions than answers! This is typical of bioinformatics analysis. It will take more research to better understand this data!
 
+Let's do a little preliminary research on some of the differentially expressed genes. The FB in the gene transcripts stands for Fly Base. This is an online database dedicated to fruit fly research, since they are one of the most popular model organisms for genetics. Copy over some of the gene names (e.g. FBgn0037430) and look them up on <https://flybase.org/>.
+
+What did you learn? Does it make sense that this gene would be differentially expressed between the first and second larval instar? Write a summary of what you learned in your Quarto document.
+
 ## Summary and Debrief
 
-In this notebook, we got introduced to `edgeR`, a popular package for analyzing RNA-seq data. We used `edgeR` to compare RNA-seq data from two treatments of *Drosophila* larva and see what genes were differentially expressed between treatments. In the next notebook, we will learn how to visualize this data.
+In this notebook, we got introduced to `edgeR`, a popular package for analyzing RNA-seq data. We used `edgeR` to compare RNA-seq data from two treatments of *Drosophila* larva and saw what genes were differentially expressed between treatments. In the next notebook, we will learn how to visualize this data.
 
 Don't forget to annotate your notebook and pull, commit, and push your notebook to GitHub before moving on!
 
 ## References
 
-*R Bioinformatics Cookbook*, 2nd edition, Dan MaClean, Packt Publishing, 2023.
+*R Bioinformatics Cookbook*, 2nd edition, Dan MacLean, Packt Publishing, 2023.

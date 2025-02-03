@@ -118,8 +118,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="rna-seq-project" class="level2">
 <h2 class="anchored" data-anchor-id="rna-seq-project">RNA-seq Project</h2>
-<p>At this point it would be a good idea to open a New Project in R Studio. Make sure it is connected to your GitHub by using Version Control and give it a meaningful name like Bioinformatics. Once you have your New Project, open a new Quarto Document and give it a meaningful title, like “RNA-seq Part I.” Once you have your document set up, type a description (you can update this later), and then we are ready to start loading the packages we need!</p>
-<p>Let’s start by installing the packages we will need to do this analysis. First, wee will install a package called <code>rbioinfocookbook</code>. This is from the book <em>R Bioinformatics Cookbook</em> by Dan MacLean. This book is a great resource for those who want to continue on with Bioinformatics. We will install <code>rbioinfocoobook</code> from Dan MacLean’s GitHub repository using <code>devtools.</code></p>
+<p>At this point it would be a good idea to open a New Project in R Studio. Make sure it is connected to your GitHub by using Version Control and give it a meaningful name like Bioinformatics. Once you have your New Project, open a new Quarto Document and give it a meaningful title, like “RNA-seq Part I.” Once you have your document set up, type a description (you can update this later), and then we are ready to start our Bioinformatics journey!</p>
+<p>Let’s start by installing the packages we will need to do this analysis. First, wee will install a package called <code>rbioinfcookbook</code>. This is from the book <em>R Bioinformatics Cookbook</em> by Dan MacLean. This book is a great resource for those who want to continue on with Bioinformatics. We will install <code>rbioinfcoobook</code> from Dan MacLean’s GitHub repository using <code>devtools.</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("devtools")</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -187,7 +187,7 @@ Attaching package: 'BiocGenerics'</code></pre>
 </section>
 <section id="using-edger-to-estimate-differential-expression" class="level2">
 <h2 class="anchored" data-anchor-id="using-edger-to-estimate-differential-expression">Using edgeR to estimate differential expression</h2>
-<p>The <code>edgeR</code> package is one common tool for estimating differential expression, or how two or more samples differ in what genes are being expressed (turned on or off). We will practice this using a sample data set from the R Bioinformatics Cookbook - <code>modencodefly</code>. This data set contains data on the model organsim, <em>Drosophila melanogaster</em>. Even this sample data set contains 147 different samples and about 15,000 genes. You can read more about this data set at <a href="http://data.modencode.org/" class="uri">http://data.modencode.org/</a>.</p>
+<p>The <code>edgeR</code> package is one common tool for estimating differential expression, or how two or more samples differ in what genes are being expressed (turned on or off). We will practice this using a sample data set from the R Bioinformatics Cookbook - <code>modencodefly</code>. This data set contains data on the model organism, <em>Drosophila melanogaster</em>. Even this sample data set contains 147 different samples and about 15,000 genes. You can read more about this data set at <a href="http://data.modencode.org/" class="uri">http://data.modencode.org/</a>.</p>
 <p>To estimate differential expression, we will use two tools available in <code>edgeR</code>:</p>
 <ul>
 <li><p>Trimmed mean of M-values (TMM) method for normalizing data - this technique uses the mean of log-transformed gene expression values to help scale the data and account for differences in data collection between samples (the size of the library, or amount of data collected for each sample).</p></li>
@@ -213,11 +213,11 @@ Attaching package: 'BiocGenerics'</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>grouping <span class="ot">&lt;-</span> pheno_data[[<span class="st">"stage"</span>]] [columns_of_interest] <span class="sc">|&gt;</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now, we will form a subset of the <code>count_matrix</code> data table that only includes our columns of interest.</p>
+<p>The next step involves subseting our data to pull out the columns we are interested in. We will form a subset of the <code>count_matrix</code> data table that only includes our columns of interest and is called <code>counts_of_interest.</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>counts_of_interest <span class="ot">&lt;-</span> count_matrix[,counts <span class="ot">=</span> columns_of_interest]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now, we will use the <code>DGEList</code> function in <code>edgeR</code> to assemble all our data into one object called <code>count_dge</code>.</p>
+<p>Now, we will use the <code>DGEList</code> function in <code>edgeR</code> to assemble all our data into one object called <code>count_dge</code>. This will combine the transcript counts and the larval stage information in one place, so we can perform our analysis.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>count_dge <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">DGEList</span>(<span class="at">counts =</span> counts_of_interest, <span class="at">group =</span> grouping)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -226,7 +226,7 @@ Attaching package: 'BiocGenerics'</code></pre>
 <li><p><code>model.matrix</code> tells <code>edgeR</code> our experimental design or what variables we are testing with our model</p></li>
 <li><p><code>estimateDisp</code> is used to estimate the dispersion (or spread) of our count data</p></li>
 <li><p><code>glmQLFit</code> is used to fit a generalized linear model to our data</p></li>
-<li><p><code>glmQLFTest</code> is used to perform a likelihood ratio test to identify differentially expressed genes</p></li>
+<li><p><code>glmQLFTest</code> is used to perform a likelihood ratio test to identify differentially expressed genes. This is a statistical test that will help us identify which genes are significantly different between samples</p></li>
 <li><p><code>topTags</code> displays the top differentially expressed genes</p></li>
 </ul>
 <p>Run these now with the code below.</p>
@@ -253,16 +253,18 @@ FBgn0243586 6.966860  7.769756 24146.95 3.698699e-33 5.499595e-30</code></pre>
 </div>
 <p>Let’s interpret this output! The first column shows us our gene transcript of interest (e.g.&nbsp;FBgn0037430), the logFC stands for log Fold Change, which is a measure of the differences between the two samples. The logCPM column which stands for log Counts Per Million, this is similar to the average expression value of the gene across samples but accounts for the large number of gene transcripts. The F value, P value, and false detection rate (FDR) columns are the results of our statistical test. FDR is the most relevant to us because it is a p-value that has been corrected for the number of tests we’re conducting, or adjusted to decrease the probability of false detection.</p>
 <p>Using FDR, we can see that a number of gene transcripts are differentially expressed between our two treatments. This is showing us how gene epression differs between the first and second larval instar. However, at this point we may be left with more questions than answers! This is typical of bioinformatics analysis. It will take more research to better understand this data!</p>
+<p>Let’s do a little preliminary research on some of the differentially expressed genes. The FB in the gene transcripts stands for Fly Base. This is an online database dedicated to fruit fly research, since they are one of the most popular model organisms for genetics. Copy over some of the gene names (e.g.&nbsp;FBgn0037430) and look them up on <a href="https://flybase.org/" class="uri">https://flybase.org/</a>.</p>
+<p>What did you learn? Does it make sense that this gene would be differentially expressed between the first and second larval instar? Write a summary of what you learned in your Quarto document.</p>
 </section>
 </section>
 <section id="summary-and-debrief" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-debrief">Summary and Debrief</h2>
-<p>In this notebook, we got introduced to <code>edgeR</code>, a popular package for analyzing RNA-seq data. We used <code>edgeR</code> to compare RNA-seq data from two treatments of <em>Drosophila</em> larva and see what genes were differentially expressed between treatments. In the next notebook, we will learn how to visualize this data.</p>
+<p>In this notebook, we got introduced to <code>edgeR</code>, a popular package for analyzing RNA-seq data. We used <code>edgeR</code> to compare RNA-seq data from two treatments of <em>Drosophila</em> larva and saw what genes were differentially expressed between treatments. In the next notebook, we will learn how to visualize this data.</p>
 <p>Don’t forget to annotate your notebook and pull, commit, and push your notebook to GitHub before moving on!</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<p><em>R Bioinformatics Cookbook</em>, 2nd edition, Dan MaClean, Packt Publishing, 2023.</p>
+<p><em>R Bioinformatics Cookbook</em>, 2nd edition, Dan MacLean, Packt Publishing, 2023.</p>
 </section>
 
 </main>
