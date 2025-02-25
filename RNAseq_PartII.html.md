@@ -1,5 +1,5 @@
 ---
-title: "RNAseq_PartII"
+title: "Performing Quantitative RNA-seq, Part II"
 author: "Dr. Duryea and Dr. Gilbert"
 format: html
 editor: visual
@@ -16,7 +16,7 @@ In the last notebook, we learned how to analyze RNA-seq data and determine which
 
 One way to visual RNA-seq data and get a better idea of the patterns in the data is by creating a heatmap. A heatmap is a graphical representation of data where values are represented by colors, typically with a color scale (warm vs. cool colors, for example). In Bioinformatics, heatmap plots are used to identify patterns in large genomics datasets. The colors in the heat map can be used to indicate the amount of gene expression for any given gene and the plot overall can help identify patterns in which genes are turned on or off for our experiment.
 
-We will use another example dataset from the *R Bioinformatics Cookbook* to learn how to create a heatmap from RNA-seq data. This data is looking at the model plant species *Arabidopsis thaliana* and how its gene expression varies in different parts of the plant. We can use RNA-seq to see if gene expression after infection varies by ecotype, which are naturally occurring variants of *Arabidopsis* that are adapted to different climates and environments.
+We will use another example dataset from the *R Bioinformatics Cookbook* to learn how to create a heatmap from RNA-seq data. This data is looking at the model plant species *Arabidopsis thaliana* and how its gene expression varies in different parts of the plant. We can use RNA-seq to see if gene expression varies by ecotype, which are naturally occurring variants of *Arabidopsis* that are adapted to different climates and environments.
 
 ## Notebook Objectives
 
@@ -40,25 +40,8 @@ The main package we will be using is `ComplexHeatmap.` This can be downloaded fr
 
 ```{.r .cell-code}
 #if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-```
+    #install.packages("BiocManager")
 
-::: {.cell-output .cell-output-stdout}
-
-```
-The following package(s) will be installed:
-- BiocManager [1.30.25]
-These packages will be installed into "~/Desktop/GitHub/Intro-to-Bioinformatics/renv/library/macos/R-4.4/x86_64-apple-darwin20".
-
-# Installing packages --------------------------------------------------------
-- Installing BiocManager ...                    OK [linked from cache]
-Successfully installed 1 package in 7.2 milliseconds.
-```
-
-
-:::
-
-```{.r .cell-code}
 #BiocManager::install("ComplexHeatmap")
 ```
 :::
