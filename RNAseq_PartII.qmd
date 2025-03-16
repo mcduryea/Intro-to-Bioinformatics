@@ -108,7 +108,7 @@ side_annot <- rowAnnotation(length = anno_points(at_tf_gex$Length, pch = 16, siz
 
 Now that we have everything coded and formatted, we are ready to create our heatmap! We will use the `Heatmap()` function in `ComplexHeatmap` and specify `mat` as the dataset. The `data_col_func` uses the color palettes that we created above and `top_annot` and `side_annot` uses the annotations we made. The other functions adjust the display of the plot:
 
--    `row_km` function is used to set the number of clusters for the rows
+-   `row_km` function is used to set the number of clusters for the rows
 
 -   `cluster_columns` is set to TRUE which causes the columns of the heatmap to cluster based on their similarity in gene expression
 
