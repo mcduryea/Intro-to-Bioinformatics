@@ -107,8 +107,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>In this exercise, we will learn how to analyze genetic data to build phylogenies, or evolutionary trees. Evolutionary trees have been used to display relationships among organisms since Darwin first wrote <em>The Origin of Species</em>. They were originally made using morphological data (or physical traits) but are now typically made using genetic data and increasingly large genetic datasets. Once again, it’s Bioinformatics to the rescue!</p>
 </section>
-<section id="notebook-objectivese" class="level2">
-<h2 class="anchored" data-anchor-id="notebook-objectivese">Notebook Objectivese</h2>
+<section id="notebook-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="notebook-objectives">Notebook Objectives</h2>
 <p>In this Notebook, you will:</p>
 <ul>
 <li><p>create various formats of evolutionary trees using the packages <code>ape</code> and <code>treeio</code></p></li>
@@ -345,8 +345,8 @@ Attaching package: 'ggtree'</code></pre>
 </section>
 <section id="reading-and-writing-trees-with-ape-and-treeio" class="level2">
 <h2 class="anchored" data-anchor-id="reading-and-writing-trees-with-ape-and-treeio">Reading and writing trees with ape and treeio</h2>
-<p>In this section, we will create trees from a mammal phylogeny from data sets available in the <em>R Bioinformatics Cookbook.</em> First, we will use ape to read in the tree in two different formats - Newick and Nexus.</p>
-<p>Newick is a simple format where evolutionary trees are displayed in a text base format. This is good for computers, but doesn’t create a great visualization.</p>
+<p>In this section, we will create trees from a mammal phylogeny from datasets available in the <em>R Bioinformatics Cookbook.</em> First, we will use <code>ape</code> to read in the tree in two different formats - Newick and Nexus.</p>
+<p>Newick is a simple format where evolutionary trees are displayed in a text-based format. This is good for computers, but doesn’t create a great visualization.</p>
 <p>The Nexus format builds on the Newick format and adds in character data (the DNA sequences or traits used to build the tree). Neither formats are great for humans to interpret, but both are a good way to load thee data to start the analysis.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>newick_file_path <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">path_package</span>(<span class="st">"extdata"</span>, <span class="st">"mammal_tree.nwk"</span>, <span class="at">package =</span> <span class="st">"rbioinfcookbook"</span> )</span>
@@ -400,7 +400,7 @@ attr(,"package")
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>treeio<span class="sc">::</span><span class="fu">write.beast</span>(newick_tidytree, <span class="at">file =</span> <span class="st">"mammal_tree.beast"</span>)</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>ape<span class="sc">::</span><span class="fu">write.nexus</span>(beast_phylo, <span class="at">file =</span> <span class="st">"beast_mcc.nexus"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>These will save the files, but again, nothing should pop up. These trees are now in a format that can be read by many different phylogenetic analysis packages. One way to view the file is to use the free resources on the Interactive Tree of Life Project (<a href="https://itol.embl.de/" class="uri">https://itol.embl.de/</a>).</p>
+<p>These will save the files, but again, nothing pop ups. These trees are now in a format that can be read by many different phylogenetic analysis packages. One way to view the file is to use the free resources on the Interactive Tree of Life Project (<a href="https://itol.embl.de/" class="uri">https://itol.embl.de/</a>).</p>
 <p>Go to this website an click on “Upload a Tree” below Annotate on the bottom of the page. When the page loads, click on “Choose File” and navigate to the “mammal_tree.beast” file that you just created. It should be in your GitHub project folder. You can leave the other fields blank or add it a name or description, if you like.</p>
 <p>What do you notice about the tree? Do the relationships make sense to you? Look up any of the names that are unfamiliar and comment on your findings in your Quarto document.</p>
 <p>In the next section, we will learn how to visualize and format trees in R using <code>ggtree</code> and data from the Interactive Tree of Life project.</p>
@@ -449,7 +449,7 @@ attr(,"package")
 </div>
 </div>
 </div>
-<p>This makes it easier to read the labels. You know may be able to tell that we are working with different species of bacteria.</p>
+<p>This makes it easier to read the labels. You now may be able to tell that we are working with different species of bacteria.</p>
 <p>You can also add annotations to the tree. We can add a strip of color to highlight a particular clade.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(itol, <span class="at">layout =</span> <span class="st">"circular"</span>) <span class="sc">+</span></span>
@@ -506,7 +506,7 @@ attr(,"package")
 </div>
 </div>
 <p>Now that we know the basics, let’s see if we can display our mammal phylogeny from earlier.</p>
-<p>Load in the mammal Newick file and use ape to read the tree.</p>
+<p>Load in the mammal Newick file and use <code>ape</code> to read the tree.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>mammal_file <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">path_package</span>(<span class="st">"extdata"</span>, <span class="st">"mammal_tree.nwk"</span>, <span class="at">package =</span> <span class="st">"rbioinfcookbook"</span> )</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>

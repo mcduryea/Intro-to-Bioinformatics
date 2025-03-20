@@ -14,7 +14,7 @@ execute:
 
 In this exercise, we will learn how to analyze genetic data to build phylogenies, or evolutionary trees. Evolutionary trees have been used to display relationships among organisms since Darwin first wrote *The Origin of Species*. They were originally made using morphological data (or physical traits) but are now typically made using genetic data and increasingly large genetic datasets. Once again, it's Bioinformatics to the rescue!
 
-## Notebook Objectivese
+## Notebook Objectives
 
 In this Notebook, you will:
 
@@ -522,9 +522,9 @@ The following object is masked from 'package:S4Vectors':
 
 ## Reading and writing trees with ape and treeio
 
-In this section, we will create trees from a mammal phylogeny from data sets available in the *R Bioinformatics Cookbook.* First, we will use ape to read in the tree in two different formats - Newick and Nexus.
+In this section, we will create trees from a mammal phylogeny from datasets available in the *R Bioinformatics Cookbook.* First, we will use `ape` to read in the tree in two different formats - Newick and Nexus.
 
-Newick is a simple format where evolutionary trees are displayed in a text base format. This is good for computers, but doesn't create a great visualization.
+Newick is a simple format where evolutionary trees are displayed in a text-based format. This is good for computers, but doesn't create a great visualization.
 
 The Nexus format builds on the Newick format and adds in character data (the DNA sequences or traits used to build the tree). Neither formats are great for humans to interpret, but both are a good way to load thee data to start the analysis.
 
@@ -659,7 +659,7 @@ ape::write.nexus(beast_phylo, file = "beast_mcc.nexus")
 
 
 
-These will save the files, but again, nothing should pop up. These trees are now in a format that can be read by many different phylogenetic analysis packages. One way to view the file is to use the free resources on the Interactive Tree of Life Project (<https://itol.embl.de/>).
+These will save the files, but again, nothing pop ups. These trees are now in a format that can be read by many different phylogenetic analysis packages. One way to view the file is to use the free resources on the Interactive Tree of Life Project (<https://itol.embl.de/>).
 
 Go to this website an click on "Upload a Tree" below Annotate on the bottom of the page. When the page loads, click on "Choose File" and navigate to the "mammal_tree.beast" file that you just created. It should be in your GitHub project folder. You can leave the other fields blank or add it a name or description, if you like.
 
@@ -739,7 +739,7 @@ ggtree(itol, layout = "circular") +
 
 
 
-This makes it easier to read the labels. You know may be able to tell that we are working with different species of bacteria.
+This makes it easier to read the labels. You now may be able to tell that we are working with different species of bacteria.
 
 You can also add annotations to the tree. We can add a strip of color to highlight a particular clade.
 
@@ -852,7 +852,7 @@ Average angle change [5] 0.100056259084231
 
 Now that we know the basics, let's see if we can display our mammal phylogeny from earlier.
 
-Load in the mammal Newick file and use ape to read the tree.
+Load in the mammal Newick file and use `ape` to read the tree.
 
 
 
