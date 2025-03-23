@@ -26,6 +26,7 @@ In this Notebook, you will:
 Open a new Quarto document in your Bioinformatics project. Give your document a meaningful title like "Phylogenetic analysis and Visualization." Type a brief description and then start to install the new packages you will need. Remember to remove the "\#" the first time you run it and then replace it after the package downloads.
 
 ```{r}
+#| message: false
 #install.packages("ape")
 
 #if (!require("BiocManager", quietly = TRUE))
@@ -47,6 +48,7 @@ Open a new Quarto document in your Bioinformatics project. Give your document a 
 Now, let's load all the packages we will need into our library. Some of them you have downloaded earlier.
 
 ```{r}
+#| message: false
 library(rbioinfcookbook)
 library(SGSeq)
 library(ape)
