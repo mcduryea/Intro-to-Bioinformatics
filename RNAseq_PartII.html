@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="rna-seq-part-ii" class="level2">
 <h2 class="anchored" data-anchor-id="rna-seq-part-ii">RNA-seq Part II</h2>
 <p>At this point, it is a good idea to open a fresh Quarto document within your RNA-seq project and give it a meaningful title like “RNAseq_PartII”. Give your new document a useful description and then we will install and load the packages that you will need to analyze this data.</p>
-<p>The main package we will be using is <code>ComplexHeatmap.</code> This can be downloaded from Bioconductor. Copy the code below and remove the “#”’s to install <code>ComplexHeatmap.</code> Once the package is installed, you can replace the “#”’s, so that you don’t install it every time you render your document.</p>
+<p>The main package we will be using is <code>ComplexHeatmap.</code> This can be downloaded from Bioconductor. Remeber, copy the code below and remove the “#”’s to install <code>ComplexHeatmap.</code> Once the package is installed, you can replace the “#”’s, so that you don’t install it every time you render your document.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#if (!require("BiocManager", quietly = TRUE))</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#install.packages("BiocManager")</span></span>
@@ -137,73 +137,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Now, load all your packages using library, including <code>rbioinfcookbook</code>, which you downloaded in the last notebook.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ComplexHeatmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: grid</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>========================================
-ComplexHeatmap version 2.22.0
-Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
-Github page: https://github.com/jokergoo/ComplexHeatmap
-Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
-
-If you use it in published research, please cite either one:
-- Gu, Z. Complex Heatmap Visualization. iMeta 2022.
-- Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional 
-    genomic data. Bioinformatics 2016.
-
-
-The new InteractiveComplexHeatmap package can directly export static 
-complex heatmaps into an interactive Shiny app with zero effort. Have a try!
-
-This message can be suppressed by:
-  suppressPackageStartupMessages(library(ComplexHeatmap))
-========================================</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridisLite)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(circlize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>========================================
-circlize version 0.4.16
-CRAN page: https://cran.r-project.org/package=circlize
-Github page: https://github.com/jokergoo/circlize
-Documentation: https://jokergoo.github.io/circlize_book/book/
-
-If you use it in published research, please cite:
-Gu, Z. circlize implements and enhances circular visualization
-  in R. Bioinformatics 2014.
-
-This message can be suppressed by:
-  suppressPackageStartupMessages(library(circlize))
-========================================</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rbioinfcookbook)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ComplexHeatmap)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridisLite)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(circlize)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rbioinfcookbook)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="loading-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="loading-the-data">Loading the Data</h2>
-<p>Now that we have all the packages that we need, let’s load the dataset from the <code>rbionfcookbook.</code> The name of the dataset is <code>at_tf_gex</code>. We will pull out a few columns of interest and scale the data to make it more visually interpretable.</p>
+<p>Now that we have all the packages that we need, let’s load the dataset from the <code>rbioinfcookbook.</code> The name of the dataset is <code>at_tf_gex</code>. We will pull out a few columns of interest and scale the data to make it more easy to interpret.</p>
 <p>We will then use a function in the <code>stringr</code> package to split the data by ecotype.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="fu">as.matrix</span>(at_tf_gex[ , <span class="dv">5</span><span class="sc">:</span><span class="dv">55</span>]))</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ecotype <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="fu">colnames</span>(mat), <span class="st">","</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[,<span class="dv">1</span>]</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>part <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="fu">colnames</span>(mat), <span class="st">","</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="fu">as.matrix</span>(at_tf_gex[ , <span class="dv">5</span><span class="sc">:</span><span class="dv">55</span>]))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ecotype <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="fu">colnames</span>(mat), <span class="st">","</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[,<span class="dv">1</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>part <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="fu">colnames</span>(mat), <span class="st">","</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="color-palettes" class="level2">
 <h2 class="anchored" data-anchor-id="color-palettes">Color Palettes</h2>
 <p>We will use the <code>circlize</code> and <code>viridisLite</code> packages to create color palettes for the different types of data in the heatmap. We will create a unique color palette for each ecotype and plant part.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data_col_func <span class="ot">&lt;-</span> circlize<span class="sc">::</span><span class="fu">colorRamp2</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(mat), <span class="at">length.out =</span> <span class="dv">6</span>), viridisLite<span class="sc">::</span><span class="fu">magma</span>(<span class="dv">6</span>))</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ecotype_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">12</span>, <span class="st">"Set3"</span>), RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">5</span>, <span class="st">"Set1"</span>))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ecotype_colors) <span class="ot">&lt;-</span> <span class="fu">unique</span>(ecotype)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>part_colors <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">"Accent"</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(part_colors) <span class="ot">&lt;-</span> <span class="fu">unique</span>(part)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_col_func <span class="ot">&lt;-</span> circlize<span class="sc">::</span><span class="fu">colorRamp2</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(mat), <span class="at">length.out =</span> <span class="dv">6</span>), viridisLite<span class="sc">::</span><span class="fu">magma</span>(<span class="dv">6</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ecotype_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">12</span>, <span class="st">"Set3"</span>), RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">5</span>, <span class="st">"Set1"</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ecotype_colors) <span class="ot">&lt;-</span> <span class="fu">unique</span>(ecotype)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>part_colors <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">"Accent"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(part_colors) <span class="ot">&lt;-</span> <span class="fu">unique</span>(part)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="annotations-and-formatting" class="level2">
@@ -217,9 +179,9 @@ This message can be suppressed by:
 <li><p><code>axis_param</code> specifies the locations of the ticks on the x-axis.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>top_annot <span class="ot">&lt;-</span> <span class="fu">HeatmapAnnotation</span>(<span class="st">"Ecotype"</span> <span class="ot">=</span> ecotype, <span class="st">"Plant Part"</span> <span class="ot">=</span> part, <span class="at">col =</span> <span class="fu">list</span>(<span class="st">"Ecotype"</span> <span class="ot">=</span> ecotype_colors, <span class="st">"Plant Part"</span> <span class="ot">=</span> part_colors), <span class="at">annotation_name_side =</span> <span class="st">"left"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>side_annot <span class="ot">&lt;-</span> <span class="fu">rowAnnotation</span>(<span class="at">length =</span> <span class="fu">anno_points</span>(at_tf_gex<span class="sc">$</span>Length, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"mm"</span>), <span class="at">axis_param =</span> <span class="fu">list</span>(<span class="at">at =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">max</span>(at_tf_gex<span class="sc">$</span>Length), <span class="at">length.out =</span> <span class="dv">4</span>)),))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>top_annot <span class="ot">&lt;-</span> <span class="fu">HeatmapAnnotation</span>(<span class="st">"Ecotype"</span> <span class="ot">=</span> ecotype, <span class="st">"Plant Part"</span> <span class="ot">=</span> part, <span class="at">col =</span> <span class="fu">list</span>(<span class="st">"Ecotype"</span> <span class="ot">=</span> ecotype_colors, <span class="st">"Plant Part"</span> <span class="ot">=</span> part_colors), <span class="at">annotation_name_side =</span> <span class="st">"left"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>side_annot <span class="ot">&lt;-</span> <span class="fu">rowAnnotation</span>(<span class="at">length =</span> <span class="fu">anno_points</span>(at_tf_gex<span class="sc">$</span>Length, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"mm"</span>), <span class="at">axis_param =</span> <span class="fu">list</span>(<span class="at">at =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">max</span>(at_tf_gex<span class="sc">$</span>Length), <span class="at">length.out =</span> <span class="dv">4</span>)),))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="the-heatmap" class="level2">
@@ -234,9 +196,9 @@ This message can be suppressed by:
 </ul>
 <p>Copy over and run the code below to produce your heatmap!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ht_1 <span class="ot">&lt;-</span> <span class="fu">Heatmap</span>(mat, <span class="at">name=</span><span class="st">"log(TPM)"</span>, <span class="at">row_km =</span> <span class="dv">6</span>, <span class="at">col =</span> data_col_func, <span class="at">top_annotation =</span> top_annot, <span class="at">right_annotation =</span> side_annot, <span class="at">cluster_columns =</span> <span class="cn">TRUE</span>, <span class="at">column_split =</span> ecotype, <span class="at">show_column_names =</span> <span class="cn">FALSE</span>, <span class="at">column_title =</span> <span class="st">" "</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>ComplexHeatmap<span class="sc">::</span><span class="fu">draw</span>(ht_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ht_1 <span class="ot">&lt;-</span> <span class="fu">Heatmap</span>(mat, <span class="at">name=</span><span class="st">"log(TPM)"</span>, <span class="at">row_km =</span> <span class="dv">6</span>, <span class="at">col =</span> data_col_func, <span class="at">top_annotation =</span> top_annot, <span class="at">right_annotation =</span> side_annot, <span class="at">cluster_columns =</span> <span class="cn">TRUE</span>, <span class="at">column_split =</span> ecotype, <span class="at">show_column_names =</span> <span class="cn">FALSE</span>, <span class="at">column_title =</span> <span class="st">" "</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ComplexHeatmap<span class="sc">::</span><span class="fu">draw</span>(ht_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

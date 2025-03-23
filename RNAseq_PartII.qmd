@@ -29,9 +29,10 @@ In this notebook, you will:
 
 At this point, it is a good idea to open a fresh Quarto document within your RNA-seq project and give it a meaningful title like "RNAseq_PartII". Give your new document a useful description and then we will install and load the packages that you will need to analyze this data.
 
-The main package we will be using is `ComplexHeatmap.` This can be downloaded from Bioconductor. Copy the code below and remove the "\#"'s to install `ComplexHeatmap.` Once the package is installed, you can replace the "\#"'s, so that you don't install it every time you render your document.
+The main package we will be using is `ComplexHeatmap.` This can be downloaded from Bioconductor. Remeber, copy the code below and remove the "\#"'s to install `ComplexHeatmap.` Once the package is installed, you can replace the "\#"'s, so that you don't install it every time you render your document.
 
 ```{r}
+#| message: false
 #if (!require("BiocManager", quietly = TRUE))
     #install.packages("BiocManager")
 
@@ -41,6 +42,7 @@ The main package we will be using is `ComplexHeatmap.` This can be downloaded fr
 The other packages we will use allow for the data to be organized and visualized with a useful color scheme. Copy the code and remove the "\#"'s to install these packages. Then, replace the "\#"'s after they are installed.
 
 ```{r}
+#| message: false
 #install.packages("viridisLite")
 #install.packages("stringr")
 #install.packages("RColorBrewer")
@@ -50,6 +52,7 @@ The other packages we will use allow for the data to be organized and visualized
 Now, load all your packages using library, including `rbioinfcookbook`, which you downloaded in the last notebook.
 
 ```{r}
+#| message: false
 library(ComplexHeatmap)
 library(viridisLite)
 library(stringr)
@@ -60,7 +63,7 @@ library(rbioinfcookbook)
 
 ## Loading the Data
 
-Now that we have all the packages that we need, let's load the dataset from the `rbionfcookbook.` The name of the dataset is `at_tf_gex`. We will pull out a few columns of interest and scale the data to make it more visually interpretable.
+Now that we have all the packages that we need, let's load the dataset from the `rbioinfcookbook.` The name of the dataset is `at_tf_gex`. We will pull out a few columns of interest and scale the data to make it more easy to interpret.
 
 We will then use a function in the `stringr` package to split the data by ecotype.
 

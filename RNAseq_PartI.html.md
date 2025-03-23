@@ -27,7 +27,7 @@ In this notebook, you will:
 
 At this point it would be a good idea to open a New Project in R Studio. Make sure it is connected to your GitHub by using Version Control and give it a meaningful name like Bioinformatics. Once you have your New Project, open a new Quarto Document and give it a meaningful title, like "RNA-seq Part I." Once you have your document set up, type a description (you can update this later), and then we are ready to start our Bioinformatics journey!
 
-Let's start by installing the packages we will need to do this analysis. First, wee will install a package called `rbioinfcookbook`. This is from the book *R Bioinformatics Cookbook* by Dan MacLean. This book is a great resource for those who want to continue on with Bioinformatics. We will install `rbioinfcoobook` from Dan MacLean's GitHub repository using `devtools.`
+Let's start by installing the packages we will need to do this analysis. First, wee will install a package called `rbioinfcookbook`. This is from the book *R Bioinformatics Cookbook* by Dan MacLean. This book is a great resource for those who want to continue on with Bioinformatics. We will install `rbioinfcoobook` from Dan MacLean's GitHub repository using `devtools.`Copy the code below and remove the "\#"'s to install the packages. Once the package is installed, you can replace the "\#"'s, so that you don't install it every time you render your document.
 
 
 
@@ -36,18 +36,7 @@ Let's start by installing the packages we will need to do this analysis. First, 
 ```{.r .cell-code}
 #install.packages("devtools")
 library(devtools)
-```
 
-::: {.cell-output .cell-output-stderr}
-
-```
-Loading required package: usethis
-```
-
-
-:::
-
-```{.r .cell-code}
 #devtools::install_github("danmaclean/rbioinfcookbook")
 library(rbioinfcookbook)
 ```
@@ -76,90 +65,8 @@ Now, let's install the other packages we will use to analyze the data. We will i
 
 library(forcats)
 library(edgeR)
-```
-
-::: {.cell-output .cell-output-stderr}
-
-```
-Loading required package: limma
-```
-
-
-:::
-
-```{.r .cell-code}
 library(Biobase)
 ```
-
-::: {.cell-output .cell-output-stderr}
-
-```
-Loading required package: BiocGenerics
-```
-
-
-:::
-
-::: {.cell-output .cell-output-stderr}
-
-```
-
-Attaching package: 'BiocGenerics'
-```
-
-
-:::
-
-::: {.cell-output .cell-output-stderr}
-
-```
-The following object is masked from 'package:limma':
-
-    plotMA
-```
-
-
-:::
-
-::: {.cell-output .cell-output-stderr}
-
-```
-The following objects are masked from 'package:stats':
-
-    IQR, mad, sd, var, xtabs
-```
-
-
-:::
-
-::: {.cell-output .cell-output-stderr}
-
-```
-The following objects are masked from 'package:base':
-
-    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
-    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
-    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
-    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-    Position, rank, rbind, Reduce, rownames, sapply, saveRDS, setdiff,
-    table, tapply, union, unique, unsplit, which.max, which.min
-```
-
-
-:::
-
-::: {.cell-output .cell-output-stderr}
-
-```
-Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with
-    'browseVignettes()'. To cite Bioconductor, see
-    'citation("Biobase")', and for packages 'citation("pkgname")'.
-```
-
-
-:::
 :::
 
 

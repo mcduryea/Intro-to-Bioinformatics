@@ -32,7 +32,7 @@ In this notebook, you will:
 
 At this point, it is a good idea to open a fresh Quarto document within your RNA-seq project and give it a meaningful title like "RNAseq_PartII". Give your new document a useful description and then we will install and load the packages that you will need to analyze this data.
 
-The main package we will be using is `ComplexHeatmap.` This can be downloaded from Bioconductor. Copy the code below and remove the "\#"'s to install `ComplexHeatmap.` Once the package is installed, you can replace the "\#"'s, so that you don't install it every time you render your document.
+The main package we will be using is `ComplexHeatmap.` This can be downloaded from Bioconductor. Remeber, copy the code below and remove the "\#"'s to install `ComplexHeatmap.` Once the package is installed, you can replace the "\#"'s, so that you don't install it every time you render your document.
 
 
 
@@ -72,72 +72,10 @@ Now, load all your packages using library, including `rbioinfcookbook`, which yo
 
 ```{.r .cell-code}
 library(ComplexHeatmap)
-```
-
-::: {.cell-output .cell-output-stderr}
-
-```
-Loading required package: grid
-```
-
-
-:::
-
-::: {.cell-output .cell-output-stderr}
-
-```
-========================================
-ComplexHeatmap version 2.22.0
-Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
-Github page: https://github.com/jokergoo/ComplexHeatmap
-Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
-
-If you use it in published research, please cite either one:
-- Gu, Z. Complex Heatmap Visualization. iMeta 2022.
-- Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional 
-    genomic data. Bioinformatics 2016.
-
-
-The new InteractiveComplexHeatmap package can directly export static 
-complex heatmaps into an interactive Shiny app with zero effort. Have a try!
-
-This message can be suppressed by:
-  suppressPackageStartupMessages(library(ComplexHeatmap))
-========================================
-```
-
-
-:::
-
-```{.r .cell-code}
 library(viridisLite)
 library(stringr)
 library(RColorBrewer)
 library(circlize)
-```
-
-::: {.cell-output .cell-output-stderr}
-
-```
-========================================
-circlize version 0.4.16
-CRAN page: https://cran.r-project.org/package=circlize
-Github page: https://github.com/jokergoo/circlize
-Documentation: https://jokergoo.github.io/circlize_book/book/
-
-If you use it in published research, please cite:
-Gu, Z. circlize implements and enhances circular visualization
-  in R. Bioinformatics 2014.
-
-This message can be suppressed by:
-  suppressPackageStartupMessages(library(circlize))
-========================================
-```
-
-
-:::
-
-```{.r .cell-code}
 library(rbioinfcookbook)
 ```
 :::
@@ -146,7 +84,7 @@ library(rbioinfcookbook)
 
 ## Loading the Data
 
-Now that we have all the packages that we need, let's load the dataset from the `rbionfcookbook.` The name of the dataset is `at_tf_gex`. We will pull out a few columns of interest and scale the data to make it more visually interpretable.
+Now that we have all the packages that we need, let's load the dataset from the `rbioinfcookbook.` The name of the dataset is `at_tf_gex`. We will pull out a few columns of interest and scale the data to make it more easy to interpret.
 
 We will then use a function in the `stringr` package to split the data by ecotype.
 
@@ -215,7 +153,7 @@ side_annot <- rowAnnotation(length = anno_points(at_tf_gex$Length, pch = 16, siz
 
 Now that we have everything coded and formatted, we are ready to create our heatmap! We will use the `Heatmap()` function in `ComplexHeatmap` and specify `mat` as the dataset. The `data_col_func` uses the color palettes that we created above and `top_annot` and `side_annot` uses the annotations we made. The other functions adjust the display of the plot:
 
--    `row_km` function is used to set the number of clusters for the rows
+-   `row_km` function is used to set the number of clusters for the rows
 
 -   `cluster_columns` is set to TRUE which causes the columns of the heatmap to cluster based on their similarity in gene expression
 

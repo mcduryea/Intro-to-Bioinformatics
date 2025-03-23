@@ -119,70 +119,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="rna-seq-project" class="level2">
 <h2 class="anchored" data-anchor-id="rna-seq-project">RNA-seq Project</h2>
 <p>At this point it would be a good idea to open a New Project in R Studio. Make sure it is connected to your GitHub by using Version Control and give it a meaningful name like Bioinformatics. Once you have your New Project, open a new Quarto Document and give it a meaningful title, like “RNA-seq Part I.” Once you have your document set up, type a description (you can update this later), and then we are ready to start our Bioinformatics journey!</p>
-<p>Let’s start by installing the packages we will need to do this analysis. First, wee will install a package called <code>rbioinfcookbook</code>. This is from the book <em>R Bioinformatics Cookbook</em> by Dan MacLean. This book is a great resource for those who want to continue on with Bioinformatics. We will install <code>rbioinfcoobook</code> from Dan MacLean’s GitHub repository using <code>devtools.</code></p>
+<p>Let’s start by installing the packages we will need to do this analysis. First, wee will install a package called <code>rbioinfcookbook</code>. This is from the book <em>R Bioinformatics Cookbook</em> by Dan MacLean. This book is a great resource for those who want to continue on with Bioinformatics. We will install <code>rbioinfcoobook</code> from Dan MacLean’s GitHub repository using <code>devtools.</code>Copy the code below and remove the “#”’s to install the packages. Once the package is installed, you can replace the “#”’s, so that you don’t install it every time you render your document.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("devtools")</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: usethis</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#devtools::install_github("danmaclean/rbioinfcookbook")</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rbioinfcookbook)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#devtools::install_github("danmaclean/rbioinfcookbook")</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rbioinfcookbook)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, let’s install the other packages we will use to analyze the data. We will install <code>forcats</code> the usual way and then two other packages using Bioconductor. This is a package installer that helps to streamline the installation of Bioinformatics packages.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("forcats")</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#if (!require("BiocManager", quietly = TRUE))</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#install.packages("BiocManager")</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#BiocManager::install("edgeR")</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#if (!require("BiocManager", quietly = TRUE))</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#install.packages("BiocManager")</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#BiocManager::install("Biobase")</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(edgeR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: limma</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Biobase)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: BiocGenerics</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'BiocGenerics'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:limma':
-
-    plotMA</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    IQR, mad, sd, var, xtabs</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
-    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
-    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
-    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-    Position, rank, rbind, Reduce, rownames, sapply, saveRDS, setdiff,
-    table, tapply, union, unique, unsplit, which.max, which.min</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with
-    'browseVignettes()'. To cite Bioconductor, see
-    'citation("Biobase")', and for packages 'citation("pkgname")'.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("forcats")</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#if (!require("BiocManager", quietly = TRUE))</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#install.packages("BiocManager")</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#BiocManager::install("edgeR")</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#if (!require("BiocManager", quietly = TRUE))</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#install.packages("BiocManager")</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#BiocManager::install("Biobase")</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(edgeR)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Biobase)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="using-edger-to-estimate-differential-expression" class="level2">
@@ -198,28 +159,28 @@ Attaching package: 'BiocGenerics'</code></pre>
 <p>Here, we will start by loading a transcript count table. This is a raw data file which has the RNA transcripts that were recorded in our samples and a count for each transcript.</p>
 <p>We will start by loading a data set from the <code>rbioinfcookbook</code> package called <code>count_dataframe</code> and converting it to a matrix, or data table that is readable by R. This dataframe has the RNA transcript counts from the <em>Drosophila</em> experiment.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> count_dataframe[[<span class="st">'gene'</span>]]</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>count_dataframe[[<span class="st">'gene'</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>count_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(count_dataframe)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(count_matrix) <span class="ot">&lt;-</span> genes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> count_dataframe[[<span class="st">'gene'</span>]]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>count_dataframe[[<span class="st">'gene'</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>count_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(count_dataframe)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(count_matrix) <span class="ot">&lt;-</span> genes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can check the Environment tab to see what this did. You should have a data table called <code>count_dataframe</code> with 14,869 observations (these are the different gene transcripts) and 147 variables (these are the different fly samples).</p>
 <p>Now, we will use another data set from <code>rbioinfcoockbook</code> called <code>pheno_data</code>. This has the phenotypic data or physical information about the samples. We will specify that we want to work with two experiments about the larvae and their larval stage, L1 (first instar) and L2 (second instar).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>experiments_of_interest <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"L1Larvae"</span>, <span class="st">"L2Larvae"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>columns_of_interest <span class="ot">&lt;-</span> <span class="fu">which</span>(pheno_data[[<span class="st">'stage'</span>]] <span class="sc">%in%</span> experiments_of_interest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>experiments_of_interest <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"L1Larvae"</span>, <span class="st">"L2Larvae"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>columns_of_interest <span class="ot">&lt;-</span> <span class="fu">which</span>(pheno_data[[<span class="st">'stage'</span>]] <span class="sc">%in%</span> experiments_of_interest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we will set stage as the grouping factor, or categorical variable that we will use to compare between samples.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>grouping <span class="ot">&lt;-</span> pheno_data[[<span class="st">"stage"</span>]] [columns_of_interest] <span class="sc">|&gt;</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grouping <span class="ot">&lt;-</span> pheno_data[[<span class="st">"stage"</span>]] [columns_of_interest] <span class="sc">|&gt;</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The next step involves subseting our data to pull out the columns we are interested in. We will form a subset of the <code>count_matrix</code> data table that only includes our columns of interest and is called <code>counts_of_interest.</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>counts_of_interest <span class="ot">&lt;-</span> count_matrix[,counts <span class="ot">=</span> columns_of_interest]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>counts_of_interest <span class="ot">&lt;-</span> count_matrix[,counts <span class="ot">=</span> columns_of_interest]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, we will use the <code>DGEList</code> function in <code>edgeR</code> to assemble all our data into one object called <code>count_dge</code>. This will combine the transcript counts and the larval stage information in one place, so we can perform our analysis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>count_dge <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">DGEList</span>(<span class="at">counts =</span> counts_of_interest, <span class="at">group =</span> grouping)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>count_dge <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">DGEList</span>(<span class="at">counts =</span> counts_of_interest, <span class="at">group =</span> grouping)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Our data is now assembled in the format that we need and we can finally perform our differential expression analysis! To do this, we will use a series of functions from the <code>edgeR</code> package. These functions are outline below:</p>
 <ul>
@@ -231,11 +192,11 @@ Attaching package: 'BiocGenerics'</code></pre>
 </ul>
 <p>Run these now with the code below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span>grouping)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>eset_dge <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">estimateDisp</span>(count_dge, design)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">glmQLFit</span>(eset_dge, design)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">glmQLFTest</span>(fit, <span class="at">coef=</span><span class="dv">2</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">topTags</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span>grouping)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>eset_dge <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">estimateDisp</span>(count_dge, design)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">glmQLFit</span>(eset_dge, design)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">glmQLFTest</span>(fit, <span class="at">coef=</span><span class="dv">2</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">topTags</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Coefficient:  groupingL2Larvae 
                logFC    logCPM        F       PValue          FDR
